@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace DailyToDoList.Entities;
+namespace DailyToDoList.ToDoItems;
 
 public class ToDoItem
 {

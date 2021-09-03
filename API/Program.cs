@@ -1,5 +1,5 @@
-﻿using DailyToDoList.Entities;
-using DailyToDoList.Persistance;
+﻿using DailyToDoList.Persistance;
+using DailyToDoList.ToDoItems;
 
 ToDoItemsDatabase db = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ToDoItems.db"));
 

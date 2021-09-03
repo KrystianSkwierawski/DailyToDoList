@@ -1,5 +1,4 @@
-﻿using DailyToDoList.Entities;
-using DailyToDoList.Interfaces;
+﻿using DailyToDoList.Interfaces;
 using DailyToDoList.ToDoItems;
 using SQLite;
 
@@ -19,26 +18,6 @@ public class ToDoItemsDatabase : IToDoItemsDatabase
         database.CreateTableAsync<ToDoItem>().Wait();
     }
 
-    public async Task<int> AddToDoItemAsync(string title)
-    {
-        ToDoItem entity = new()
-        {
-            Title = title
-        };
-
-        return await database.InsertAsync(entity);
-    }
-
-    public async Task<int> UpdateToDoItemAsync(ToDoItem toDoItem)
-    {
-        return await database.UpdateAsync(toDoItem);
-    }
-
-    public async Task<int> DeleteToDoItemAsync(ToDoItem toDoItem)
-    {
-        return await database.DeleteAsync(toDoItem);
-    }
-
     public async Task<List<ToDoItemDTO>> GetToDoItemsAsync()
     {
         List<ToDoItemDTO> o_toDoItemDTOs = new();
@@ -56,4 +35,26 @@ public class ToDoItemsDatabase : IToDoItemsDatabase
 
         return o_toDoItemDTOs;
     }
+
+    public async Task AddToDoItemAsync(string title)
+    {
+        ToDoItem entity = new()
+        {
+            Title = title
+        };
+
+        await database.InsertAsync(entity);
+    }
+
+    public async Task UpdateToDoItemAsync(ToDoItem toDoItem)
+    {
+        await database.UpdateAsync(toDoItem);
+    }
+
+    public async Task DeleteToDoItemAsync(ToDoItem toDoItem)
+    {
+        await database.DeleteAsync(toDoItem);
+    }
+
+  
 }
