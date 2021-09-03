@@ -1,30 +1,31 @@
 ﻿using DailyToDoList.Interfaces;
 using DailyToDoList.ToDoItems;
-using SQLite;
+using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace DailyToDoList.Persistance;
 
 public class ToDoItemsDatabase : IToDoItemsDatabase
 {
-    private readonly SQLiteAsyncConnection _db;
+    private IMongoDatabase _db;
+    private IMongoClient _mongoClient;
+    private IMongoCollection<ToDoItem> _collection;
 
-    public ToDoItemsDatabase(string dbPath)
+    public ToDoItemsDatabase()
     {
-        _db = new SQLiteAsyncConnection(dbPath);
+        _mongoClient = new MongoClient("mongodb://localhost:65097");
 
-        if (_db is null)
-            throw new Exception();
+        _db = _mongoClient.GetDatabase("ToDoDb");
 
-        _db.CreateTableAsync<ToDoItem>().Wait();
+        _collection = _db.GetCollection<ToDoItem>(typeof(ToDoItem).Name);
     }
 
-    public async Task<List<ToDoItemDTO>> GetToDoItemsAsync()
+    public async Task<List<ToDoItemDTO>> GetToDoItems()
     {
         List<ToDoItemDTO> o_toDoItemDTOs = new();
 
-        var entities = await _db.Table<ToDoItem>().ToListAsync();
-
-        foreach (var entity in entities)
+        foreach (var entity in _collection.AsQueryable())
         {
             o_toDoItemDTOs.Add(new ToDoItemDTO
             {
@@ -38,21 +39,23 @@ public class ToDoItemsDatabase : IToDoItemsDatabase
 
     public async Task AddToDoItemAsync(string title)
     {
-        ToDoItem entity = new()
+        ToDoItem toDoItem = new()
         {
             Title = title
         };
 
-        await _db.InsertAsync(entity);
+        await _collection.InsertOneAsync(toDoItem);
     }
 
-    public async Task UpdateToDoItemAsync(ToDoItem toDoItem)
+    public async Task UpdateToDoItemAsync(ToDoItemDTO toDoItemDTO)
     {
-        await _db.UpdateAsync(toDoItem);
+        var filter = Builders<ToDoItem>.Filter.Eq(s => s.Id, toDoItemDTO.Id);
+        var update = Builders<ToDoItem>.Update.Set(s => s.Title, toDoItemDTO.Title);
+        var result = await _collection.UpdateOneAsync(filter, update);
     }
 
-    public async Task DeleteToDoItemAsync(ToDoItem toDoItem)
+    public async Task DeleteToDoItemAsync(ToDoItemDTO toDoItemDTO)
     {
-        await _db.DeleteAsync(toDoItem);
+        await _collection.DeleteOneAsync(x => x.Id == toDoItemDTO.Id);
     }
 }

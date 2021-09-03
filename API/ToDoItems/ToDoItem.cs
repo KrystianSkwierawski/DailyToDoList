@@ -1,10 +1,12 @@
-﻿using SQLite;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace DailyToDoList.ToDoItems;
 
 public class ToDoItem
 {
-    [PrimaryKey, AutoIncrement]
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
     public int Id { get; set; }
 
     public string Title { get; set; }

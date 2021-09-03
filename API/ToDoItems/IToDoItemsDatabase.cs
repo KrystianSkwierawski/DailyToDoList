@@ -4,8 +4,8 @@ namespace DailyToDoList.Interfaces;
 
 public interface IToDoItemsDatabase
 {
-    Task<List<ToDoItemDTO>> GetToDoItemsAsync();
+    Task<List<ToDoItemDTO>> GetToDoItems();
     Task AddToDoItemAsync(string title);
-    Task UpdateToDoItemAsync(ToDoItem toDoItem);
-    Task DeleteToDoItemAsync(ToDoItem toDoItem);
+    Task UpdateToDoItemAsync(ToDoItemDTO toDoItemDTO);
+    Task DeleteToDoItemAsync(ToDoItemDTO toDoItemDTO);
 }
