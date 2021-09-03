@@ -6,23 +6,23 @@ namespace DailyToDoList.Persistance;
 
 public class ToDoItemsDatabase : IToDoItemsDatabase
 {
-    readonly SQLiteAsyncConnection database;
+    private readonly SQLiteAsyncConnection _db;
 
     public ToDoItemsDatabase(string dbPath)
     {
-        database = new SQLiteAsyncConnection(dbPath);
+        _db = new SQLiteAsyncConnection(dbPath);
 
-        if (database is null)
+        if (_db is null)
             throw new Exception();
 
-        database.CreateTableAsync<ToDoItem>().Wait();
+        _db.CreateTableAsync<ToDoItem>().Wait();
     }
 
     public async Task<List<ToDoItemDTO>> GetToDoItemsAsync()
     {
         List<ToDoItemDTO> o_toDoItemDTOs = new();
 
-        var entities = await database.Table<ToDoItem>().ToListAsync();
+        var entities = await _db.Table<ToDoItem>().ToListAsync();
 
         foreach (var entity in entities)
         {
@@ -43,18 +43,16 @@ public class ToDoItemsDatabase : IToDoItemsDatabase
             Title = title
         };
 
-        await database.InsertAsync(entity);
+        await _db.InsertAsync(entity);
     }
 
     public async Task UpdateToDoItemAsync(ToDoItem toDoItem)
     {
-        await database.UpdateAsync(toDoItem);
+        await _db.UpdateAsync(toDoItem);
     }
 
     public async Task DeleteToDoItemAsync(ToDoItem toDoItem)
     {
-        await database.DeleteAsync(toDoItem);
+        await _db.DeleteAsync(toDoItem);
     }
-
-  
 }
