@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Builder;
+﻿using DailyToDoList.Entities;
+using DailyToDoList.Persistance;
+
+ToDoItemsDatabase db = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ToDoItems.db"));
 
 var bulider = WebApplication.CreateBuilder();
 
 var app = bulider.Build();
 
-List<string> users = new();
-
-app.MapGet("/api/users", () => users);
-app.MapPost("/api/users", (string user) => users.Add(user));
+app.MapGet("/api/todos", async () => await db.GetToDoItemsAsync());
+app.MapPost("/api/todos", async (string title) => await db.AddToDoItemAsync(title));
+app.MapPut("/api/todos", async (ToDoItem toDoItem) => await db.UpdateToDoItemAsync(toDoItem));
+app.MapDelete("/api/todos", async (ToDoItem toDoItem) => await db.DeleteToDoItemAsync(toDoItem));;
 
 app.Run();
 
