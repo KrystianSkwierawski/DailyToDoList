@@ -11,11 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ToDoTreeComponent } from './to-do-tree/to-do-tree.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ToDoTreeComponent
   ],
   imports: [
     BrowserModule,
