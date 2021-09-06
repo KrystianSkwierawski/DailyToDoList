@@ -1,7 +1,5 @@
 ﻿using DailyToDoList.Interfaces;
 using DailyToDoList.ToDoItems;
-using Microsoft.Extensions.Configuration;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DailyToDoList.Persistance;
@@ -9,23 +7,23 @@ namespace DailyToDoList.Persistance;
 public class ToDoItemsDatabase : IToDoItemsDatabase
 {
     private IMongoDatabase _db;
-    private IMongoClient _mongoClient;
-    private IMongoCollection<ToDoItem> _collection;
+    private IMongoClient _client;
+    private readonly IMongoCollection<ToDoItem> _toDoItems;
 
     public ToDoItemsDatabase()
     {
-        _mongoClient = new MongoClient("mongodb://localhost:65097");
+        _client = new MongoClient("mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/ToDoListDB?retryWrites=true&w=majority");
 
-        _db = _mongoClient.GetDatabase("ToDoDb");
+        _db = _client.GetDatabase("TodosDB");
 
-        _collection = _db.GetCollection<ToDoItem>(typeof(ToDoItem).Name);
+        _toDoItems = _db.GetCollection<ToDoItem>("ToDoItems");
     }
 
     public async Task<List<ToDoItemDTO>> GetToDoItems()
     {
         List<ToDoItemDTO> o_toDoItemDTOs = new();
 
-        foreach (var entity in _collection.AsQueryable())
+        foreach (var entity in _toDoItems.AsQueryable())
         {
             o_toDoItemDTOs.Add(new ToDoItemDTO
             {
@@ -44,18 +42,18 @@ public class ToDoItemsDatabase : IToDoItemsDatabase
             Title = title
         };
 
-        await _collection.InsertOneAsync(toDoItem);
+        await _toDoItems.InsertOneAsync(toDoItem);
     }
 
     public async Task UpdateToDoItemAsync(ToDoItemDTO toDoItemDTO)
     {
         var filter = Builders<ToDoItem>.Filter.Eq(s => s.Id, toDoItemDTO.Id);
         var update = Builders<ToDoItem>.Update.Set(s => s.Title, toDoItemDTO.Title);
-        var result = await _collection.UpdateOneAsync(filter, update);
+        var result = await _toDoItems.UpdateOneAsync(filter, update);
     }
 
-    public async Task DeleteToDoItemAsync(ToDoItemDTO toDoItemDTO)
+    public async Task DeleteToDoItemAsync(string id)
     {
-        await _collection.DeleteOneAsync(x => x.Id == toDoItemDTO.Id);
+        await _toDoItems.DeleteOneAsync(x => x.Id == id);
     }
 }
