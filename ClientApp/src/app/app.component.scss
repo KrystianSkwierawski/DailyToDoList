@@ -13,14 +13,13 @@
   justify-items: center;
   align-content: center;
 
-
   @include respond-to(medium) {
     min-height: 80%;
     min-width: 40%;
   }
 
   & h1 {
-    color: #FFE4E5;
+    color: #ffe4e5;
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -32,17 +31,47 @@
   justify-content: center;
   align-self: center;
 
-  & button{
+  & button {
     vertical-align: middle;
     height: auto;
-    margin-left: .5rem;
-    background-color: #6264A7;
+    margin-left: 0.5rem;
+    background-color: #6264a7;
     color: white;
   }
 
-  & mat-form-field{
+  & mat-form-field {
     height: 100%;
-
+    color: white;
     flex-grow: 1;
   }
+}
+
+mat-tree {
+  margin-top: 1rem;
+  background-color: transparent;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #6264a7;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background-color: #6264a7;
+}
+
+::ng-deep .mat-form-field-label {
+  color: #6264a7;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-form-field-underline {
+  background-color: #6264a7 !important;
+}
+
+::ng-deep .mat-focused .placeholder {
+  color: white !important;
 }
