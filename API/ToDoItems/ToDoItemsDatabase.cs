@@ -6,8 +6,8 @@ namespace DailyToDoList.Persistance;
 
 public class ToDoItemsDatabase : IToDoItemsDatabase
 {
-    private IMongoDatabase _db;
-    private IMongoClient _client;
+    private readonly IMongoDatabase _db;
+    private readonly IMongoClient _client;
     private readonly IMongoCollection<ToDoItem> _toDoItems;
 
     public ToDoItemsDatabase()
