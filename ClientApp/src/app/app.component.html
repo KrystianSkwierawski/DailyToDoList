@@ -1,12 +1,10 @@
 <div class="to-do-list">
   <h1>Daily To Do List</h1>
 
-  <div class="to-do-list-form">
     <form (ngSubmit)="addToDo(form.value.title)" [formGroup]="form">
-      <mat-form-field appearance="standard">
+      <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
         <input formControlName="title" matInput placeholder="Title">
-        <mat-error *ngIf="form.invalid">The Title field is required.</mat-error>
       </mat-form-field>
 
       <button [disabled]="form.invalid" mat-button type="submit" aria-label="Add To Do Item">
@@ -15,8 +13,11 @@
         </mat-icon>
       </button>
     </form>
+
+  <app-to-dos-list></app-to-dos-list>
+
+  <div class="to-do-list__bottom">
+    <p>You have 4 pendinng tasks</p>
+    <button mat-raised-button>Clear All</button>
   </div>
-
-  <app-to-do-tree></app-to-do-tree>
-
 </div>

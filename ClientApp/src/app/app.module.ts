@@ -9,15 +9,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
-import {MatTreeModule} from '@angular/material/tree';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { ToDoTreeComponent } from './to-do-tree/to-do-tree.component';
+import { ToDosListComponent } from './to-do-items/to-dos-list/to-dos-list.component';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToDoTreeComponent
+    ToDosListComponent
   ],
   imports: [
     BrowserModule,
@@ -29,8 +29,8 @@ import { ToDoTreeComponent } from './to-do-tree/to-do-tree.component';
     HttpClientModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatTreeModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
