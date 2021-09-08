@@ -9,7 +9,7 @@
         </mat-icon>
       </button>
 
-      <span class="example-list-section">
+      <span>
         <mat-checkbox [checked]="allSubTasksIsCompleteted(task)"
                       [indeterminate]="someComplete(task)" (change)="setAll($event.checked, task)">
           {{task.title}}
@@ -32,17 +32,10 @@
         <ul>
           <li *ngFor="let subtask of task.subtasks">
 
-
             <mat-checkbox class="sub-task-checkbox" [(ngModel)]="subtask.completed"
                           (ngModelChange)="updateAllComplete()">
               {{subtask.title}}
             </mat-checkbox>
-
-            <button mat-icon-button arial-label="Add subtask" class="add-subtask-button">
-              <mat-icon aria-label="Plus icon">
-                add
-              </mat-icon>
-            </button>
 
           </li>
         </ul>

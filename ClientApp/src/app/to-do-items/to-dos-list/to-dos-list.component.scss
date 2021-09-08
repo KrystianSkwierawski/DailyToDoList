@@ -24,19 +24,21 @@ ul {
 }
 
 .add-subtask-button {
-  color: #6862A5;
-  vertical-align: middle;
+  color: #6264a7;
+
+  & mat-icon {
+    font-weight: bold;
+  }
 }
 
-.edit-subtask-button {
-  vertical-align: middle;
-}
 
 .toggle-expand-task-button {
   color: black;
+  padding-bottom: 8px;
 
   & mat-icon {
     transition: .2s;
+    font-weight: bold;
   }
 
   & .arrow-up {

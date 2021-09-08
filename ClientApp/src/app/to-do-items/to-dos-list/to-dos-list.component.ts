@@ -15,15 +15,11 @@ export class ToDosListComponent implements OnInit {
     subtasks: [
       {
         title: "test2",
-        completed: false,
-        expanded: false,
-        subtasks: []
+        completed: false
       },
       {
         title: "test2",
-        completed: false,
-        expanded: false,
-        subtasks: []
+        completed: false
       }
     ]
   },
@@ -34,19 +30,14 @@ export class ToDosListComponent implements OnInit {
     subtasks: [
       {
         title: "test2",
-        completed: false,
-        expanded: false,
-        subtasks: []
+        completed: false
       },
       {
         title: "test2",
-        completed: false,
-        expanded: false,
-        subtasks: []
+        completed: false
       }
     ]
   }
-
   ];
 
   constructor() { }
