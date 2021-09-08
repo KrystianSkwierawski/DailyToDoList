@@ -15,4 +15,8 @@ form {
     flex-grow: 1;
     color: white;
   }
+
+  & mat-icon{
+      font-weight: bold;
+  }
 }
