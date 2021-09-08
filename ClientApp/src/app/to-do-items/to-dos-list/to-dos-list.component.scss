@@ -31,11 +31,11 @@ ul {
   }
 }
 
-app-generic-list{
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
+app-generic-list {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -69,7 +69,21 @@ app-generic-list{
 }
 
 ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
-  background-color: #6264a7 !important;
+  background-color: var(--checkbox-bc-color) !important;
+}
+
+::ng-deep .mat-checkbox-frame {
+  border-color: var(--checkbox-bc-color) !important;
+}
+
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: var(--checkbox-bc-color) !important;
+}
+
+::ng-deep  {
+  &.mat-checkbox-background, .mat-checkbox-frame {
+    border-radius: 70% !important;
+  }
 }
 
 ::ng-deep .mat-list-item-content {

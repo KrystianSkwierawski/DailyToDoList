@@ -12,7 +12,7 @@
           </button>
 
           <span>
-            <mat-checkbox [checked]="allSubTasksIsCompleteted(task)"
+            <mat-checkbox style="--checkbox-bc-color: {{task.color}}" [checked]="allSubTasksIsCompleteted(task)"
                           [indeterminate]="someComplete(task)" (change)="setAll($event.checked, task)">
               {{task.title}}
             </mat-checkbox>
@@ -25,16 +25,16 @@
           </button>
 
           <!--<button mat-icon-button arial-label="Edit task" class="edit-subtask-button">
-          <mat-icon aria-label="Plus icon">
-            edit
-          </mat-icon>
-        </button>-->
+            <mat-icon aria-label="Plus icon">
+              edit
+            </mat-icon>
+          </button>-->
 
           <span class="subtasks" [class.subtasks_expanded]="task.expanded">
             <ul>
               <li *ngFor="let subtask of task.subtasks">
 
-                <mat-checkbox class="sub-task-checkbox" [(ngModel)]="subtask.completed"
+                <mat-checkbox style="--checkbox-bc-color: {{task.color}}" class="sub-task-checkbox" [(ngModel)]="subtask.completed"
                               (ngModelChange)="updateAllComplete()">
                   {{subtask.title}}
                 </mat-checkbox>

@@ -12,14 +12,17 @@ export class ToDosListComponent implements OnInit {
     title: "test",
     completed: false,
     expanded: false,
+    color: '#6862A5',
     subtasks: [
       {
         title: "test2",
-        completed: false
+        completed: false,
+        color: '#6862A5'
       },
       {
         title: "test2",
-        completed: false
+        completed: false,
+        color: '#6862A5'
       }
     ]
   },
@@ -27,14 +30,17 @@ export class ToDosListComponent implements OnInit {
     title: "test",
     completed: false,
     expanded: false,
+    color: '#6862A5',
     subtasks: [
       {
         title: "test2",
-        completed: false
+        completed: false,
+        color: '#6862A5'
       },
       {
         title: "test2",
-        completed: false
+        completed: false,
+        color: '#6862A5'
       }
     ]
   }
