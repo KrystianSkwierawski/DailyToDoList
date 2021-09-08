@@ -1,0 +1,12 @@
+<form (ngSubmit)="addToDo(form.value.title)" [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input formControlName="title" matInput placeholder="Title">
+  </mat-form-field>
+
+  <button [disabled]="form.invalid" mat-button type="submit" aria-label="Add To Do Item">
+    <mat-icon aria-hidden="false" aria-label="Plus icon">
+      add
+    </mat-icon>
+  </button>
+</form>

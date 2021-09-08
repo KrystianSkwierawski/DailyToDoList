@@ -1,6 +1,14 @@
 mat-list-item:not(:first-child) {
     word-break: break-word;
-    margin-top: 5rem;
+}
+
+mat-list {
+  overflow: auto;
+  height: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .example-section {

@@ -1,10 +1,4 @@
-import { SelectionModel } from '@angular/cdk/collections';
-import { FlatTreeControl } from '@angular/cdk/tree';
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 export class TodoItemFlatNode {
   item: string;
@@ -24,17 +18,10 @@ export class TodoItemNode {
 })
 export class AppComponent implements OnInit {
 
-  form: FormGroup;
-
   ngOnInit(): void {
-    this.form = new FormGroup({
-      title: new FormControl('', [Validators.required])
-    });
+
   }
 
   constructor() { }
-
-  addToDo(title: string) { 
-  }
 
 }

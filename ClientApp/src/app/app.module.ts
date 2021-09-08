@@ -12,12 +12,14 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ToDosListComponent } from './to-do-items/to-dos-list/to-dos-list.component';
 import {MatListModule} from '@angular/material/list';
+import { ToDosFormComponent } from './to-do-items/to-dos-form/to-dos-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToDosListComponent
+    ToDosListComponent,
+    ToDosFormComponent
   ],
   imports: [
     BrowserModule,

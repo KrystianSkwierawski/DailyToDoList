@@ -1,24 +1,24 @@
 <mat-list role="list">
-    <mat-list-item role="listitem">
+  <mat-list-item role="listitem" *ngFor="let task of tasks">
 
-        <section class="example-section">
-            <span class="example-list-section">
-                <mat-checkbox [checked]="allComplete" [color]="task.color"
-                    [indeterminate]="someComplete()" (change)="setAll($event.checked)">
-                    {{task.name}}
-                </mat-checkbox>
-            </span>
-            <span class="example-list-section">
-                <ul>
-                    <li *ngFor="let subtask of task.subtasks">
-                        <mat-checkbox class="sub-task-checkbox" [(ngModel)]="subtask.completed" [color]="subtask.color"
-                            (ngModelChange)="updateAllComplete()">
-                            {{subtask.name}}
-                        </mat-checkbox>
-                    </li>
-                </ul>
-            </span>
-        </section>
+    <section class="example-section">
+      <span class="example-list-section">
+        <mat-checkbox [checked]="allSubTasksIsCompleteted(task)"
+                      [indeterminate]="someComplete(task)" (change)="setAll($event.checked, task)">
+          {{task.title}}
+        </mat-checkbox>
+      </span>
+      <span class="example-list-section">
+        <ul>
+          <li *ngFor="let subtask of task.subtasks">
+            <mat-checkbox class="sub-task-checkbox" [(ngModel)]="subtask.completed"
+                          (ngModelChange)="updateAllComplete()">
+              {{subtask.title}}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </span>
+    </section>
 
-    </mat-list-item>  
+  </mat-list-item>
 </mat-list>

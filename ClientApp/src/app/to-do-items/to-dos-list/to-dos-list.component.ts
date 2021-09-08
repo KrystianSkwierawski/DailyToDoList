@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export interface Task {
-  name: string;
+  title: string;
   completed: boolean;
-  color: ThemePalette;
-  subtasks?: Task[];
+  subtasks: Task[];
 }
 
 @Component({
@@ -15,42 +14,37 @@ export interface Task {
 })
 export class ToDosListComponent implements OnInit {
 
-  task: Task = {
-    name: 'Indeterminate',
-    completed: false,
-    color: 'primary',
-    subtasks: [
-      { name: 'Primary', completed: true, color: 'primary' },
-      { name: 'Accent', completed: false, color: 'accent' },
-      { name: 'Warn', completed: false, color: 'warn' }
-    ]
-  };
-
-  allComplete: boolean = false;
+  tasks: Task[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+ 
   }
 
   updateAllComplete() {
-    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
+    //this.allComplete = task.subtasks != null && task.subtasks.every(t => t.completed);
   }
 
-  someComplete(): boolean {
-    if (this.task.subtasks == null) {
+  someComplete(task: Task): boolean {
+    if (!task || task.subtasks.length === 0)
       return false;
-    }
-    return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+
+    return task.subtasks.filter(t => t.completed).length > 0 && task.subtasks.filter(t => t.completed).length !== task.subtasks.length;
   }
 
-  setAll(completed: boolean) {
-    this.allComplete = completed;
-    if (this.task.subtasks == null) {
+  setAll(completed: boolean, task: Task) {
+    if (!task || task.subtasks.length === 0)
       return;
-    }
-    this.task.subtasks.forEach(t => t.completed = completed);
+    
+    task.subtasks.forEach(t => t.completed = completed);
   }
 
+  allSubTasksIsCompleteted(task: Task): boolean {
+    if (!task || task.subtasks.length === 0)
+      return false;
+
+    return (task.subtasks.filter(t => t.completed).length === task.subtasks.length);
+  }
 
 }
