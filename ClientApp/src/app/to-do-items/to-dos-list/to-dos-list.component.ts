@@ -43,7 +43,6 @@ export class ToDosListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
   }
 
   updateAllComplete() {

@@ -2,8 +2,13 @@
   <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
 </div>
 
-<div *ngIf="list?.length === 0">
-      <p>0 items</p>
+<div class="empty-state" *ngIf="list?.length === 0">
+  <a href="https://www.freepik.com"><img src="../assets/list.svg" /></a>
+  <p>
+    You have no tasks to do! <br />
+    Enjoy your day or <br />
+    <span>Add Task</span>
+  </p>
 </div>
 
 <ng-container *ngIf="list && list.length > 0">
