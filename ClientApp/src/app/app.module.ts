@@ -13,13 +13,16 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ToDosListComponent } from './to-do-items/to-dos-list/to-dos-list.component';
 import {MatListModule} from '@angular/material/list';
 import { ToDosFormComponent } from './to-do-items/to-dos-form/to-dos-form.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { GenericListComponent } from './utilities/generic-list/generic-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDosListComponent,
-    ToDosFormComponent
+    ToDosFormComponent,
+    GenericListComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { ToDosFormComponent } from './to-do-items/to-dos-form/to-dos-form.compon
     ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatListModule
+    MatListModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
