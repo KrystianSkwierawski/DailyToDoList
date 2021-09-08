@@ -2,22 +2,52 @@
   <mat-list-item role="listitem" *ngFor="let task of tasks">
 
     <section class="example-section">
+
+      <button (click)="onToggleExpandTask(task)" mat-icon-button arial-label="toggle expand task" class="toggle-expand-task-button">
+        <mat-icon [class.arrow-up]="task.expanded" aria-label="toggle expand icon">
+          arrow_drop_down
+        </mat-icon>
+      </button>
+
       <span class="example-list-section">
         <mat-checkbox [checked]="allSubTasksIsCompleteted(task)"
                       [indeterminate]="someComplete(task)" (change)="setAll($event.checked, task)">
           {{task.title}}
         </mat-checkbox>
       </span>
-      <span class="example-list-section">
+
+      <button mat-icon-button arial-label="Add subtask" class="add-subtask-button">
+        <mat-icon aria-label="Plus icon">
+          add
+        </mat-icon>
+      </button>
+
+      <!--<button mat-icon-button arial-label="Edit task" class="edit-subtask-button">
+        <mat-icon aria-label="Plus icon">
+          edit
+        </mat-icon>
+      </button>-->
+
+      <span class="subtasks" [class.subtasks_expanded]="task.expanded">
         <ul>
           <li *ngFor="let subtask of task.subtasks">
+
+
             <mat-checkbox class="sub-task-checkbox" [(ngModel)]="subtask.completed"
                           (ngModelChange)="updateAllComplete()">
               {{subtask.title}}
             </mat-checkbox>
+
+            <button mat-icon-button arial-label="Add subtask" class="add-subtask-button">
+              <mat-icon aria-label="Plus icon">
+                add
+              </mat-icon>
+            </button>
+
           </li>
         </ul>
       </span>
+
     </section>
 
   </mat-list-item>

@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-export interface Task {
-  title: string;
-  completed: boolean;
-  subtasks: Task[];
-}
+import { TaskItem } from '../task-item.model';
 
 @Component({
   selector: 'app-to-dos-list',
@@ -14,33 +8,79 @@ export interface Task {
 })
 export class ToDosListComponent implements OnInit {
 
-  tasks: Task[] = [];
+  tasks: TaskItem[] = [{
+    title: "test",
+    completed: false,
+    expanded: false,
+    subtasks: [
+      {
+        title: "test2",
+        completed: false,
+        expanded: false,
+        subtasks: []
+      },
+      {
+        title: "test2",
+        completed: false,
+        expanded: false,
+        subtasks: []
+      }
+    ]
+  },
+  {
+    title: "test",
+    completed: false,
+    expanded: false,
+    subtasks: [
+      {
+        title: "test2",
+        completed: false,
+        expanded: false,
+        subtasks: []
+      },
+      {
+        title: "test2",
+        completed: false,
+        expanded: false,
+        subtasks: []
+      }
+    ]
+  }
+
+  ];
 
   constructor() { }
 
   ngOnInit(): void {
- 
+
   }
 
   updateAllComplete() {
     //this.allComplete = task.subtasks != null && task.subtasks.every(t => t.completed);
   }
 
-  someComplete(task: Task): boolean {
+  someComplete(task: TaskItem): boolean {
     if (!task || task.subtasks.length === 0)
       return false;
 
     return task.subtasks.filter(t => t.completed).length > 0 && task.subtasks.filter(t => t.completed).length !== task.subtasks.length;
   }
 
-  setAll(completed: boolean, task: Task) {
+  setAll(completed: boolean, task: TaskItem) {
     if (!task || task.subtasks.length === 0)
       return;
-    
+
     task.subtasks.forEach(t => t.completed = completed);
   }
 
-  allSubTasksIsCompleteted(task: Task): boolean {
+  onToggleExpandTask(task: TaskItem) {
+    if (!task)
+      return;
+
+    task.expanded = !task.expanded;
+  }
+
+  allSubTasksIsCompleteted(task: TaskItem): boolean {
     if (!task || task.subtasks.length === 0)
       return false;
 

@@ -1,5 +1,5 @@
 mat-list-item:not(:first-child) {
-    word-break: break-word;
+  word-break: break-word;
 }
 
 mat-list {
@@ -12,35 +12,74 @@ mat-list {
 }
 
 .example-section {
-    margin: 12px 0;
+  margin-bottom: .5rem;
 }
 
-.sub-task-checkbox{
-    margin-left: 1rem;
+.sub-task-checkbox {
+  margin-left: 4rem;
 }
 
 ul {
-    list-style-type: none;
-    margin-top: 4px;
+  list-style-type: none;
+}
+
+.add-subtask-button {
+  color: #6862A5;
+  vertical-align: middle;
+}
+
+.edit-subtask-button {
+  vertical-align: middle;
+}
+
+.toggle-expand-task-button {
+  color: black;
+
+  & mat-icon {
+    transition: .2s;
+  }
+
+  & .arrow-up {
+    transform: rotate(180deg);
+  }
+}
+
+.subtasks {
+  & ul {
+    opacity: 0;
+    transition: .2s !important;
+    height: 0;
+    margin-top: -1rem;
+  }
+
+  &_expanded ul {
+    opacity: 1;
+    height: auto;
+    margin-top: 0rem;
+  }
 }
 
 ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
-    background-color: #6264a7 !important;
+  background-color: #6264a7 !important;
 }
 
 ::ng-deep .mat-list-item-content {
-    padding-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+::ng-deep .mat-list-item {
+  height: auto !important;
 }
 
 ::ng-deep .mat-checkbox-label {
-    color: white;
+  color: white;
 }
 
 ::ng-deep .mat-checkbox-layout {
-    white-space: normal !important;
+  white-space: normal !important;
 }
 
 // rather than center the checkbox, put the checkbox in the first line
 ::ng-deep .mat-checkbox-inner-container {
-    margin-top: 3px !important;
+  margin-top: 3px !important;
 }
