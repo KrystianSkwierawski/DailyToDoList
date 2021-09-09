@@ -1,11 +1,6 @@
 <form (ngSubmit)="addToDo(form.value.title)" [formGroup]="form">
 
-  <button (click)="togglePickingColor()" mat-raised-button class="toggle-color-picker-button" [ngStyle]="{'background': color}">
-  </button>
-
-  <div *ngIf="pickingColor" class="color-picker">
-    <swatches-picker [(color)]="color"></swatches-picker>
-  </div>
+  <app-color-picker (colorChange)="onColorChange($event)"></app-color-picker>
 
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>

@@ -16,6 +16,7 @@ import { ToDosFormComponent } from './to-do-items/to-dos-form/to-dos-form.compon
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GenericListComponent } from './utilities/generic-list/generic-list.component';
 import { ColorPickerModule } from '@iplab/ngx-color-picker';
+import { ColorPickerComponent } from './utilities/color-picker/color-picker.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ColorPickerModule } from '@iplab/ngx-color-picker';
     AppComponent,
     ToDosListComponent,
     ToDosFormComponent,
-    GenericListComponent
+    GenericListComponent,
+    ColorPickerComponent
   ],
   imports: [
     BrowserModule,

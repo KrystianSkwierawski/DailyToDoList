@@ -10,8 +10,7 @@ import { TaskItem } from '../task-item.model';
 export class ToDosFormComponent implements OnInit {
 
   form: FormGroup
-  pickingColor: boolean = false;
-  color = '#B8255F';
+  color: string;
 
   constructor() { }
 
@@ -37,7 +36,8 @@ export class ToDosFormComponent implements OnInit {
     //console.log(title);
   }
 
-  togglePickingColor() {
-    this.pickingColor = !this.pickingColor;
+
+  onColorChange(color: string) {
+    this.color = color;
   }
 }
