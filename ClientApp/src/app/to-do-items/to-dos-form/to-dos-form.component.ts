@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TaskItem } from '../task-item.model';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
+import * as ToDoItemsActions from '../store/to-do.actions';
+
+
 
 @Component({
   selector: 'app-to-dos-form',
@@ -12,7 +17,7 @@ export class ToDosFormComponent implements OnInit {
   form: FormGroup
   color: string;
 
-  constructor() { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -26,16 +31,13 @@ export class ToDosFormComponent implements OnInit {
       completed: false,
       expanded: false,
       color: this.color,
-      subtasks: []
+      subtasks: [{ title: "asd", color: "#ffff", completed: false }]
     };
 
     console.log(task);
 
-    //this.tasks.push(task);
-    //console.log(task);
-    //console.log(title);
+    this.store.dispatch(new ToDoItemsActions.AddToDoItem(task));
   }
-
 
   onColorChange(color: string) {
     this.color = color;

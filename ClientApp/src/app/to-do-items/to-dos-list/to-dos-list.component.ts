@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskItem } from '../task-item.model';
+import * as fromApp from '../../store/app.reducer';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-to-dos-list',
@@ -8,47 +12,16 @@ import { TaskItem } from '../task-item.model';
 })
 export class ToDosListComponent implements OnInit {
 
-  tasks: TaskItem[] = [{
-    title: "test",
-    completed: false,
-    expanded: false,
-    color: '#6862A5',
-    subtasks: [
-      {
-        title: "test2",
-        completed: false,
-        color: '#6862A5'
-      },
-      {
-        title: "test2",
-        completed: false,
-        color: '#6862A5'
-      }
-    ]
-  },
-  {
-    title: "test",
-    completed: false,
-    expanded: false,
-    color: '#6862A5',
-    subtasks: [
-      {
-        title: "test2",
-        completed: false,
-        color: '#6862A5'
-      },
-      {
-        title: "test2",
-        completed: false,
-        color: '#6862A5'
-      }
-    ]
-  }
-  ];
+  storeSub: Subscription;
 
-  constructor() { }
+  tasks: TaskItem[];
+
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
+    this.store.select('toDoItems').subscribe(toDoItemsState => {
+      this.tasks = toDoItemsState.toDoItems
+    });   
   }
 
   updateAllComplete() {

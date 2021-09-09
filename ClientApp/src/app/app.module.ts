@@ -17,6 +17,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GenericListComponent } from './utilities/generic-list/generic-list.component';
 import { ColorPickerModule } from '@iplab/ngx-color-picker';
 import { ColorPickerComponent } from './utilities/color-picker/color-picker.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromApp from './store/app.reducer';
+
 
 
 @NgModule({
@@ -40,7 +43,8 @@ import { ColorPickerComponent } from './utilities/color-picker/color-picker.comp
     MatCheckboxModule,
     MatListModule,
     MatProgressSpinnerModule,
-    ColorPickerModule
+    ColorPickerModule,
+    StoreModule.forRoot(fromApp.appReducer)
   ],
   providers: [],
   bootstrap: [AppComponent]
