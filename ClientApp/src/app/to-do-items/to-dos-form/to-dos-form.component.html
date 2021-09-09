@@ -1,10 +1,18 @@
 <form (ngSubmit)="addToDo(form.value.title)" [formGroup]="form">
+
+  <button (click)="togglePickingColor()" mat-raised-button class="toggle-color-picker-button" [ngStyle]="{'background': color}">
+  </button>
+
+  <div *ngIf="pickingColor" class="color-picker">
+    <swatches-picker [(color)]="color"></swatches-picker>
+  </div>
+
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
     <input formControlName="title" matInput placeholder="Title">
   </mat-form-field>
 
-  <button [disabled]="form.invalid" mat-button type="submit" aria-label="Add To Do Item">
+  <button class="add-to-do-button" [disabled]="form.invalid" mat-button type="submit" aria-label="Add To Do Item">
     <mat-icon aria-label="Plus icon">
       add
     </mat-icon>

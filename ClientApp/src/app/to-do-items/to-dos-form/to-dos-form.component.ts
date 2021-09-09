@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TaskItem } from '../task-item.model';
 
 @Component({
   selector: 'app-to-dos-form',
@@ -9,6 +10,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ToDosFormComponent implements OnInit {
 
   form: FormGroup
+  pickingColor: boolean = false;
+  color = '#B8255F';
 
   constructor() { }
 
@@ -19,14 +22,22 @@ export class ToDosFormComponent implements OnInit {
   }
 
   addToDo(title: string) {
-    //const task: Task = {
-    //  title,
-    //  completed: false,
-    //  subtasks: []
-    //};
+    const task: TaskItem = {
+      title,
+      completed: false,
+      expanded: false,
+      color: this.color,
+      subtasks: []
+    };
+
+    console.log(task);
 
     //this.tasks.push(task);
     //console.log(task);
     //console.log(title);
+  }
+
+  togglePickingColor() {
+    this.pickingColor = !this.pickingColor;
   }
 }

@@ -15,6 +15,7 @@ import {MatListModule} from '@angular/material/list';
 import { ToDosFormComponent } from './to-do-items/to-dos-form/to-dos-form.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GenericListComponent } from './utilities/generic-list/generic-list.component';
+import { ColorPickerModule } from '@iplab/ngx-color-picker';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { GenericListComponent } from './utilities/generic-list/generic-list.comp
     MatButtonModule,
     MatCheckboxModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
