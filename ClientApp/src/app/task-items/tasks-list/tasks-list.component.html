@@ -1,7 +1,7 @@
 <app-generic-list [list]="tasks">
   <ng-container content>
     <mat-list role="list">
-      <mat-list-item role="listitem" *ngFor="let task of tasks; let index = index" (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()">
+      <mat-list-item role="listitem" *ngFor="let task of tasks; let index = index" (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()" [@list]>
 
         <section class="example-section">
           <div>

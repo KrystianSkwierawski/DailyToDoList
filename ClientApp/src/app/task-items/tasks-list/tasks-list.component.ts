@@ -4,12 +4,34 @@ import * as fromApp from '../../store/app.reducer';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { DeleteTaskItem } from '../store/task.actions';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
-  styleUrls: ['./tasks-list.component.scss']
+  styleUrls: ['./tasks-list.component.scss'],
+  animations: [
+    trigger('list', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0)'
+      })),
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translateX(-100px)'
+        }),
+        animate(200)
+      ]),
+      transition('* => void', [
+        animate(205, style({
+          transform: 'translateX(100px)',
+          opacity: 0
+        }))
+      ])
+    ])
+  ]
 })
 export class TasksListComponent implements OnInit, OnDestroy {
 
@@ -23,7 +45,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.storeSub = this.store.select('taskItems').subscribe(tasksState => {
       this.tasks = tasksState.taskItems
-    });   
+    });
   }
 
   setHoveredTaskIndex(index: number | null = null) {
