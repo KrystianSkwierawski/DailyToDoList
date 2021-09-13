@@ -19,6 +19,7 @@ import { ColorPickerModule } from '@iplab/ngx-color-picker';
 import { ColorPickerComponent } from './utilities/color-picker/color-picker.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromApp from './store/app.reducer';
+import { ShortenPipe } from './utilities/pipes/shorten/shorten.pipe';
 
 
 
@@ -28,7 +29,8 @@ import * as fromApp from './store/app.reducer';
     ToDosListComponent,
     ToDosFormComponent,
     GenericListComponent,
-    ColorPickerComponent
+    ColorPickerComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@
           <span>
             <mat-checkbox style="--checkbox-bc: {{task.color}}" [checked]="allSubTasksIsCompleteted(task)"
                           [indeterminate]="someComplete(task)" (change)="setAll($event.checked, task)">
-              {{task.title}}
+              {{task.title | shorten}}
             </mat-checkbox>
           </span>
 
@@ -37,7 +37,7 @@
 
                 <mat-checkbox style="--checkbox-bc-color: {{task.color}}" class="sub-task-checkbox" [(ngModel)]="subtask.completed"
                               (ngModelChange)="updateAllComplete()">
-                  {{subtask.title}}
+                  {{subtask.title | shorten}}
                 </mat-checkbox>
 
               </li>
