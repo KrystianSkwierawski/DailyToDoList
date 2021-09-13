@@ -27,7 +27,9 @@ public class TaskItemsDatabase : ITaskItemsDatabase
             {
                 Id = entity.Id,
                 Title = entity.Title,
+                // CreatedBy = token
                 Color = entity.Color,
+                Completed = entity.Completed,
                 SubtaskItems = entity.SubtaskItems
             });
         }
