@@ -13,7 +13,7 @@
           </button>
 
           <span>
-            <mat-checkbox style="--checkbox-bc-color: {{task.color}}" [checked]="allSubTasksIsCompleteted(task)"
+            <mat-checkbox style="--checkbox-bc: {{task.color}}" [checked]="allSubTasksIsCompleteted(task)"
                           [indeterminate]="someComplete(task)" (change)="setAll($event.checked, task)">
               {{task.title}}
             </mat-checkbox>

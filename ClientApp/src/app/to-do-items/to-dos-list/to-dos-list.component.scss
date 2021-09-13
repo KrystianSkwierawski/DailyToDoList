@@ -69,15 +69,15 @@ app-generic-list {
 }
 
 ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
-  background-color: var(--checkbox-bc-color) !important;
+  background-color: var(--checkbox-bc) !important;
 }
 
 ::ng-deep .mat-checkbox-frame {
-  border-color: var(--checkbox-bc-color) !important;
+  border-color: var(--checkbox-bc) !important;
 }
 
 ::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-  background-color: var(--checkbox-bc-color) !important;
+  background-color: var(--checkbox-bc) !important;
 }
 
 ::ng-deep  {
