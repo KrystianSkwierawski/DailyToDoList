@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TaskItem } from '../task-item.model';
 import * as fromApp from '../../store/app.reducer';
 import { Store } from '@ngrx/store';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './to-dos-list.component.html',
   styleUrls: ['./to-dos-list.component.scss']
 })
-export class ToDosListComponent implements OnInit {
+export class ToDosListComponent implements OnInit, OnDestroy {
 
   storeSub: Subscription;
 
@@ -19,7 +19,7 @@ export class ToDosListComponent implements OnInit {
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    this.store.select('toDoItems').subscribe(toDoItemsState => {
+    this.storeSub = this.store.select('toDoItems').subscribe(toDoItemsState => {
       this.tasks = toDoItemsState.toDoItems
     });   
   }
@@ -56,4 +56,7 @@ export class ToDosListComponent implements OnInit {
     return (task.subtasks.filter(t => t.completed).length === task.subtasks.length);
   }
 
+  ngOnDestroy(): void {
+    this.storeSub.unsubscribe();
+  }
 }
