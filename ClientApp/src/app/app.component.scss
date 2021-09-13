@@ -1,6 +1,6 @@
 @import "../scss/shared.scss";
 
-.to-do-list {
+.tasks-list {
   height: 90%;
   width: 90%;
   padding-left: 1rem;
@@ -36,7 +36,7 @@
   }
 }
 
-app-to-dos-list {
+app-tasks-list {
   margin-bottom: 1rem;
   flex-grow: 1;
   overflow: auto;
@@ -46,7 +46,7 @@ app-to-dos-list {
   }
 }
 
-.to-do-list__bottom {
+.tasks-list__bottom {
   display: flex;
   justify-content: space-between;
   height: auto;

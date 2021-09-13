@@ -6,11 +6,11 @@ import { Subscription } from 'rxjs';
 
 
 @Component({
-  selector: 'app-to-dos-list',
-  templateUrl: './to-dos-list.component.html',
-  styleUrls: ['./to-dos-list.component.scss']
+  selector: 'app-tasks-list',
+  templateUrl: './tasks-list.component.html',
+  styleUrls: ['./tasks-list.component.scss']
 })
-export class ToDosListComponent implements OnInit, OnDestroy {
+export class TasksListComponent implements OnInit, OnDestroy {
 
   storeSub: Subscription;
 
@@ -19,8 +19,8 @@ export class ToDosListComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    this.storeSub = this.store.select('toDoItems').subscribe(toDoItemsState => {
-      this.tasks = toDoItemsState.toDoItems
+    this.storeSub = this.store.select('taskItems').subscribe(tasksState => {
+      this.tasks = tasksState.taskItems
     });   
   }
 

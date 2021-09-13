@@ -1,4 +1,4 @@
-<form (ngSubmit)="addToDo(form.value.title)" [formGroup]="form">
+<form (ngSubmit)="addTask(form.value.title)" [formGroup]="form">
 
   <app-color-picker (colorChange)="onColorChange($event)"></app-color-picker>
 
@@ -7,7 +7,7 @@
     <input formControlName="title" matInput placeholder="Title">
   </mat-form-field>
 
-  <button class="add-to-do-button" [disabled]="form.invalid" mat-button type="submit" aria-label="Add To Do Item">
+  <button class="add-task-button" [disabled]="form.invalid" mat-button type="submit" aria-label="Add task">
     <mat-icon aria-label="Plus icon">
       add
     </mat-icon>

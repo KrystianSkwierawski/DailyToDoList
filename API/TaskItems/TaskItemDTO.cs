@@ -1,6 +1,6 @@
-﻿namespace DailyToDoList.ToDoItems;
+﻿namespace DailyToDoList.TaskItems;
 
-public class ToDoItemDTO
+public class TaskItemDTO
 {
     public string Id { get; set; }
     public string Title { get; set; }

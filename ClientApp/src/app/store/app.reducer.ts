@@ -1,10 +1,10 @@
 import { ActionReducerMap } from "@ngrx/store";
-import * as fromToDoItems from '../to-do-items/store/to-do.reducer';
+import * as fromTasks from '../task-items/store/task.reducer';
 
 export interface AppState {
-  toDoItems: fromToDoItems.State;
+  taskItems: fromTasks.State;
 }
 
 export const appReducer: ActionReducerMap<AppState, any> = {
-  toDoItems: fromToDoItems.toDoReducer
+  taskItems: fromTasks.toDoReducer
 };

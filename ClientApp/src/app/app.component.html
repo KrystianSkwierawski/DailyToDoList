@@ -1,12 +1,12 @@
-<div class="to-do-list">
+<div class="tasks-list">
   <h1>Daily To Do List</h1>
 
-  <app-to-dos-form></app-to-dos-form>
+  <app-tasks-form></app-tasks-form>
 
-  <app-to-dos-list></app-to-dos-list>
+  <app-tasks-list></app-tasks-list>
 
-  <div class="to-do-list__bottom">
+  <div class="tasks-list__bottom">
     <p>You have {{ pendingTasksNumber }} pendinng tasks</p>
-    <button (click)="clearAllToDoItems()" mat-raised-button>Clear All</button>
+    <button (click)="clearAllTaskItems()" mat-raised-button>Clear All</button>
   </div>
 </div>

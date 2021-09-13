@@ -1,9 +1,9 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace DailyToDoList.ToDoItems;
+namespace DailyToDoList.TaskItems;
 
-public class ToDoItem
+public class TaskItem
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]

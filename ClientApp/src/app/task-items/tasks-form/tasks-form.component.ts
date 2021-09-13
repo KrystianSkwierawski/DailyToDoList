@@ -3,16 +3,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TaskItem } from '../task-item.model';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
-import * as ToDoItemsActions from '../store/to-do.actions';
+import * as tasksActions from '../store/task.actions';
 
 
 
 @Component({
-  selector: 'app-to-dos-form',
-  templateUrl: './to-dos-form.component.html',
-  styleUrls: ['./to-dos-form.component.scss']
+  selector: 'app-tasks-form',
+  templateUrl: './tasks-form.component.html',
+  styleUrls: ['./tasks-form.component.scss']
 })
-export class ToDosFormComponent implements OnInit {
+export class TasksFormComponent implements OnInit {
 
   form: FormGroup
   color: string;
@@ -25,10 +25,10 @@ export class ToDosFormComponent implements OnInit {
     });
   }
 
-  addToDo(title: string) {
+  addTask(title: string) {
     const task = new TaskItem(title, this.color);
 
-    this.store.dispatch(new ToDoItemsActions.AddToDoItem(task));
+    this.store.dispatch(new tasksActions.AddTaskItem(task));
   }
 
   onColorChange(color: string) {
