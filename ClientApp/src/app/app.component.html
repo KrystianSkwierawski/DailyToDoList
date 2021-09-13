@@ -7,6 +7,6 @@
 
   <div class="to-do-list__bottom">
     <p>You have {{ pendingTasksNumber }} pendinng tasks</p>
-    <button mat-raised-button>Clear All</button>
+    <button (click)="clearAllToDoItems()" mat-raised-button>Clear All</button>
   </div>
 </div>

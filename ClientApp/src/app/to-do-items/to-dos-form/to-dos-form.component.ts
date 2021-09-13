@@ -34,8 +34,6 @@ export class ToDosFormComponent implements OnInit {
       subtasks: [{ title: "asd", color: "#ffff", completed: false }]
     };
 
-    console.log(task);
-
     this.store.dispatch(new ToDoItemsActions.AddToDoItem(task));
   }
 

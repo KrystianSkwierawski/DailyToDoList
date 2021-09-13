@@ -12,11 +12,20 @@ const initialState: State = {
 
 export function toDoReducer(state: State = initialState, action: ToDoActions.ToDoItemsActions) {
   switch (action.type) {
-    case ToDoActions.ADD_TO_DO_ITEM: {
+    case ToDoActions.ADD: {
       return {
         ...state,
         toDoItems: [...state.toDoItems, action.payload]
       };
+
+      break;
+    }
+
+    case ToDoActions.ClEAR_ALL: {
+      return {
+        ...state,
+        toDoItems: []
+      }
 
       break;
     }
