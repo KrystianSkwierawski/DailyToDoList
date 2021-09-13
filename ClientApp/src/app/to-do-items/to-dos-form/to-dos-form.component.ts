@@ -26,13 +26,7 @@ export class ToDosFormComponent implements OnInit {
   }
 
   addToDo(title: string) {
-    const task: TaskItem = {
-      title,
-      completed: false,
-      expanded: false,
-      color: this.color,
-      subtasks: [{ title: "asd", color: "#ffff", completed: false }]
-    };
+    const task = new TaskItem(title, this.color);
 
     this.store.dispatch(new ToDoItemsActions.AddToDoItem(task));
   }
