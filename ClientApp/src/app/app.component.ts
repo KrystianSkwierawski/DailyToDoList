@@ -1,27 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import * as fromApp from './store/app.reducer';
 
-export class TodoItemFlatNode {
-  item: string;
-  level: number;
-  expandable: boolean;
-}
-
-export class TodoItemNode {
-  children: TodoItemNode[];
-  item: string;
-}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+
+  storeSub: Subscription;
+  pendingTasksNumber: number;
+
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-
+    this.storeSub = this.store.select('toDoItems').subscribe(toDoItemsState => {
+      this.pendingTasksNumber = toDoItemsState.toDoItems.length;
+    });
   }
 
-  constructor() { }
-
+  ngOnDestroy(): void {
+    this.storeSub.unsubscribe();
+  }
 }
