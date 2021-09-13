@@ -23,11 +23,12 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.storeSub.unsubscribe();
-  }
-
   clearAllTaskItems() {
     this.store.dispatch(new ToDoItemsActions.ClearAllTasksItems());
+  }
+
+
+  ngOnDestroy(): void {
+    this.storeSub.unsubscribe();
   }
 }

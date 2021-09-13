@@ -1,25 +1,45 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
+import { Store, StoreModule } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
 import { TasksFormComponent } from './tasks-form.component';
 
-describe('ToDosFormComponent', () => {
-  let component: TasksFormComponent;
-  let fixture: ComponentFixture<TasksFormComponent>;
+
+describe('TasksListComponent', () => {
+  let store: Store<fromApp.AppState>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TasksFormComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        TasksFormComponent,
+      ],
+      imports: [
+        StoreModule.forRoot(fromApp.appReducer),
+      ]
+    });
+
+    store = TestBed.get(Store);
+    spyOn(store, 'dispatch').and.callThrough();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TasksFormComponent);
-    component = fixture.componentInstance;
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(TasksFormComponent);
     fixture.detectChanges();
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should add task item', () => {
+    let numberOfTaskItems: number = 0;
+
+    const fixture = TestBed.createComponent(TasksFormComponent);
+    fixture.detectChanges();
+    const app: TasksFormComponent = fixture.componentInstance;
+
+    store.select('taskItems').pipe().subscribe(x => numberOfTaskItems = x.taskItems.length);
+
+    app.addTask("title"); 
+
+    expect(numberOfTaskItems).toBe(1);
   });
+
 });
