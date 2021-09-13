@@ -26,7 +26,9 @@ public class TaskItemsDatabase : ITaskItemsDatabase
             o_toDoItemDTOs.Add(new TaskItemDTO
             {
                 Id = entity.Id,
-                Title = entity.Title
+                Title = entity.Title,
+                Color = entity.Color,
+                SubtaskItems = entity.SubtaskItems
             });
         }
 
@@ -46,8 +48,18 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     public async Task UpdateTaskItemAsync(TaskItemDTO taskItemDTO)
     {
         var filter = Builders<TaskItem>.Filter.Eq(s => s.Id, taskItemDTO.Id);
-        var update = Builders<TaskItem>.Update.Set(s => s.Title, taskItemDTO.Title);
-        var result = await _taskItems.UpdateOneAsync(filter, update);
+
+        TaskItem taskItem = new()
+        {
+            Id = taskItemDTO.Id,
+            Title = taskItemDTO.Title,
+            // CreatedBy = token
+            Color = taskItemDTO.Color,
+            Completed = taskItemDTO.Completed,
+            SubtaskItems = taskItemDTO.SubtaskItems
+        };
+
+        var result = await _taskItems.ReplaceOneAsync(filter, taskItem);
     }
 
     public async Task DeleteTaskItemAsync(string id)
