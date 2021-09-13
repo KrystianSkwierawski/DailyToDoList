@@ -26,7 +26,9 @@ export class TasksFormComponent implements OnInit {
   }
 
   addTask(title: string) {
-    const task = new TaskItem(title, this.color);
+    // id placeholder from db
+    const id = Math.random().toString(36).substr(2, 5);
+    const task = new TaskItem(id, title, this.color);
 
     this.store.dispatch(new tasksActions.AddTaskItem(task));
   }

@@ -30,6 +30,17 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
       break;
     }
 
+    case TaskActions.DELETE: {
+      const updatedTaskItems = [...state.taskItems].filter(t => t.id !== action.payload)
+
+      return {
+        ...state,
+        taskItems: updatedTaskItems
+      }
+
+      break;
+    }
+
     default: {
       return state;
 

@@ -3,6 +3,7 @@ import { TaskItem } from '../task-item.model';
 import * as fromApp from '../../store/app.reducer';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { DeleteTaskItem } from '../store/task.actions';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { Subscription } from 'rxjs';
 export class TasksListComponent implements OnInit, OnDestroy {
 
   storeSub: Subscription;
+  hoveredTaskIndex: number | null;
 
   tasks: TaskItem[];
 
@@ -24,6 +26,10 @@ export class TasksListComponent implements OnInit, OnDestroy {
     });   
   }
 
+  setHoveredTaskIndex(index: number | null = null) {
+    this.hoveredTaskIndex = index;
+  }
+
   updateAllComplete() {
     //this.allComplete = task.subtasks != null && task.subtasks.every(t => t.completed);
   }
@@ -33,6 +39,10 @@ export class TasksListComponent implements OnInit, OnDestroy {
       return false;
 
     return task.subtasks.filter(t => t.completed).length > 0 && task.subtasks.filter(t => t.completed).length !== task.subtasks.length;
+  }
+
+  deleteTask(id: string) {
+    this.store.dispatch(new DeleteTaskItem(id));
   }
 
   setAll(completed: boolean, task: TaskItem) {
