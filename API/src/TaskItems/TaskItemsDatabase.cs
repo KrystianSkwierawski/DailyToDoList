@@ -8,9 +8,9 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     private readonly IMongoClient _client;
     private readonly IMongoCollection<TaskItem> _taskItems;
 
-    public TaskItemsDatabase()
+    public TaskItemsDatabase(string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListDB?retryWrites=true&w=majority")
     {
-        _client = new MongoClient("mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoList?retryWrites=true&w=majority");
+        _client = new MongoClient(connectionString);
 
         _db = _client.GetDatabase("TasksItemsDB");
 
@@ -37,7 +37,7 @@ public class TaskItemsDatabase : ITaskItemsDatabase
         return o_toDoItemDTOs;
     }
 
-    public async Task AddTaskItemAsync(string title)
+    public async Task<string> AddTaskItemAsync(string title)
     {
         TaskItem taskItem = new()
         {
@@ -45,6 +45,8 @@ public class TaskItemsDatabase : ITaskItemsDatabase
         };
 
         await _taskItems.InsertOneAsync(taskItem);
+
+        return taskItem.Id;
     }
 
     public async Task UpdateTaskItemAsync(TaskItemDTO taskItemDTO)
@@ -67,5 +69,10 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     public async Task DeleteTaskItemAsync(string id)
     {
         await _taskItems.DeleteOneAsync(x => x.Id == id);
+    }
+
+    public async Task DeleteAllTaskItemsAsync()
+    {
+        await _db.DropCollectionAsync("TaskItems");
     }
 }
