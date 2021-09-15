@@ -17,7 +17,7 @@ mat-list {
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  background-color: #34373D;
+  background-color: #262626;
 }
 
 .sub-task-checkbox {
@@ -29,7 +29,7 @@ ul {
 }
 
 .add-subtask-button {
-  color: #6264a7;
+  color: #E8E8E8;
   opacity: 0;
   transition: .2s;
 
@@ -50,8 +50,8 @@ app-generic-list {
   height: 100%;
 }
 
-.complete-task-button {
-  color: #5E60A0;
+.edit-task-button {
+  color: #E8E8E8;
   margin-left: auto;
   opacity: 0;
   transition: .2s;

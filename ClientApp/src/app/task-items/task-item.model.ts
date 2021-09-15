@@ -9,7 +9,7 @@ export class TaskItem {
   expanded: boolean;
   subtasks: SubtaskItem[];
 
-  constructor(id: string, title: string, color = "#6264A7", completed = false, expanted = false, subtasks = []) {
+  constructor(id: string, title: string, color = "#DEF2FF", completed = false, expanted = false, subtasks = []) {
     this.id = id;
     this.title = title;
     this.completed = completed;

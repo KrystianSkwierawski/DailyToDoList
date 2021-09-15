@@ -5,7 +5,7 @@
   width: 90%;
   padding-left: 1rem;
   padding-right: 1rem;
-  background-color: #36393F;
+  background-color: #1F1F1F;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -29,7 +29,7 @@
   }
 
   & h1 {
-    color: #ffe4e5;
+    color: #E8E8E8;
     text-align: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -59,30 +59,8 @@ app-tasks-list {
   }
 
   & button {
-    color: white;
-    background-color: #6264a7;
+    color: #1F1F1F;
+    background-color: #00C090;
   }
 }
 
-/* Change label color on focused */
-::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: #6264a7;
-}
-
-/* underline border color on focused */
-::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
-  background-color: #6264a7;
-}
-
-::ng-deep .mat-form-field-label {
-  color: #6264a7;
-}
-
-/* underline border color on focused */
-::ng-deep .mat-form-field-underline {
-  background-color: #6264a7 !important;
-}
-
-::ng-deep .mat-focused .placeholder {
-  color: white !important;
-}

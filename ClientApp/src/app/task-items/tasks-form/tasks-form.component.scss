@@ -7,6 +7,7 @@ form {
 
   & mat-form-field {
     flex-grow: 1;
+    background-color: #262626;
     color: white;
   }
 
@@ -17,8 +18,8 @@ form {
 
 .add-task-button {
   margin-left: 0.5rem;
-  background-color: #6264a7;
-  color: white;
+  background-color: #00C896;
+  color: #1F1F1F;
   padding: .4rem;
   min-width: 10px;
 }
@@ -26,3 +27,28 @@ form {
 app-color-picker {
   align-self: center;
 }
+
+/* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #E8E8E8;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background-color: #00C896;
+}
+
+
+::ng-deep .mat-form-field-label {
+  color: #E8E8E8;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-form-field-underline {
+  background-color: #E8E8E8 !important;
+}
+
+::ng-deep .mat-focused .placeholder {
+  color: #E8E8E8 !important;
+}
+

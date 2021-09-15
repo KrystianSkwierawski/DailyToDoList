@@ -3,7 +3,7 @@ export class SubtaskItem {
   completed: boolean;
   color: string;
 
-  constructor(title: string, color = "#6264A7", completed = false) {
+  constructor(title: string, color = "#DEF2FF", completed = false) {
     this.title = title;
     this.completed = completed;
     this.color = color;
