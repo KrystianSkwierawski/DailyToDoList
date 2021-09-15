@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GenericListComponent implements OnInit {
 
   @Input() list: Array<unknown>;
+  @Input() animationIsRunning: boolean;
 
   constructor() { }
 

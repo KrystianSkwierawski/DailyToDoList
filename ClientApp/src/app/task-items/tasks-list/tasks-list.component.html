@@ -1,7 +1,8 @@
-<app-generic-list [list]="tasks">
+<app-generic-list [list]="tasks" [animationIsRunning]="animationIsRunning">
   <ng-container content>
     <mat-list role="list">
-      <mat-list-item role="listitem" *ngFor="let task of tasks; let index = index" (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()" [@list]>
+      <mat-list-item [@list] (@list.done)="toggleAnimation(false)" (@list.start)="toggleAnimation(true)"
+                     role="listitem" *ngFor="let task of tasks; let index = index" (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()" >
 
         <section class="example-section">
           <div>
@@ -15,7 +16,7 @@
 
             <span>
               <mat-checkbox style="--checkbox-bc: {{task.color}}" [checked]="allSubTasksIsCompleteted(task)"
-                            [indeterminate]="someComplete(task)" (change)="setAll($event.checked, task)">
+                            [indeterminate]="someComplete(task)" (change)="completeTask(task)">
                 {{task.title | shorten}}
               </mat-checkbox>
             </span>
@@ -27,9 +28,9 @@
             </button>
           </div>
 
-          <button (click)="deleteTask(task.id)" [class.active]="hoveredTaskIndex === index" color="warn" mat-icon-button arial-label="Delete task" class="delete-task-button">
-            <mat-icon aria-label="Delete icon">
-              delete
+          <button [class.active]="hoveredTaskIndex === index" color="warn" mat-icon-button arial-label="Complete task" class="complete-task-button">
+            <mat-icon aria-label="Edit icon">
+              edit
             </mat-icon>
           </button>
 

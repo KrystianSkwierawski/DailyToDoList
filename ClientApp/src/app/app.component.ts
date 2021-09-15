@@ -14,6 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   storeSub: Subscription;
   pendingTasksNumber: number;
+  animationFinished: boolean;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -26,7 +27,6 @@ export class AppComponent implements OnInit, OnDestroy {
   clearAllTaskItems() {
     this.store.dispatch(new ToDoItemsActions.ClearAllTasksItems());
   }
-
 
   ngOnDestroy(): void {
     this.storeSub.unsubscribe();

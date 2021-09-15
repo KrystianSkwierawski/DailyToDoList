@@ -3,7 +3,7 @@ import { TaskItem } from '../task-item.model';
 import * as fromApp from '../../store/app.reducer';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { DeleteTaskItem } from '../store/task.actions';
+import { DeleteTaskItem, ToggleAnimation } from '../store/task.actions';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 
@@ -37,6 +37,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   storeSub: Subscription;
   hoveredTaskIndex: number | null;
+  animationIsRunning: boolean = false;
 
   tasks: TaskItem[];
 
@@ -44,8 +45,13 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.storeSub = this.store.select('taskItems').subscribe(tasksState => {
-      this.tasks = tasksState.taskItems
+      this.tasks = tasksState.taskItems;
+      this.animationIsRunning = tasksState.animationIsRunning;
     });
+  }
+
+  toggleAnimation(finishedAnimation: boolean) {
+    this.store.dispatch(new ToggleAnimation(finishedAnimation));
   }
 
   setHoveredTaskIndex(index: number | null = null) {
@@ -63,16 +69,16 @@ export class TasksListComponent implements OnInit, OnDestroy {
     return task.subtasks.filter(t => t.completed).length > 0 && task.subtasks.filter(t => t.completed).length !== task.subtasks.length;
   }
 
-  deleteTask(id: string) {
-    this.store.dispatch(new DeleteTaskItem(id));
+  completeTask(task: TaskItem) {
+    this.store.dispatch(new DeleteTaskItem(task.id));
   }
 
-  setAll(completed: boolean, task: TaskItem) {
-    if (!task || task.subtasks.length === 0)
-      return;
+  //setAll(completed: boolean, task: TaskItem) {
+  //  if (!task || task.subtasks.length === 0)
+  //    return;
 
-    task.subtasks.forEach(t => t.completed = completed);
-  }
+  //  task.subtasks.forEach(t => t.completed = completed);
+  //}
 
   onToggleExpandTask(task: TaskItem) {
     if (!task)

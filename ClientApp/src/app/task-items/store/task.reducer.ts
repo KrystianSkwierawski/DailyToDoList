@@ -4,10 +4,12 @@ import * as TaskActions from './task.actions';
 
 export interface State {
   taskItems: TaskItem[];
+  animationIsRunning: boolean;
 }
 
 const initialState: State = {
-  taskItems: []
+  taskItems: [],
+  animationIsRunning: false
 };
 
 export function toDoReducer(state: State = initialState, action: TaskActions.TaskItemsActions) {
@@ -36,6 +38,15 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
       return {
         ...state,
         taskItems: updatedTaskItems
+      }
+
+      break;
+    }
+
+    case TaskActions.TOGGLE_ANIMATION: {
+      return {
+        ...state,
+        animationIsRunning: action.payload
       }
 
       break;
