@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ColorPickerModule } from '@iplab/ngx-color-picker';
 import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
@@ -28,6 +29,7 @@ import { ShortenPipe } from './utilities/pipes/shorten/shorten.pipe';
     BrowserModule,
     MaterialModule,
     BrowserAnimationsModule,
+    ColorPickerModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,

@@ -1,46 +1,54 @@
-mat-list-item:not(:first-child) {
-  word-break: break-word;
-}
+@import "../../../scss/shared.scss";
 
-mat-list {
-  overflow: auto;
-  height: auto;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.example-section {
-  margin-bottom: .5rem;
-  display: flex;
+table {
   width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #262626;
+}
+
+.mat-table {
+  background: none;
+
+  & td {
+    display: flex;
+    padding: 0;
+    height: auto;
+  }
 }
 
 .sub-task-checkbox {
   margin-left: 4rem;
 }
 
-ul {
-  list-style-type: none;
+.action-buttons {
+  margin-left: auto;
+  transition: .2s;
+  opacity: 0.7;
+  display: flex;
+
+  @include respond-to(medium) {
+    opacity: 0;
+
+    &.active {
+      opacity: 0.7;
+    }
+  }
 }
 
 .add-subtask-button {
   color: #E8E8E8;
-  opacity: 0;
-  transition: .2s;
+  width: auto;
+  height: auto;
+  margin-left: 1rem;
+  margin-right: 1rem;
 
   & mat-icon {
     font-weight: bolder;
   }
+}
 
-  &.active {
-    display: inline;
-    opacity: 1;
-  }
+.edit-task-button {
+  color: #E8E8E8;
+  width: auto;
+  height: auto;
 }
 
 app-generic-list {
@@ -50,23 +58,17 @@ app-generic-list {
   height: 100%;
 }
 
-.edit-task-button {
-  color: #E8E8E8;
-  margin-left: auto;
-  opacity: 0;
-  transition: .2s;
 
-  &.active {
-    margin-left: auto;
-    display: block;
-    opacity: 1;
-  }
+mat-checkbox {
+  word-break: break-all;
+  max-width: 70%;
 }
-
 
 .toggle-expand-task-button {
   color: black;
   padding-bottom: 8px;
+  height: auto;
+  width: auto;
 
   & mat-icon {
     transition: .2s;
@@ -105,18 +107,10 @@ app-generic-list {
   background-color: var(--checkbox-bc) !important;
 }
 
-::ng-deep  {
+::ng-deep {
   &.mat-checkbox-background, .mat-checkbox-frame {
     border-radius: 70% !important;
   }
-}
-
-::ng-deep .mat-list-item-content {
-  padding-left: 0 !important;
-}
-
-::ng-deep .mat-list-item {
-  height: auto !important;
 }
 
 ::ng-deep .mat-checkbox-label {
@@ -128,10 +122,7 @@ app-generic-list {
 }
 
 // rather than center the checkbox, put the checkbox in the first line
-::ng-deep .mat-checkbox-inner-container {
+/*::ng-deep .mat-checkbox-inner-container {
   margin-top: 3px !important;
 }
-
-::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
-  padding-right: 0 !important;
-}
+*/

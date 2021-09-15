@@ -17,7 +17,16 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
     case TaskActions.ADD: {
       return {
         ...state,
-        taskItems: [...state.taskItems, action.payload]
+        taskItems: [action.payload, ...state.taskItems]
+      };
+
+      break;
+    }
+
+    case TaskActions.UPDATE_TASK_ITEMS: {
+      return {
+        ...state,
+        taskItems: action.payload
       };
 
       break;

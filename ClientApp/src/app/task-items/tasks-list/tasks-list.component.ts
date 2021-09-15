@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TaskItem } from '../task-item.model';
-import * as fromApp from '../../store/app.reducer';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { DeleteTaskItem, ToggleAnimation } from '../store/task.actions';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import * as fromApp from '../../store/app.reducer';
+import { DeleteTaskItem, ToggleAnimation, UpdateTaskItems } from '../store/task.actions';
+import { TaskItem } from '../task-item.model';
 
 
 @Component({
@@ -35,6 +37,9 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class TasksListComponent implements OnInit, OnDestroy {
 
+  columnsToDisplay: string[] = ['tasks'];
+  @ViewChild(MatTable) tasksTable: MatTable<any>;
+
   storeSub: Subscription;
   hoveredTaskIndex: number | null;
   animationIsRunning: boolean = false;
@@ -48,6 +53,24 @@ export class TasksListComponent implements OnInit, OnDestroy {
       this.tasks = tasksState.taskItems;
       this.animationIsRunning = tasksState.animationIsRunning;
     });
+  }
+
+  updateOrderIndex(event: any) {
+    const previousIndex = this.tasks.findIndex(task => task === event.item.data);
+
+    const updatedTaskItems = [...this.tasks];
+
+    moveItemInArray(updatedTaskItems, previousIndex, event.currentIndex);
+
+    this.store.dispatch(new UpdateTaskItems(updatedTaskItems));
+
+    this.tasksTable.renderRows();
+  }
+
+  onTouchMove(e: Event) {
+    if (e.cancelable) {
+      e.preventDefault();
+    }
   }
 
   toggleAnimation(finishedAnimation: boolean) {

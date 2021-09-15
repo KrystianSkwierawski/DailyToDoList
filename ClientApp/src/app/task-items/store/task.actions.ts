@@ -2,6 +2,7 @@ import { Action } from "@ngrx/store";
 import { TaskItem } from "../task-item.model";
 
 export const ADD = '[Task Items] Add Task Item';
+export const UPDATE_TASK_ITEMS = '[Task Items] Update Task Items';
 export const ClEAR_ALL = '[Task Items] Clear All Task Items';
 export const DELETE = '[Task Items] Delete Task Item';
 export const TOGGLE_ANIMATION = '[Task Items] Toggle Animation';
@@ -11,6 +12,12 @@ export class AddTaskItem implements Action {
   readonly type = ADD;
 
   constructor(public payload: TaskItem) { }
+}
+
+export class UpdateTaskItems implements Action {
+  readonly type = UPDATE_TASK_ITEMS;
+
+  constructor(public payload: TaskItem[]) { }
 }
 
 export class ClearAllTasksItems implements Action {
@@ -30,4 +37,4 @@ export class ToggleAnimation implements Action {
 }
 
 
-export type TaskItemsActions = AddTaskItem | ClearAllTasksItems | DeleteTaskItem | ToggleAnimation;
+export type TaskItemsActions = AddTaskItem | ClearAllTasksItems | DeleteTaskItem | ToggleAnimation | UpdateTaskItems;
