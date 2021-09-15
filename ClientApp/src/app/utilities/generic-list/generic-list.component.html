@@ -12,6 +12,8 @@
 </div>
 
 <ng-container *ngIf="list && list.length > 0">
-  <ng-content select="[content]"></ng-content>
+  <div class="content">
+    <ng-content select="[content]"></ng-content>
+  </div>
 </ng-container>
 

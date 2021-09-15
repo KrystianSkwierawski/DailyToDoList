@@ -41,4 +41,16 @@ describe('GenericListComponent', () => {
     expect(compiled.querySelector('.loading-content-container')).toBeTruthy();
   });
 
+  it('should display content when list has items', () => {
+    const fixture = TestBed.createComponent(GenericListComponent);
+    fixture.detectChanges();
+    const app: GenericListComponent = fixture.componentInstance;
+
+    app.list = ["Random Array"];
+    let compiled = fixture.debugElement.nativeElement;
+    fixture.detectChanges();
+
+    expect(compiled.querySelector('.content')).toBeTruthy();
+  });
+
 });
