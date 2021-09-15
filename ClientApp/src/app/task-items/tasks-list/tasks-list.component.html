@@ -13,7 +13,7 @@
             [@list] (@list.done)="toggleAnimation(false)" (@list.start)="toggleAnimation(true)"
             mat-cell *matCellDef="let task; let index= index">
 
-          <div>
+          <div style="display: flex;">
             <button [ngStyle]="{'opacity': (task.subtasks.length > 0) ? '1' : '0'}"
                     (click)="onToggleExpandTask(task)" mat-icon-button arial-label="toggle expand task" class="toggle-expand-task-button">
               <mat-icon [class.arrow-up]="task.expanded" aria-label="toggle expand icon">
@@ -21,7 +21,7 @@
               </mat-icon>
             </button>
 
-            <span>
+            <span class="mat-checkbox-span">
               <mat-checkbox style="--checkbox-bc: {{task.color}}" [checked]="allSubTasksIsCompleteted(task)"
                             [indeterminate]="someComplete(task)" (change)="completeTask(task)">
                 {{task.title | shorten}}

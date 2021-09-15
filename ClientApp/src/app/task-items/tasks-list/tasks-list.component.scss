@@ -23,6 +23,7 @@ table {
   transition: .2s;
   opacity: 0.7;
   display: flex;
+  align-items: center;
 
   @include respond-to(medium) {
     opacity: 0;
@@ -35,10 +36,7 @@ table {
 
 .add-subtask-button {
   color: #E8E8E8;
-  width: auto;
-  height: auto;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: .5rem;
 
   & mat-icon {
     font-weight: bolder;
@@ -47,8 +45,6 @@ table {
 
 .edit-task-button {
   color: #E8E8E8;
-  width: auto;
-  height: auto;
 }
 
 app-generic-list {
@@ -59,16 +55,19 @@ app-generic-list {
 }
 
 
+.mat-checkbox-span{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 mat-checkbox {
   word-break: break-all;
-  max-width: 70%;
 }
 
 .toggle-expand-task-button {
   color: black;
-  padding-bottom: 8px;
-  height: auto;
-  width: auto;
+  margin-top: auto;
+  margin-bottom: auto;
 
   & mat-icon {
     transition: .2s;
