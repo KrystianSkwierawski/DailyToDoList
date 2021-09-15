@@ -49,7 +49,8 @@ app-generic-list {
   height: 100%;
 }
 
-.delete-task-button {
+.complete-task-button {
+  color: #5E60A0;
   margin-left: auto;
   opacity: 0;
   transition: .2s;
@@ -130,5 +131,6 @@ app-generic-list {
   margin-top: 3px !important;
 }
 
-::ng-deep .mat-list-item-content{
+::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
+  padding-right: 0 !important;
 }
