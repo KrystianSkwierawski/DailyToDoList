@@ -3,7 +3,7 @@
 public interface ITaskItemsDatabase
 {
     Task<List<TaskItemDTO>> GetTaskItems();
-    Task<string> AddTaskItemAsync(string title);
+    Task<TaskItemDTO> AddTaskItemAsync(string title, string color);
     Task UpdateTaskItemAsync(TaskItemDTO taskItemDTO);
     Task DeleteTaskItemAsync(string id);
     Task DeleteAllTaskItemsAsync();

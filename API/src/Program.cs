@@ -26,7 +26,7 @@ app.UseCors(builder => builder
 
 
 app.MapGet("/api/tasks", async () => await _db.GetTaskItems());
-app.MapPost("/api/tasks", async (string title) => await _db.AddTaskItemAsync(title));
+app.MapPost("/api/tasks", async (string title, string color) => await _db.AddTaskItemAsync(title, color));
 app.MapPut("/api/tasks", async (TaskItemDTO toDoItemDTO) => await _db.UpdateTaskItemAsync(toDoItemDTO));
 app.MapDelete("/api/tasks/{id}", async (string id) => await _db.DeleteTaskItemAsync(id));
 app.MapDelete("/api/tasks", async () => await _db.DeleteAllTaskItemsAsync());

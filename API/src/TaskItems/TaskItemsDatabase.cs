@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using System;
 
 namespace DailyToDoList.TaskItems;
 
@@ -23,30 +24,23 @@ public class TaskItemsDatabase : ITaskItemsDatabase
 
         foreach (var entity in _taskItems.AsQueryable())
         {
-            o_toDoItemDTOs.Add(new TaskItemDTO
-            {
-                Id = entity.Id,
-                Title = entity.Title,
-                // CreatedBy = token
-                Color = entity.Color,
-                Completed = entity.Completed,
-                SubtaskItems = entity.SubtaskItems
-            });
+            o_toDoItemDTOs.Add(entity.ToDTO());
         }
 
         return o_toDoItemDTOs;
     }
 
-    public async Task<string> AddTaskItemAsync(string title)
+    public async Task<TaskItemDTO> AddTaskItemAsync(string title, string color)
     {
         TaskItem taskItem = new()
         {
-            Title = title
+            Title = title,
+            Color = color
         };
 
         await _taskItems.InsertOneAsync(taskItem);
 
-        return taskItem.Id;
+        return taskItem.ToDTO();
     }
 
     public async Task UpdateTaskItemAsync(TaskItemDTO taskItemDTO)

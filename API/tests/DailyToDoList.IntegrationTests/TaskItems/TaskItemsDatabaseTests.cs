@@ -14,8 +14,8 @@ public class TaskItemsDatabaseTests : TestBase
     {
         // Arrange
         ITaskItemsDatabase testDatabase = GetTestDatabase();
-        var id = await testDatabase.AddTaskItemAsync("test1");
-        await testDatabase.AddTaskItemAsync("test2");
+        var taskItemDTO = await testDatabase.AddTaskItemAsync("test1", "#ffff");
+        await testDatabase.AddTaskItemAsync("test2", "#ffff");
 
         // Act
         var result = await testDatabase.GetTaskItems();
@@ -24,14 +24,7 @@ public class TaskItemsDatabaseTests : TestBase
 
         result.Count().Should().Be(2);
 
-        result.First().Should().BeEquivalentTo(new TaskItemDTO
-        {
-            Id = id,
-            Title = "test1",
-            Color = "#6264A7",
-            Completed = false,
-            SubtaskItems = Array.Empty<SubtaskItem>()
-        });
+        result.First().Should().BeEquivalentTo(taskItemDTO);
     }
 
     [Test]
@@ -41,7 +34,7 @@ public class TaskItemsDatabaseTests : TestBase
         ITaskItemsDatabase testDatabase = GetTestDatabase();
 
         // Act
-        await testDatabase.AddTaskItemAsync("test1");
+        await testDatabase.AddTaskItemAsync("test1", "#ffff");
 
         // Assert
         var result = await testDatabase.GetTaskItems();
@@ -55,15 +48,7 @@ public class TaskItemsDatabaseTests : TestBase
     {
         // Arrange
         ITaskItemsDatabase testDatabase = GetTestDatabase();
-        var id = await testDatabase.AddTaskItemAsync("test1");
-
-        TaskItemDTO taskItemDTO = new()
-        {
-            Id = id,
-            Title = "test2",
-            Color = "#ffff",
-            Completed = true
-        };
+        var taskItemDTO = await testDatabase.AddTaskItemAsync("test1", "#ffff");
 
         // Act
         await testDatabase.UpdateTaskItemAsync(taskItemDTO);
@@ -79,10 +64,10 @@ public class TaskItemsDatabaseTests : TestBase
     {
         // Arrange
         ITaskItemsDatabase testDatabase = GetTestDatabase();
-        var id = await testDatabase.AddTaskItemAsync("test2");
+        var taskItemDTO = await testDatabase.AddTaskItemAsync("test2", "#ffff");
 
         // Act
-        await testDatabase.DeleteTaskItemAsync(id);
+        await testDatabase.DeleteTaskItemAsync(taskItemDTO.Id);
 
         // Assert
         var result = await testDatabase.GetTaskItems();
@@ -95,8 +80,8 @@ public class TaskItemsDatabaseTests : TestBase
     {
         // Arrange
         ITaskItemsDatabase testDatabase = GetTestDatabase();
-        await testDatabase.AddTaskItemAsync("test1");
-        await testDatabase.AddTaskItemAsync("test2");
+        await testDatabase.AddTaskItemAsync("test1", "#ffff");
+        await testDatabase.AddTaskItemAsync("test2", "#ffff");
 
         // Act
         await testDatabase.DeleteAllTaskItemsAsync();
