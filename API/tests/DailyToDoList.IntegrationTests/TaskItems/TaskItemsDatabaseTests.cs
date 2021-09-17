@@ -1,94 +1,95 @@
-using DailyToDoList.IntegrationTests;
 using DailyToDoList.TaskItems;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace DailyToDoListTests.TaskItems;
-
-using static Testing;
-public class TaskItemsDatabaseTests : TestBase
+namespace DailyToDoList.IntegrationTests.TaskItems
 {
-
-    [Test]
-    public async Task ShouldGetTaskItemDTOs()
+    using static Testing;
+    public class TaskItemsDatabaseTests : TestBase
     {
-        // Arrange
-        ITaskItemsDatabase testDatabase = GetTestDatabase();
-        var taskItemDTO = await testDatabase.AddTaskItemAsync("test1", "#ffff");
-        await testDatabase.AddTaskItemAsync("test2", "#ffff");
 
-        // Act
-        var result = await testDatabase.GetTaskItems();
+        [Test]
+        public async Task ShouldGetTaskItemDTOs()
+        {
+            // Arrange
+            ITaskItemsDatabase testDatabase = GetTestDatabase();
+            var taskItemDTO = await testDatabase.AddTaskItemAsync("test1", "#ffff");
+            await testDatabase.AddTaskItemAsync("test2", "#ffff");
 
-        // Assert
+            // Act
+            var result = await testDatabase.GetTaskItems();
 
-        result.Count().Should().Be(2);
+            // Assert
 
-        result.First().Should().BeEquivalentTo(taskItemDTO);
-    }
+            result.Count().Should().Be(2);
 
-    [Test]
-    public async Task ShouldAddTaskItem()
-    {
-        // Arrange
-        ITaskItemsDatabase testDatabase = GetTestDatabase();
+            result.First().Should().BeEquivalentTo(taskItemDTO);
+        }
 
-        // Act
-        await testDatabase.AddTaskItemAsync("test1", "#ffff");
+        [Test]
+        public async Task ShouldAddTaskItem()
+        {
+            // Arrange
+            ITaskItemsDatabase testDatabase = GetTestDatabase();
 
-        // Assert
-        var result = await testDatabase.GetTaskItems();
+            // Act
+            await testDatabase.AddTaskItemAsync("test1", "#ffff");
 
-        result.First().Title.Should().Be("test1");
-        result.Count().Should().Be(1);
-    }
+            // Assert
+            var result = await testDatabase.GetTaskItems();
 
-    [Test]
-    public async Task ShouldUpdateTaskItem()
-    {
-        // Arrange
-        ITaskItemsDatabase testDatabase = GetTestDatabase();
-        var taskItemDTO = await testDatabase.AddTaskItemAsync("test1", "#ffff");
+            result.First().Title.Should().Be("test1");
+            result.Count().Should().Be(1);
+        }
 
-        // Act
-        await testDatabase.UpdateTaskItemAsync(taskItemDTO);
+        [Test]
+        public async Task ShouldUpdateTaskItem()
+        {
+            // Arrange
+            ITaskItemsDatabase testDatabase = GetTestDatabase();
+            var taskItemDTO = await testDatabase.AddTaskItemAsync("test1", "#ffff");
 
-        // Assert
-        var result = await testDatabase.GetTaskItems();
+            // Act
+            await testDatabase.UpdateTaskItemAsync(taskItemDTO);
 
-        result.First().Should().BeEquivalentTo(taskItemDTO);
-    }
+            // Assert
+            var result = await testDatabase.GetTaskItems();
 
-    [Test]
-    public async Task ShouldDeleteTaskItem()
-    {
-        // Arrange
-        ITaskItemsDatabase testDatabase = GetTestDatabase();
-        var taskItemDTO = await testDatabase.AddTaskItemAsync("test2", "#ffff");
+            result.First().Should().BeEquivalentTo(taskItemDTO);
+        }
 
-        // Act
-        await testDatabase.DeleteTaskItemAsync(taskItemDTO.Id);
+        [Test]
+        public async Task ShouldDeleteTaskItem()
+        {
+            // Arrange
+            ITaskItemsDatabase testDatabase = GetTestDatabase();
+            var taskItemDTO = await testDatabase.AddTaskItemAsync("test2", "#ffff");
 
-        // Assert
-        var result = await testDatabase.GetTaskItems();
+            // Act
+            await testDatabase.DeleteTaskItemAsync(taskItemDTO.Id);
 
-        result.Should().BeEmpty();
-    }
+            // Assert
+            var result = await testDatabase.GetTaskItems();
 
-    [Test]
-    public async Task ShouldDeleteAllTaskItems()
-    {
-        // Arrange
-        ITaskItemsDatabase testDatabase = GetTestDatabase();
-        await testDatabase.AddTaskItemAsync("test1", "#ffff");
-        await testDatabase.AddTaskItemAsync("test2", "#ffff");
+            result.Should().BeEmpty();
+        }
 
-        // Act
-        await testDatabase.DeleteAllTaskItemsAsync();
+        [Test]
+        public async Task ShouldDeleteAllTaskItems()
+        {
+            // Arrange
+            ITaskItemsDatabase testDatabase = GetTestDatabase();
+            await testDatabase.AddTaskItemAsync("test1", "#ffff");
+            await testDatabase.AddTaskItemAsync("test2", "#ffff");
 
-        // Assert
-        var result = await testDatabase.GetTaskItems();
+            // Act
+            await testDatabase.DeleteAllTaskItemsAsync();
 
-        result.Should().BeEmpty();
+            // Assert
+            var result = await testDatabase.GetTaskItems();
+
+            result.Should().BeEmpty();
+        }
     }
 }
+

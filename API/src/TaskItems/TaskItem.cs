@@ -18,4 +18,17 @@ public class TaskItem
     public bool Completed { get; set; } = false;
 
     public IList<SubtaskItem> SubtaskItems { get; set; } = new List<SubtaskItem>();
+
+
+    public TaskItemDTO ToDTO()
+    {
+        return new TaskItemDTO
+        {
+            Id = Id,
+            Title = Title,
+            Color = Color,
+            Completed = Completed,
+            SubtaskItems = SubtaskItems
+        };
+    }
 }
