@@ -1,7 +1,5 @@
 ﻿using DailyToDoList.TaskItems;
 
-ITaskItemsDatabase _db = new TaskItemsDatabase();
-
 var bulider = WebApplication.CreateBuilder();
 
 bulider.Services.AddCors(options =>
@@ -24,6 +22,7 @@ app.UseCors(builder => builder
      .AllowAnyHeader()
 );
 
+ITaskItemsDatabase _db = new TaskItemsDatabase();
 
 app.MapGet("/api/tasks", async () => await _db.GetTaskItems());
 app.MapPost("/api/tasks", async (string title, string color) => await _db.AddTaskItemAsync(title, color));
