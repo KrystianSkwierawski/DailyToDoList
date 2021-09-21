@@ -27,7 +27,7 @@ public class TaskItemsDatabase : ITaskItemsDatabase
             o_toDoItemDTOs.Add(entity.ToDTO());
         }
 
-        return o_toDoItemDTOs;
+        return o_toDoItemDTOs.OrderByDescending(x => x.Id).ToList();
     }
 
     public async Task<TaskItemDTO> AddTaskItemAsync(string title, string color)
@@ -57,7 +57,7 @@ public class TaskItemsDatabase : ITaskItemsDatabase
             SubtaskItems = taskItemDTO.SubtaskItems
         };
 
-        var result = await _taskItems.ReplaceOneAsync(filter, taskItem);
+        await _taskItems.ReplaceOneAsync(filter, taskItem);
     }
 
     public async Task DeleteTaskItemAsync(string id)

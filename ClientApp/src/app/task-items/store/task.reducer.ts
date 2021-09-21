@@ -14,10 +14,25 @@ const initialState: State = {
 
 export function toDoReducer(state: State = initialState, action: TaskActions.TaskItemsActions) {
   switch (action.type) {
-    case TaskActions.ADD_LOCALLY: {
+    case TaskActions.ADD_TASK_ITEM_LOCALLY: {
       return {
         ...state,
         taskItems: [action.payload, ...state.taskItems]
+      };
+
+      break;
+    }
+
+    case TaskActions.UPDATE_TASK_ITEM_LOCALLY: {
+      const updatedTaskItems = [...state.taskItems];
+
+      const index = updatedTaskItems.findIndex((obj => obj.id === action.payload.id));
+
+      updatedTaskItems[index] = action.payload;
+
+      return {
+        ...state,
+        taskItems: updatedTaskItems
       };
 
       break;

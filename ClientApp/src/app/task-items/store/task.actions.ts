@@ -2,8 +2,10 @@ import { Action } from "@ngrx/store";
 import { TaskItem } from "../task-item.model";
 
 export const GET_TASK_ITEMS = '[Task Items] Get Task Items';
-export const ADD_LOCALLY = '[Task Items] Add Task Item Locally';
-export const ADD_REMOTELY = '[Task Items] Add Task Item Remotely';
+export const ADD_TASK_ITEM_LOCALLY = '[Task Items] Add Task Item Locally';
+export const ADD_TASK_ITEM_REMOTELY = '[Task Items] Add Task Item Remotely';
+export const UPDATE_TASK_ITEM_LOCALLY = '[Task Items] Update Task Item Locally';
+export const UPDATE_TASK_ITEM_REMOTELY = '[Task Items] Update Task Item REMOTELY';
 export const UPDATE_TASK_ITEMS_LOCALLY = '[Task Items] Update Task Items Locally';
 export const ClEAR_ALL_LOCALLY = '[Task Items] Clear All Task Items Locally';
 export const ClEAR_ALL_REMOTELY = '[Task Items] Clear All Task Items Remotely';
@@ -17,13 +19,25 @@ export class GetTaskItems implements Action {
 }
 
 export class AddTaskItemRemotely implements Action {
-  readonly type = ADD_REMOTELY;
+  readonly type = ADD_TASK_ITEM_REMOTELY;
 
   constructor(public payload: { title: string, color: string }) { }
 }
 
 export class AddTaskItemLocally implements Action {
-  readonly type = ADD_LOCALLY;
+  readonly type = ADD_TASK_ITEM_LOCALLY;
+
+  constructor(public payload: TaskItem) { }
+}
+
+export class UpdateTaskItemRemotely implements Action {
+  readonly type = UPDATE_TASK_ITEM_REMOTELY;
+
+  constructor(public payload: TaskItem) { }
+}
+
+export class UpdateTaskItemLocally implements Action {
+  readonly type = UPDATE_TASK_ITEM_LOCALLY;
 
   constructor(public payload: TaskItem) { }
 }
@@ -66,5 +80,6 @@ export type TaskItemsActions =
   ClearAllTasksItemsLocally |
   DeleteTaskItemLocally |
   ToggleAnimation |
+  UpdateTaskItemLocally |
   UpdateTaskItemsLocally |
   DeleteTaskItemRemotely;

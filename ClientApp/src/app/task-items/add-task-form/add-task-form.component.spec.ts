@@ -3,7 +3,7 @@ import { Store, StoreModule } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import { AddTaskItemLocally } from '../store/task.actions';
 import { TaskItem } from '../task-item.model';
-import { TasksFormComponent } from './tasks-form.component';
+import { AddTaskFormComponent } from './add-task-form.component';
 
 
 describe('TasksListComponent', () => {
@@ -12,7 +12,7 @@ describe('TasksListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        TasksFormComponent,
+        AddTaskFormComponent,
       ],
       imports: [
         StoreModule.forRoot(fromApp.appReducer),
@@ -24,7 +24,7 @@ describe('TasksListComponent', () => {
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(TasksFormComponent);
+    const fixture = TestBed.createComponent(AddTaskFormComponent);
     fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
@@ -33,9 +33,9 @@ describe('TasksListComponent', () => {
   it('[addTask] should add task item', () => {
     let numberOfTaskItems: number = 0;
 
-    const fixture = TestBed.createComponent(TasksFormComponent);
+    const fixture = TestBed.createComponent(AddTaskFormComponent);
     fixture.detectChanges();
-    const app: TasksFormComponent = fixture.componentInstance;
+    const app: AddTaskFormComponent = fixture.componentInstance;
 
     store.select('taskItems').pipe().subscribe(x => numberOfTaskItems = x.taskItems.length);
 

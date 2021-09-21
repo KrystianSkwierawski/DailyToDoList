@@ -2,12 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import * as fromApp from './store/app.reducer';
+import { AppState } from './store/app.reducer';
 import { AddTaskItemLocally, ClearAllTasksItemsLocally } from './task-items/store/task.actions';
 import { TaskItem } from './task-items/task-item.model';
 
 
 describe('AppComponent', () => {
-  let store: Store<fromApp.AppState>;
+  let store: Store<AppState>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

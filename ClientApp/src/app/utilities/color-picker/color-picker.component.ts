@@ -8,6 +8,7 @@ import { Color, ColorPickerControl } from '@iplab/ngx-color-picker';
 })
 export class ColorPickerComponent implements OnInit {
 
+  @Input() initialColor: string = '#B8255F';
   pickingColor: boolean = false;
 
   private _color: string;
@@ -27,7 +28,7 @@ export class ColorPickerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.color = '#B8255F';
+    this.color = this.initialColor;
   }
 
   togglePickingColor() {

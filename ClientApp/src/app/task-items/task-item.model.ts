@@ -7,5 +7,6 @@ export interface TaskItem {
   color: string;
   completed: boolean;
   expanded: boolean;
+  editing: boolean;
   subtasks: SubtaskItem[];
 }

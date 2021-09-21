@@ -9,13 +9,14 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { AppInterceptor } from './app.interceptor';
 import { MaterialModule } from './material/material.module';
-import * as fromApp from './store/app.reducer';
+import { appReducer } from './store/app.reducer';
 import { TaskEffects } from './task-items/store/task.effects';
-import { TasksFormComponent } from './task-items/tasks-form/tasks-form.component';
+import { AddTaskFormComponent } from './task-items/add-task-form/add-task-form.component';
 import { TasksListComponent } from './task-items/tasks-list/tasks-list.component';
 import { ColorPickerComponent } from './utilities/color-picker/color-picker.component';
 import { GenericListComponent } from './utilities/generic-list/generic-list.component';
 import { ShortenPipe } from './utilities/pipes/shorten/shorten.pipe';
+import { EditTaskFormComponent } from './task-items/edit-task-form/edit-task-form.component';
 
 
 
@@ -23,10 +24,11 @@ import { ShortenPipe } from './utilities/pipes/shorten/shorten.pipe';
   declarations: [
     AppComponent,
     TasksListComponent,
-    TasksFormComponent,
+    AddTaskFormComponent,
     GenericListComponent,
     ColorPickerComponent,
-    ShortenPipe
+    ShortenPipe,
+    EditTaskFormComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { ShortenPipe } from './utilities/pipes/shorten/shorten.pipe';
     ColorPickerModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(fromApp.appReducer),
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([TaskEffects])
   ],
   bootstrap: [AppComponent],

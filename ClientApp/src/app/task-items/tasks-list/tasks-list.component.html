@@ -1,11 +1,11 @@
 <app-generic-list [list]="tasks" [animationIsRunning]="animationIsRunning">
   <ng-container content>
-    <table mat-table 
-                    [dataSource]="tasks"
-                    cdkDropList
-                    (touchmove)="onTouchMove($event)"
-                    [cdkDropListData]="tasks"
-                    (cdkDropListDropped)="updateOrderIndex($event)">
+    <table mat-table
+           [dataSource]="tasks"
+           cdkDropList
+           (touchmove)="onTouchMove($event)"
+           [cdkDropListData]="tasks"
+           (cdkDropListDropped)="updateOrderIndex($event)">
 
       <ng-container matColumnDef="tasks">
 
@@ -13,7 +13,10 @@
             [@list] (@list.done)="toggleAnimation(false)" (@list.start)="toggleAnimation(true)"
             mat-cell *matCellDef="let task; let index= index">
 
-          <div style="display: flex;">
+
+          <app-edit-task-form [task]="task" *ngIf="task.editing"></app-edit-task-form>
+
+          <div class="task-checkbox" *ngIf="!task.editing">
             <button [ngStyle]="{'opacity': (task.subtasks?.length > 0) ? '1' : '0'}"
                     (click)="onToggleExpandTask(task)" mat-icon-button arial-label="toggle expand task" class="toggle-expand-task-button">
               <mat-icon [class.arrow-up]="task.expanded" aria-label="toggle expand icon">
@@ -29,7 +32,9 @@
             </span>
           </div>
 
-          <div class="action-buttons" [class.active]="hoveredTaskIndex === index">
+
+
+          <div *ngIf="!task.editing" class="action-buttons" [class.active]="hoveredTaskIndex === index">
             <button mat-icon-button arial-label="Add subtask" class="add-subtask-button">
               <mat-icon aria-label="Plus icon">
                 add
@@ -37,7 +42,7 @@
             </button>
 
 
-            <button mat-icon-button arial-label="Edit task" class="edit-task-button">
+            <button (click)="toggleEditingTask(task)" mat-icon-button arial-label="Toggle editing task" class="toggle-editing-task-button">
               <mat-icon aria-label="Edit icon">
                 edit
               </mat-icon>
@@ -63,7 +68,7 @@
           cdkDrag [cdkDragData]="row">
       </tr>
 
-      </table>
+    </table>
 
   </ng-container>
 </app-generic-list>

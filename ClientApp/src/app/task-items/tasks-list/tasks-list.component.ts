@@ -4,8 +4,8 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import * as fromApp from '../../store/app.reducer';
-import { DeleteTaskItemRemotely, GetTaskItems, ToggleAnimation, UpdateTaskItemsLocally } from '../store/task.actions';
+import { AppState } from '../../store/app.reducer';
+import { DeleteTaskItemRemotely, GetTaskItems, ToggleAnimation, UpdateTaskItemLocally, UpdateTaskItemsLocally } from '../store/task.actions';
 import { TaskItem } from '../task-item.model';
 
 
@@ -46,7 +46,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   tasks: TaskItem[];
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.storeSub = this.store.select('taskItems').subscribe(tasksState => {
@@ -79,6 +79,16 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new ToggleAnimation(finishedAnimation));
   }
 
+
+  toggleEditingTask(task: TaskItem) {
+    const updatedTaskItem = {
+      ...task,
+      editing: true
+    };
+
+    this.store.dispatch(new UpdateTaskItemLocally(updatedTaskItem));
+  }
+
   setHoveredTaskIndex(index: number | null = null) {
     this.hoveredTaskIndex = index;
   }
@@ -91,7 +101,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     if (!task || task.subtasks?.length === 0)
       return false;
 
-    return task.subtasks.filter(t => t.completed)?.length > 0 && task.subtasks?.filter(t => t.completed)?.length !== task.subtasks?.length;
+    return task.subtasks?.filter(t => t.completed)?.length > 0 && task.subtasks?.filter(t => t.completed)?.length !== task.subtasks?.length;
   }
 
   completeTask(task: TaskItem) {

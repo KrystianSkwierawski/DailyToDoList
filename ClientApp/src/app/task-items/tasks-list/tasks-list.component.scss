@@ -34,6 +34,10 @@ table {
   }
 }
 
+.task-checkbox{
+    display: flex;
+}
+
 .add-subtask-button {
   color: #E8E8E8;
   margin-left: .5rem;
@@ -43,7 +47,11 @@ table {
   }
 }
 
-.edit-task-button {
+app-edit-task-form{
+    width: 100%;
+}
+
+.toggle-editing-task-button {
   color: #E8E8E8;
 }
 

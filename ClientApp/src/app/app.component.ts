@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import * as fromApp from './store/app.reducer';
-import * as ToDoItemsActions from './task-items/store/task.actions';
+import { AppState } from './store/app.reducer';
+import { ClearAllTasksItemsRemotely } from './task-items/store/task.actions';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   pendingTasksNumber: number;
   animationFinished: boolean;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.storeSub = this.store.select('taskItems').subscribe(taskItemsState => {
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   clearAllTaskItems() {
-    this.store.dispatch(new ToDoItemsActions.ClearAllTasksItemsRemotely());
+    this.store.dispatch(new ClearAllTasksItemsRemotely());
   }
 
   ngOnDestroy(): void {
