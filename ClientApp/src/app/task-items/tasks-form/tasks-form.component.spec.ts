@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
+import { AddTaskItemLocally } from '../store/task.actions';
+import { TaskItem } from '../task-item.model';
 import { TasksFormComponent } from './tasks-form.component';
 
 
@@ -28,7 +30,7 @@ describe('TasksListComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should add task item', () => {
+  it('[addTask] should add task item', () => {
     let numberOfTaskItems: number = 0;
 
     const fixture = TestBed.createComponent(TasksFormComponent);
@@ -37,7 +39,7 @@ describe('TasksListComponent', () => {
 
     store.select('taskItems').pipe().subscribe(x => numberOfTaskItems = x.taskItems.length);
 
-    app.addTask("title"); 
+    store.dispatch(new AddTaskItemLocally({} as TaskItem));
 
     expect(numberOfTaskItems).toBe(1);
   });

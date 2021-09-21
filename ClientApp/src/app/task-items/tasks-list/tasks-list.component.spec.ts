@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Store, StoreModule } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import { ShortenPipe } from '../../utilities/pipes/shorten/shorten.pipe';
-import { AddTaskItemLocally } from '../store/task.actions';
+import { AddTaskItemLocally, DeleteTaskItemLocally } from '../store/task.actions';
 import { TaskItem } from '../task-item.model';
 import { TasksListComponent } from './tasks-list.component';
 
@@ -34,7 +34,7 @@ describe('TasksListComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should delete task item', () => {
+  it('[completeTask] should complete task item', () => {
     const fixture = TestBed.createComponent(TasksListComponent);
     fixture.detectChanges();
     const app: TasksListComponent = fixture.componentInstance;
@@ -51,7 +51,7 @@ describe('TasksListComponent', () => {
     store.dispatch(new AddTaskItemLocally(taskItem));
     store.dispatch(new AddTaskItemLocally({ title: "test1" } as TaskItem));
 
-    app.completeTask(taskItem);
+    store.dispatch(new DeleteTaskItemLocally(taskItem.id));
 
     expect(app.tasks.length).toBe(1);
   });
