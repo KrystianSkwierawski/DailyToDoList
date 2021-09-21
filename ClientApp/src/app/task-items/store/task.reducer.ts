@@ -14,7 +14,7 @@ const initialState: State = {
 
 export function toDoReducer(state: State = initialState, action: TaskActions.TaskItemsActions) {
   switch (action.type) {
-    case TaskActions.ADD: {
+    case TaskActions.ADD_LOCALLY: {
       return {
         ...state,
         taskItems: [action.payload, ...state.taskItems]
@@ -23,7 +23,7 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
       break;
     }
 
-    case TaskActions.UPDATE_TASK_ITEMS: {
+    case TaskActions.UPDATE_TASK_ITEMS_LOCALLY: {
       return {
         ...state,
         taskItems: action.payload
@@ -32,7 +32,7 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
       break;
     }
 
-    case TaskActions.ClEAR_ALL: {
+    case TaskActions.ClEAR_ALL_LOCALLY: {
       return {
         ...state,
         taskItems: []
@@ -41,7 +41,7 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
       break;
     }
 
-    case TaskActions.DELETE: {
+    case TaskActions.DELETE_LOCALLY: {
       const updatedTaskItems = [...state.taskItems].filter(t => t.id !== action.payload)
 
       return {

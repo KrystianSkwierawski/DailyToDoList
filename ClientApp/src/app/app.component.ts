@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   clearAllTaskItems() {
-    this.store.dispatch(new ToDoItemsActions.ClearAllTasksItems());
+    this.store.dispatch(new ToDoItemsActions.ClearAllTasksItemsRemotely());
   }
 
   ngOnDestroy(): void {

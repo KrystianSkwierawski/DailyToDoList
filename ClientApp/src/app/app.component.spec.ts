@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import * as fromApp from './store/app.reducer';
-import { AddTaskItem, ClearAllTasksItems } from './task-items/store/task.actions';
+import { AddTaskItemLocally, ClearAllTasksItemsLocally } from './task-items/store/task.actions';
 import { TaskItem } from './task-items/task-item.model';
 
 
@@ -43,8 +43,8 @@ describe('AppComponent', () => {
     const app: AppComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
 
-    store.dispatch(new AddTaskItem(new TaskItem("1", "title")));
-    store.dispatch(new AddTaskItem(new TaskItem("2", "title2")));
+    store.dispatch(new AddTaskItemLocally({ title: "test1" } as TaskItem));
+    store.dispatch(new AddTaskItemLocally({ title: "test2" } as TaskItem));
 
     expect(app.pendingTasksNumber).toBe(2);
   });
@@ -54,8 +54,8 @@ describe('AppComponent', () => {
     const app: AppComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
 
-    store.dispatch(new AddTaskItem(new TaskItem("1", "title")));
-    store.dispatch(new ClearAllTasksItems());
+    store.dispatch(new AddTaskItemLocally({ title: "test1" } as TaskItem));
+    store.dispatch(new ClearAllTasksItemsLocally());
 
     expect(app.pendingTasksNumber).toBe(0);
   });

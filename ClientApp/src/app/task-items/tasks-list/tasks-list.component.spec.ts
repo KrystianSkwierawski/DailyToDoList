@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Store, StoreModule } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import { ShortenPipe } from '../../utilities/pipes/shorten/shorten.pipe';
-import { AddTaskItem } from '../store/task.actions';
+import { AddTaskItemLocally } from '../store/task.actions';
 import { TaskItem } from '../task-item.model';
 import { TasksListComponent } from './tasks-list.component';
 
@@ -39,10 +39,19 @@ describe('TasksListComponent', () => {
     fixture.detectChanges();
     const app: TasksListComponent = fixture.componentInstance;
 
-    store.dispatch(new AddTaskItem(new TaskItem("1", "title")));
-    store.dispatch(new AddTaskItem(new TaskItem("2", "title2")));
+    const taskItem: TaskItem = {
+      id: "1",
+      title: "test1",
+      color: "#ffff",
+      completed: true,
+      expanded: false,
+      subtasks: []
+    }
 
-    app.deleteTask("1");
+    store.dispatch(new AddTaskItemLocally(taskItem));
+    store.dispatch(new AddTaskItemLocally({ title: "test1" } as TaskItem));
+
+    app.completeTask(taskItem);
 
     expect(app.tasks.length).toBe(1);
   });

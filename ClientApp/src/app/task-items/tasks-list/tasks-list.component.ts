@@ -5,7 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as fromApp from '../../store/app.reducer';
-import { DeleteTaskItem, ToggleAnimation, UpdateTaskItems } from '../store/task.actions';
+import { DeleteTaskItemRemotely, GetTaskItems, ToggleAnimation, UpdateTaskItemsLocally } from '../store/task.actions';
 import { TaskItem } from '../task-item.model';
 
 
@@ -53,6 +53,8 @@ export class TasksListComponent implements OnInit, OnDestroy {
       this.tasks = tasksState.taskItems;
       this.animationIsRunning = tasksState.animationIsRunning;
     });
+
+    this.store.dispatch(new GetTaskItems());
   }
 
   updateOrderIndex(event: any) {
@@ -62,7 +64,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
     moveItemInArray(updatedTaskItems, previousIndex, event.currentIndex);
 
-    this.store.dispatch(new UpdateTaskItems(updatedTaskItems));
+    this.store.dispatch(new UpdateTaskItemsLocally(updatedTaskItems));
 
     this.tasksTable.renderRows();
   }
@@ -86,18 +88,18 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   someComplete(task: TaskItem): boolean {
-    if (!task || task.subtasks.length === 0)
+    if (!task || task.subtasks?.length === 0)
       return false;
 
-    return task.subtasks.filter(t => t.completed).length > 0 && task.subtasks.filter(t => t.completed).length !== task.subtasks.length;
+    return task.subtasks.filter(t => t.completed)?.length > 0 && task.subtasks?.filter(t => t.completed)?.length !== task.subtasks?.length;
   }
 
   completeTask(task: TaskItem) {
-    this.store.dispatch(new DeleteTaskItem(task.id));
+    this.store.dispatch(new DeleteTaskItemRemotely(task.id));
   }
 
   //setAll(completed: boolean, task: TaskItem) {
-  //  if (!task || task.subtasks.length === 0)
+  //  if (!task || task.subtasks?.length === 0)
   //    return;
 
   //  task.subtasks.forEach(t => t.completed = completed);
@@ -111,10 +113,10 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   allSubTasksIsCompleteted(task: TaskItem): boolean {
-    if (!task || task.subtasks.length === 0)
+    if (!task || task.subtasks?.length === 0)
       return false;
 
-    return (task.subtasks.filter(t => t.completed).length === task.subtasks.length);
+    return (task.subtasks?.filter(t => t.completed)?.length === task.subtasks?.length);
   }
 
   ngOnDestroy(): void {

@@ -26,11 +26,7 @@ export class TasksFormComponent implements OnInit {
   }
 
   addTask(title: string) {
-    // id placeholder from db
-    const id = Math.random().toString(36).substr(2, 5);
-    const task = new TaskItem(id, title, this.color);
-
-    this.store.dispatch(new tasksActions.AddTaskItem(task));
+    this.store.dispatch(new tasksActions.AddTaskItemRemotely({ title, color: this.color }));
   }
 
   onColorChange(color: string) {

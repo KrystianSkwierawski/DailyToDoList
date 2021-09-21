@@ -14,7 +14,7 @@
             mat-cell *matCellDef="let task; let index= index">
 
           <div style="display: flex;">
-            <button [ngStyle]="{'opacity': (task.subtasks.length > 0) ? '1' : '0'}"
+            <button [ngStyle]="{'opacity': (task.subtasks?.length > 0) ? '1' : '0'}"
                     (click)="onToggleExpandTask(task)" mat-icon-button arial-label="toggle expand task" class="toggle-expand-task-button">
               <mat-icon [class.arrow-up]="task.expanded" aria-label="toggle expand icon">
                 arrow_drop_down
