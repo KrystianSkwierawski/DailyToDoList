@@ -30,14 +30,14 @@ describe('TasksListComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('[addTask] should add task item', () => {
+  it('[submit] should add task item', () => {
     let numberOfTaskItems: number = 0;
 
     const fixture = TestBed.createComponent(AddTaskFormComponent);
     fixture.detectChanges();
     const app: AddTaskFormComponent = fixture.componentInstance;
 
-    store.select('taskItems').pipe().subscribe(x => numberOfTaskItems = x.taskItems.length);
+    store.select('taskItems').subscribe(x => numberOfTaskItems = x.taskItems.length);
 
     store.dispatch(new AddTaskItemLocally({} as TaskItem));
 
