@@ -7,6 +7,7 @@ export const ADD_TASK_ITEM_REMOTELY = '[Task Items] Add Task Item Remotely';
 export const UPDATE_TASK_ITEM_LOCALLY = '[Task Items] Update Task Item Locally';
 export const UPDATE_TASK_ITEM_REMOTELY = '[Task Items] Update Task Item REMOTELY';
 export const UPDATE_TASK_ITEMS_LOCALLY = '[Task Items] Update Task Items Locally';
+export const UPDATE_TASK_ITEMS_REMOTELY = '[Task Items] Update Task Items REMOTELY';
 export const ClEAR_ALL_LOCALLY = '[Task Items] Clear All Task Items Locally';
 export const ClEAR_ALL_REMOTELY = '[Task Items] Clear All Task Items Remotely';
 export const DELETE_LOCALLY = '[Task Items] Delete Task Item Locally';
@@ -44,6 +45,13 @@ export class UpdateTaskItemLocally implements Action {
 
 export class UpdateTaskItemsLocally implements Action {
   readonly type = UPDATE_TASK_ITEMS_LOCALLY;
+
+  constructor(public payload: TaskItem[]) { }
+}
+
+
+export class UpdateTaskItemsRemotely implements Action {
+  readonly type = UPDATE_TASK_ITEMS_REMOTELY;
 
   constructor(public payload: TaskItem[]) { }
 }

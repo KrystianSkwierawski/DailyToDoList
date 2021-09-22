@@ -52,7 +52,7 @@ export class TaskEffects {
     switchMap((action: TasksActions.UpdateTaskItemRemotely) => {
 
       return this.http.put<TaskItem>(
-        environment.apiUrl,
+        environment.apiUrl + `/${action.payload.id}`,
         action.payload
       ).pipe(
         map(() => action.payload)
@@ -64,6 +64,20 @@ export class TaskEffects {
     })
   );
 
+  @Effect({ dispatch: false })
+  updateTaskItemsRemotely = this.actions$.pipe(
+    ofType(TasksActions.UPDATE_TASK_ITEMS_REMOTELY),
+    switchMap((action: TasksActions.UpdateTaskItemsRemotely) => {
+
+      return this.http.put<TaskItem>(
+        environment.apiUrl,
+        action.payload
+      ).pipe(
+        map(() => action.payload)
+      );
+
+    })
+  );
 
   @Effect()
   deleteTaskItemRemotely = this.actions$.pipe(

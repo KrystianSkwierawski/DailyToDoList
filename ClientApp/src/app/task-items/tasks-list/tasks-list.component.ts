@@ -5,7 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from '../../store/app.reducer';
-import { DeleteTaskItemRemotely, GetTaskItems, ToggleAnimation, UpdateTaskItemLocally, UpdateTaskItemsLocally } from '../store/task.actions';
+import { DeleteTaskItemRemotely, GetTaskItems, ToggleAnimation, UpdateTaskItemLocally, UpdateTaskItemsLocally, UpdateTaskItemsRemotely } from '../store/task.actions';
 import { TaskItem } from '../task-item.model';
 
 
@@ -65,6 +65,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     moveItemInArray(updatedTaskItems, previousIndex, event.currentIndex);
 
     this.store.dispatch(new UpdateTaskItemsLocally(updatedTaskItems));
+    this.store.dispatch(new UpdateTaskItemsRemotely(updatedTaskItems));
 
     this.tasksTable.renderRows();
   }

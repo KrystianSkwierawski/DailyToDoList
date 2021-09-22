@@ -1,5 +1,4 @@
 ﻿using MongoDB.Driver;
-using System;
 
 namespace DailyToDoList.TaskItems;
 
@@ -27,7 +26,7 @@ public class TaskItemsDatabase : ITaskItemsDatabase
             o_toDoItemDTOs.Add(entity.ToDTO());
         }
 
-        return o_toDoItemDTOs.OrderByDescending(x => x.Id).ToList();
+        return o_toDoItemDTOs;
     }
 
     public async Task<TaskItemDTO> AddTaskItemAsync(string title, string color)
@@ -58,6 +57,27 @@ public class TaskItemsDatabase : ITaskItemsDatabase
         };
 
         await _taskItems.ReplaceOneAsync(filter, taskItem);
+    }
+
+    public async Task UpdateTaskItemsAsync(List<TaskItemDTO> taskItemDTOs)
+    {
+        List<TaskItem> updatedTaskItems = new();
+
+        foreach(var taskItemDTO in taskItemDTOs)
+        {
+            updatedTaskItems.Add(new TaskItem
+            {            
+                Id = taskItemDTO.Id,
+                Title = taskItemDTO.Title,
+                // CreatedBy = token
+                Color = taskItemDTO.Color,
+                Completed = taskItemDTO.Completed,
+                SubtaskItems = taskItemDTO.SubtaskItems
+            });
+        }
+
+        await DeleteAllTaskItemsAsync();
+        await _taskItems.InsertManyAsync(updatedTaskItems);
     }
 
     public async Task DeleteTaskItemAsync(string id)
