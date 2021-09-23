@@ -31,7 +31,7 @@ describe('TasksListComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('[submit] should edit task item', () => {
+  it('[submit] should edit task item locally', () => {
     // Arrange
 
     let taskItem: TaskItem = {

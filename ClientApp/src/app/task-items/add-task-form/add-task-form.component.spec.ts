@@ -30,7 +30,7 @@ describe('TasksListComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('[submit] should add task item', () => {
+  it('[submit] should add task item locally', () => {
     let numberOfTaskItems: number = 0;
 
     const fixture = TestBed.createComponent(AddTaskFormComponent);

@@ -67,7 +67,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UpdateTaskItemsLocally(updatedTaskItems));
     this.store.dispatch(new UpdateTaskItemsRemotely(updatedTaskItems));
 
-    this.tasksTable.renderRows();
+    this.tasksTable?.renderRows();
   }
 
   onTouchMove(e: Event) {
