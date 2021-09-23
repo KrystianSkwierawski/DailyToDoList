@@ -5,7 +5,8 @@ import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from '../../store/app.reducer';
-import { DeleteTaskItemRemotely, GetTaskItems, ToggleAnimation, UpdateTaskItemLocally, UpdateTaskItemsLocally, UpdateTaskItemsRemotely } from '../store/task.actions';
+import { DeleteTaskItemRemotely, GetTaskItems, ToggleAnimation, UpdateTaskItemLocally, UpdateTaskItemRemotely, UpdateTaskItemsLocally, UpdateTaskItemsRemotely } from '../store/task.actions';
+import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
 
 
@@ -90,44 +91,77 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UpdateTaskItemLocally(updatedTaskItem));
   }
 
+  addSubtask(task: TaskItem) {
+    if (!task)
+      return;
+
+    const subtask: SubtaskItem = {
+      title: `Task ${task.subtaskItems.length + 1}`,
+      color: task.color,
+      completed: false
+    };
+
+    const updatedSubtaskItems: SubtaskItem[] = [...task.subtaskItems];
+    updatedSubtaskItems.push(subtask);
+
+    const updatedTask: TaskItem = {
+      ...task,
+      subtaskItems: updatedSubtaskItems
+    }
+
+    this.store.dispatch(new UpdateTaskItemRemotely(updatedTask));
+  }
+
   setHoveredTaskIndex(index: number | null = null) {
     this.hoveredTaskIndex = index;
   }
 
-  updateAllComplete() {
-    //this.allComplete = task.subtasks != null && task.subtasks.every(t => t.completed);
+  toggleCompleteSubtask(task: TaskItem, subtask: SubtaskItem, index: number) {
+    const updatedSubtaskItem: SubtaskItem = {
+      ...subtask,
+      completed: !subtask.completed
+    };
+
+    const updatedSubtaskItems: SubtaskItem[] = [...task.subtaskItems];
+
+    updatedSubtaskItems[index] = updatedSubtaskItem;
+
+    const updatedTaskItem: TaskItem = {
+      ...task,
+      subtaskItems: updatedSubtaskItems
+    }
+
+    this.store.dispatch(new UpdateTaskItemRemotely(updatedTaskItem));
+  }
+
+  completeTaskIfAllSubtasksIsCompleted(task: TaskItem) {
+    const allSubtasksIsCompleted: boolean = task.subtaskItems.every(t => t.completed);
+
+    if (allSubtasksIsCompleted)
+      this.completeTask(task);
   }
 
   someComplete(task: TaskItem): boolean {
-    if (!task || task.subtasks?.length === 0)
+    if (!task || task.subtaskItems?.length === 0)
       return false;
 
-    return task.subtasks?.filter(t => t.completed)?.length > 0 && task.subtasks?.filter(t => t.completed)?.length !== task.subtasks?.length;
+    return task.subtaskItems?.some(t => t.completed);
   }
 
   completeTask(task: TaskItem) {
     this.store.dispatch(new DeleteTaskItemRemotely(task.id));
   }
 
-  //setAll(completed: boolean, task: TaskItem) {
-  //  if (!task || task.subtasks?.length === 0)
-  //    return;
-
-  //  task.subtasks.forEach(t => t.completed = completed);
-  //}
-
   onToggleExpandTask(task: TaskItem) {
     if (!task)
       return;
 
-    task.expanded = !task.expanded;
-  }
+    const updatedTask: TaskItem = {
+      ...task,
+      expanded: !task.expanded
+    }
 
-  allSubTasksIsCompleteted(task: TaskItem): boolean {
-    if (!task || task.subtasks?.length === 0)
-      return false;
-
-    return (task.subtasks?.filter(t => t.completed)?.length === task.subtasks?.length);
+    this.store.dispatch(new UpdateTaskItemLocally(updatedTask));
   }
 
   ngOnDestroy(): void {

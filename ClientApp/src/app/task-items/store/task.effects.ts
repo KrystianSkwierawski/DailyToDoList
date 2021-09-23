@@ -60,7 +60,10 @@ export class TaskEffects {
 
     }),
     map(taskItem => {
-      return new TasksActions.UpdateTaskItemLocally(taskItem);
+      if (taskItem.subtaskItems.every(t => t.completed))
+        return new TasksActions.DeleteTaskItemRemotely(taskItem.id);
+
+        return new TasksActions.UpdateTaskItemLocally(taskItem);
     })
   );
 

@@ -11,11 +11,14 @@ table {
     display: flex;
     padding: 0;
     height: auto;
+    flex-direction: column;
   }
 }
 
 .sub-task-checkbox {
-  margin-left: 4rem;
+  margin-top: .5rem;
+  margin-left: 3rem;
+  margin-block: .5rem;
 }
 
 .action-buttons {
@@ -34,8 +37,8 @@ table {
   }
 }
 
-.task-checkbox{
-    display: flex;
+.task-checkbox {
+  display: flex;
 }
 
 .add-subtask-button {
@@ -47,8 +50,8 @@ table {
   }
 }
 
-app-edit-task-form{
-    width: 100%;
+app-edit-task-form {
+  width: 100%;
 }
 
 .toggle-editing-task-button {
@@ -63,9 +66,9 @@ app-generic-list {
 }
 
 
-.mat-checkbox-span{
-    margin-top: auto;
-    margin-bottom: auto;
+.mat-checkbox-span {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 mat-checkbox {
@@ -87,7 +90,11 @@ mat-checkbox {
   }
 }
 
-.subtasks {
+.task {
+  display: flex;
+}
+
+.subtaskItems {
   & ul {
     opacity: 0;
     transition: .2s !important;

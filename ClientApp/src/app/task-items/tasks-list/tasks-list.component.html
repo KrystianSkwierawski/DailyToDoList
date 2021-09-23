@@ -14,53 +14,57 @@
             mat-cell *matCellDef="let task; let index= index">
 
 
-          <app-edit-task-form [task]="task" *ngIf="task.editing"></app-edit-task-form>
+          <div class="task">
+            <app-edit-task-form [task]="task" *ngIf="task.editing"></app-edit-task-form>
 
-          <div class="task-checkbox" *ngIf="!task.editing">
-            <button [ngStyle]="{'opacity': (task.subtasks?.length > 0) ? '1' : '0'}"
-                    (click)="onToggleExpandTask(task)" mat-icon-button arial-label="toggle expand task" class="toggle-expand-task-button">
-              <mat-icon [class.arrow-up]="task.expanded" aria-label="toggle expand icon">
-                arrow_drop_down
-              </mat-icon>
-            </button>
+            <div class="task-checkbox" *ngIf="!task.editing">
+              <button [ngStyle]="{'opacity': (task.subtaskItems?.length > 0) ? '1' : '0'}"
+                      (click)="onToggleExpandTask(task)" mat-icon-button arial-label="toggle expand task" class="toggle-expand-task-button">
+                <mat-icon [class.arrow-up]="task.expanded" aria-label="toggle expand icon">
+                  arrow_drop_down
+                </mat-icon>
+              </button>
 
-            <span class="mat-checkbox-span">
-              <mat-checkbox style="--checkbox-bc: {{task.color}}" [checked]="allSubTasksIsCompleteted(task)"
-                            [indeterminate]="someComplete(task)" (change)="completeTask(task)">
-                {{task.title | shorten}}
-              </mat-checkbox>
-            </span>
-          </div>
-
-
-
-          <div *ngIf="!task.editing" class="action-buttons" [class.active]="hoveredTaskIndex === index">
-            <button mat-icon-button arial-label="Add subtask" class="add-subtask-button">
-              <mat-icon aria-label="Plus icon">
-                add
-              </mat-icon>
-            </button>
-
-
-            <button (click)="toggleEditingTask(task)" mat-icon-button arial-label="Toggle editing task" class="toggle-editing-task-button">
-              <mat-icon aria-label="Edit icon">
-                edit
-              </mat-icon>
-            </button>
-          </div>
-
-          <span class="subtasks" [class.subtasks_expanded]="task.expanded">
-            <ul>
-              <li *ngFor="let subtask of task.subtasks">
-
-                <mat-checkbox style="--checkbox-bc-color: {{task.color}}" class="sub-task-checkbox" [(ngModel)]="subtask.completed"
-                              (ngModelChange)="updateAllComplete()">
-                  {{subtask.title | shorten}}
+              <span class="mat-checkbox-span">
+                <mat-checkbox style="--checkbox-bc: {{task.color}}"
+                              [indeterminate]="someComplete(task)" (change)="completeTask(task)">
+                  {{task.title | shorten}}
                 </mat-checkbox>
+              </span>
+            </div>
+
+
+            <div *ngIf="!task.editing" class="action-buttons" [class.active]="hoveredTaskIndex === index">
+              <button (click)="addSubtask(task)" mat-icon-button arial-label="Add subtask" class="add-subtask-button">
+                <mat-icon aria-label="Plus icon">
+                  add
+                </mat-icon>
+              </button>
+
+
+              <button (click)="toggleEditingTask(task)" mat-icon-button arial-label="Toggle editing task" class="toggle-editing-task-button">
+                <mat-icon aria-label="Edit icon">
+                  edit
+                </mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="subtaskItems" [class.subtaskItems_expanded]="task.expanded">
+            <ul>
+              <li *ngFor="let subtask of task.subtaskItems; let index = index">
+
+                <span class="mat-checkbox-span">
+                  <mat-checkbox style="--checkbox-bc: {{subtask.color}}" class="sub-task-checkbox" [checked]="subtask.completed"
+                                (change)="toggleCompleteSubtask(task, subtask, index)">
+                    {{subtask.title | shorten}}
+                  </mat-checkbox>
+                </span>
 
               </li>
             </ul>
-          </span>
+          </div>
         </td>
       </ng-container>
 

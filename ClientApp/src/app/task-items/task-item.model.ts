@@ -8,5 +8,5 @@ export interface TaskItem {
   completed: boolean;
   expanded: boolean;
   editing: boolean;
-  subtasks: SubtaskItem[];
+  subtaskItems: SubtaskItem[];
 }

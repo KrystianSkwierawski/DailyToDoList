@@ -41,7 +41,7 @@ describe('TasksListComponent', () => {
       completed: false,
       editing: false,
       expanded: false,
-      subtasks: []
+      subtaskItems: []
     };
 
     const fixture = TestBed.createComponent(EditTaskFormComponent);

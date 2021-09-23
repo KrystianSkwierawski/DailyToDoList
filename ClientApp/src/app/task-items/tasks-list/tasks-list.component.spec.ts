@@ -45,7 +45,7 @@ describe('TasksListComponent', () => {
       color: "#ffff",
       completed: true,
       expanded: false,
-      subtasks: [],
+      subtaskItems: [],
       editing: false
     }
 
@@ -69,7 +69,7 @@ describe('TasksListComponent', () => {
         color: "#ffff",
         completed: true,
         expanded: false,
-        subtasks: [],
+        subtaskItems: [],
         editing: false
       },
       {
@@ -78,7 +78,7 @@ describe('TasksListComponent', () => {
         color: "#ffff",
         completed: true,
         expanded: false,
-        subtasks: [],
+        subtaskItems: [],
         editing: false
       },
     ];
