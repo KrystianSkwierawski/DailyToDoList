@@ -21,6 +21,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   storeSub: Subscription;
   hoveredTaskIndex: number | null;
+  hoveredSubtaskIndex: number | null;
 
   tasks: TaskItem[];
 
@@ -85,6 +86,10 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   setHoveredTaskIndex(index: number | null = null) {
     this.hoveredTaskIndex = index;
+  }
+
+  setHoveredSubtaskIndex(index: number | null = null) {
+    this.hoveredSubtaskIndex = index;
   }
 
   toggleCompleteSubtask(task: TaskItem, subtask: SubtaskItem, index: number) {

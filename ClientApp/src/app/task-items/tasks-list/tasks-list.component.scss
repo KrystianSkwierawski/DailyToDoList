@@ -65,7 +65,7 @@ table {
   margin-left: .5rem;
 
   & mat-icon {
-    font-weight: bolder;
+    font-weight: bold; 
   }
 }
 
@@ -75,6 +75,15 @@ app-edit-task-form {
 
 .toggle-editing-task-button {
   color: #E8E8E8;
+
+  & mat-icon {
+    font-weight: lighter;
+  }
+}
+
+.subtask{
+    display: flex;
+    justify-content: space-between;
 }
 
 app-generic-list {

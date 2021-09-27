@@ -9,11 +9,11 @@
 
       <ng-container matColumnDef="tasks">
 
-        <td class="table-item" (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()"
+        <td class="table-item" 
             mat-cell *matCellDef="let task; let index= index">
 
 
-          <div class="task">
+          <div class="task" (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()">
             <app-edit-task-form [task]="task" *ngIf="task.editing"></app-edit-task-form>
 
             <div class="task-checkbox" *ngIf="!task.editing">
@@ -54,12 +54,22 @@
             <ul>
               <li *ngFor="let subtask of task.subtaskItems; let index = index">
 
-                <span class="mat-checkbox-span">
-                  <mat-checkbox [class.strikethrough]="subtask.completed" style="--checkbox-bc: {{subtask.color}}" class="sub-task-checkbox" [checked]="subtask.completed"
-                                (change)="toggleCompleteSubtask(task, subtask, index)">
-                    {{subtask.title | shorten}}
-                  </mat-checkbox>
-                </span>
+                <div class="subtask" (mouseenter)="setHoveredSubtaskIndex(index)" (mouseleave)="setHoveredSubtaskIndex()">
+                  <span class="mat-checkbox-span">
+                    <mat-checkbox [class.strikethrough]="subtask.completed" style="--checkbox-bc: {{subtask.color}}" class="sub-task-checkbox" [checked]="subtask.completed"
+                                  (change)="toggleCompleteSubtask(task, subtask, index)">
+                      {{subtask.title | shorten}}
+                    </mat-checkbox>
+                  </span>
+
+                  <div *ngIf="!subtask.completed" class="action-buttons" [class.active]="hoveredSubtaskIndex === index">
+                    <button (click)="toggleEditingTask(task)" mat-icon-button arial-label="Toggle editing subtask" class="toggle-editing-task-button">
+                      <mat-icon aria-label="Edit icon">
+                        edit
+                      </mat-icon>
+                    </button>
+                  </div>
+                </div>
 
               </li>
             </ul>
