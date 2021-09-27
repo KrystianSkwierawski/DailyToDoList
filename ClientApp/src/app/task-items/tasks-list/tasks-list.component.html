@@ -56,7 +56,7 @@
               <li *ngFor="let subtask of task.subtaskItems; let index = index">
 
                 <span class="mat-checkbox-span">
-                  <mat-checkbox style="--checkbox-bc: {{subtask.color}}" class="sub-task-checkbox" [checked]="subtask.completed"
+                  <mat-checkbox [class.strikethrough]="subtask.completed" style="--checkbox-bc: {{subtask.color}}" class="sub-task-checkbox" [checked]="subtask.completed"
                                 (change)="toggleCompleteSubtask(task, subtask, index)">
                     {{subtask.title | shorten}}
                   </mat-checkbox>

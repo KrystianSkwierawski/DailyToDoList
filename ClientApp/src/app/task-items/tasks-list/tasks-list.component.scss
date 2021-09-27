@@ -41,6 +41,12 @@ table {
   display: flex;
 }
 
+.strikethrough {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--checkbox-bc);
+}
+
 .add-subtask-button {
   color: #E8E8E8;
   margin-left: .5rem;
