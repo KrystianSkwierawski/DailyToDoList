@@ -63,6 +63,23 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UpdateTaskItemLocally(updatedTaskItem));
   }
 
+  toggleEditingSubtask(task: TaskItem, subtask: SubtaskItem, index: number) {
+    const updatedSubtask: SubtaskItem = {
+      ...subtask,
+      editing: true
+    };
+
+    const updatedSubtaskItems: SubtaskItem[] = [...task.subtaskItems];
+    updatedSubtaskItems[index] = updatedSubtask;
+
+    const updatedTask: TaskItem = {
+      ...task,
+      subtaskItems: updatedSubtaskItems
+    }
+
+    this.store.dispatch(new UpdateTaskItemLocally(updatedTask));
+  }
+
   addSubtask(task: TaskItem) {
     if (!task)
       return;
@@ -70,7 +87,8 @@ export class TasksListComponent implements OnInit, OnDestroy {
     const subtask: SubtaskItem = {
       title: `Task ${task.subtaskItems.length + 1}`,
       color: task.color,
-      completed: false
+      completed: false,
+      editing: false
     };
 
     const updatedSubtaskItems: SubtaskItem[] = [...task.subtaskItems];

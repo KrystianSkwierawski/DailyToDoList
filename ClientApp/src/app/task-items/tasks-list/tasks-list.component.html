@@ -54,7 +54,9 @@
             <ul>
               <li *ngFor="let subtask of task.subtaskItems; let index = index">
 
-                <div class="subtask" (mouseenter)="setHoveredSubtaskIndex(index)" (mouseleave)="setHoveredSubtaskIndex()">
+                <app-edit-task-form [task]="task" [subtaskEditingData]="{subtask, index}" *ngIf="subtask.editing"></app-edit-task-form>
+
+                <div *ngIf="!subtask.editing" class="subtask" (mouseenter)="setHoveredSubtaskIndex(index)" (mouseleave)="setHoveredSubtaskIndex()">
                   <span class="mat-checkbox-span">
                     <mat-checkbox [class.strikethrough]="subtask.completed" style="--checkbox-bc: {{subtask.color}}" class="sub-task-checkbox" [checked]="subtask.completed"
                                   (change)="toggleCompleteSubtask(task, subtask, index)">
@@ -62,8 +64,8 @@
                     </mat-checkbox>
                   </span>
 
-                  <div *ngIf="!subtask.completed" class="action-buttons" [class.active]="hoveredSubtaskIndex === index">
-                    <button (click)="toggleEditingTask(task)" mat-icon-button arial-label="Toggle editing subtask" class="toggle-editing-task-button">
+                  <div *ngIf="!subtask.completed && !subtask.editing" class="action-buttons" [class.active]="hoveredSubtaskIndex === index">
+                    <button (click)="toggleEditingSubtask(task, subtask, index)" mat-icon-button arial-label="Toggle editing subtask" class="toggle-editing-task-button">
                       <mat-icon aria-label="Edit icon">
                         edit
                       </mat-icon>

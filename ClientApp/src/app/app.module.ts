@@ -28,7 +28,7 @@ import { EditTaskFormComponent } from './task-items/edit-task-form/edit-task-for
     GenericListComponent,
     ColorPickerComponent,
     ShortenPipe,
-    EditTaskFormComponent
+    EditTaskFormComponent,
   ],
   imports: [
     BrowserModule,

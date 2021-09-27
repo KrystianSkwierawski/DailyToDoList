@@ -65,7 +65,7 @@ table {
   margin-left: .5rem;
 
   & mat-icon {
-    font-weight: bold; 
+    font-weight: bold;
   }
 }
 
@@ -81,9 +81,9 @@ app-edit-task-form {
   }
 }
 
-.subtask{
-    display: flex;
-    justify-content: space-between;
+.subtask {
+  display: flex;
+  justify-content: space-between;
 }
 
 app-generic-list {
@@ -124,6 +124,7 @@ mat-checkbox {
 
 .subtaskItems {
   & ul {
+    list-style-type: none;
     opacity: 0;
     transition: .2s !important;
     height: 0;
