@@ -1,11 +1,10 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from '../../store/app.reducer';
-import { DeleteTaskItemRemotely, GetTaskItems, ToggleAnimation, UpdateTaskItemLocally, UpdateTaskItemRemotely, UpdateTaskItemsLocally, UpdateTaskItemsRemotely } from '../store/task.actions';
+import { DeleteTaskItemRemotely, GetTaskItems, UpdateTaskItemLocally, UpdateTaskItemRemotely, UpdateTaskItemsLocally, UpdateTaskItemsRemotely } from '../store/task.actions';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
 
@@ -13,28 +12,7 @@ import { TaskItem } from '../task-item.model';
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
-  styleUrls: ['./tasks-list.component.scss'],
-  animations: [
-    trigger('list', [
-      state('in', style({
-        opacity: 1,
-        transform: 'translateX(0)'
-      })),
-      transition('void => *', [
-        style({
-          opacity: 0,
-          transform: 'translateX(-100px)'
-        }),
-        animate(200)
-      ]),
-      transition('* => void', [
-        animate(205, style({
-          transform: 'translateX(100px)',
-          opacity: 0
-        }))
-      ])
-    ])
-  ]
+  styleUrls: ['./tasks-list.component.scss']
 })
 export class TasksListComponent implements OnInit, OnDestroy {
 
@@ -43,7 +21,6 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   storeSub: Subscription;
   hoveredTaskIndex: number | null;
-  animationIsRunning: boolean = false;
 
   tasks: TaskItem[];
 
@@ -52,7 +29,6 @@ export class TasksListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.storeSub = this.store.select('taskItems').subscribe(tasksState => {
       this.tasks = tasksState.taskItems;
-      this.animationIsRunning = tasksState.animationIsRunning;
     });
 
     this.store.dispatch(new GetTaskItems());
@@ -76,11 +52,6 @@ export class TasksListComponent implements OnInit, OnDestroy {
       e.preventDefault();
     }
   }
-
-  toggleAnimation(finishedAnimation: boolean) {
-    this.store.dispatch(new ToggleAnimation(finishedAnimation));
-  }
-
 
   toggleEditingTask(task: TaskItem) {
     const updatedTaskItem = {
@@ -132,13 +103,6 @@ export class TasksListComponent implements OnInit, OnDestroy {
     }
 
     this.store.dispatch(new UpdateTaskItemRemotely(updatedTaskItem));
-  }
-
-  completeTaskIfAllSubtasksIsCompleted(task: TaskItem) {
-    const allSubtasksIsCompleted: boolean = task.subtaskItems.every(t => t.completed);
-
-    if (allSubtasksIsCompleted)
-      this.completeTask(task);
   }
 
   someComplete(task: TaskItem): boolean {

@@ -1,4 +1,4 @@
-<app-generic-list [list]="tasks" [animationIsRunning]="animationIsRunning">
+<app-generic-list [list]="tasks">
   <ng-container content>
     <table mat-table
            [dataSource]="tasks"
@@ -9,8 +9,7 @@
 
       <ng-container matColumnDef="tasks">
 
-        <td (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()"
-            [@list] (@list.done)="toggleAnimation(false)" (@list.start)="toggleAnimation(true)"
+        <td class="table-item" (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()"
             mat-cell *matCellDef="let task; let index= index">
 
 

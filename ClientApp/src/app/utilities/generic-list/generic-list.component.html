@@ -1,8 +1,8 @@
-<div *ngIf="!animationIsRunning && !list" class="loading-content-container">
+<div *ngIf="!list" class="loading-content-container">
   <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
 </div>
 
-<div class="empty-state" *ngIf="!animationIsRunning && list?.length === 0">
+<div class="empty-state" *ngIf="list?.length === 0">
   <a href="https://www.freepik.com"><img src="../assets/list.svg" /></a>
   <p>
     You have no tasks to do! <br />
@@ -11,7 +11,7 @@
   </p>
 </div>
 
-<ng-container *ngIf="animationIsRunning || (list && list.length > 0)">
+<ng-container *ngIf="list && list.length > 0">
   <div class="content">
     <ng-content select="[content]"></ng-content>
   </div>

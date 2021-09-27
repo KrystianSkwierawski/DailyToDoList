@@ -12,7 +12,6 @@ export const ClEAR_ALL_LOCALLY = '[Task Items] Clear All Task Items Locally';
 export const ClEAR_ALL_REMOTELY = '[Task Items] Clear All Task Items Remotely';
 export const DELETE_LOCALLY = '[Task Items] Delete Task Item Locally';
 export const DELETE_REMOTELY = '[Task Items] Delete Task Item Remotely';
-export const TOGGLE_ANIMATION = '[Task Items] Toggle Animation';
 
 
 export class GetTaskItems implements Action {
@@ -76,18 +75,11 @@ export class DeleteTaskItemRemotely implements Action {
   constructor(public payload: string) { }
 }
 
-export class ToggleAnimation implements Action {
-  readonly type = TOGGLE_ANIMATION;
-
-  constructor(public payload: boolean) { }
-}
-
 
 export type TaskItemsActions =
   AddTaskItemLocally |
   ClearAllTasksItemsLocally |
   DeleteTaskItemLocally |
-  ToggleAnimation |
   UpdateTaskItemLocally |
   UpdateTaskItemsLocally |
   DeleteTaskItemRemotely;

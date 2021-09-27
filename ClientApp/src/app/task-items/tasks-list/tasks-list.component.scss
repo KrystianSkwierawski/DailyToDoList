@@ -21,6 +21,19 @@ table {
   margin-block: .5rem;
 }
 
+.table-item {
+  animation: show-up .3s forwards;
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+@keyframes show-up {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .action-buttons {
   margin-left: auto;
   transition: .2s;
