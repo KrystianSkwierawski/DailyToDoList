@@ -129,10 +129,10 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   someComplete(task: TaskItem): boolean {
-    if (!task || task.subtaskItems?.length === 0)
+    if (!task || task.subtaskItems.length === 0)
       return false;
 
-    return task.subtaskItems?.some(t => t.completed);
+    return task.subtaskItems.some(t => t.completed);
   }
 
   completeTask(task: TaskItem) {
