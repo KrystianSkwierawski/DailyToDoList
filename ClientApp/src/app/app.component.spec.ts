@@ -50,14 +50,13 @@ describe('AppComponent', () => {
     expect(app.pendingTasksNumber).toBe(2);
   });
 
-  it('should clear all task items', () => {
+  it('[clearAllTaskItems] should clear all task items', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app: AppComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
 
     store.dispatch(new AddTaskItemLocally({ title: "test1" } as TaskItem));
-
-    app.clearAllTaskItems();
+    store.dispatch(new ClearAllTasksItemsLocally());
 
     expect(app.pendingTasksNumber).toBe(0);
   });

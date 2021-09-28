@@ -1,24 +1,19 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from "@ngrx/store";
-import { throwError } from "rxjs";
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
+import { map, switchMap } from 'rxjs/operators';
 import * as fromApp from '../../store/app.reducer';
-import { TaskItem } from "../task-item.model";
+import { TaskItemsService } from "../task-items.service";
 import * as TasksActions from './task.actions';
 
 @Injectable()
 export class TaskEffects {
 
   @Effect()
-  getTaskItems = this.actions$.pipe(
+  getTaskItems$ = this.actions$.pipe(
     ofType(TasksActions.GET_TASK_ITEMS),
     switchMap(() => {
-      return this.http.get<TaskItem[]>(
-        environment.apiUrl,
-      );
+      return this.taskItemsService.getTaskItems();
     }),
     map(taskItems => {
       return new TasksActions.UpdateTaskItemsLocally(taskItems);
@@ -26,20 +21,10 @@ export class TaskEffects {
   );
 
   @Effect()
-  addTaskItemsRemotely = this.actions$.pipe(
+  addTaskItemsRemotely$ = this.actions$.pipe(
     ofType(TasksActions.ADD_TASK_ITEM_REMOTELY),
     switchMap((action: TasksActions.AddTaskItemRemotely) => {
-      const params = new HttpParams()
-        .set('title', action.payload.title)
-        .set('color', action.payload.color)
-
-      return this.http.post<TaskItem>(
-        environment.apiUrl,
-        undefined,
-        {
-          params
-        }
-      );
+      return this.taskItemsService.addTaskItem(action);
     }),
     map(taskItem => {
       return new TasksActions.AddTaskItemLocally(taskItem);
@@ -47,17 +32,10 @@ export class TaskEffects {
   );
 
   @Effect()
-  updateTaskItemRemotely = this.actions$.pipe(
+  updateTaskItemRemotely$ = this.actions$.pipe(
     ofType(TasksActions.UPDATE_TASK_ITEM_REMOTELY),
     switchMap((action: TasksActions.UpdateTaskItemRemotely) => {
-
-      return this.http.put<TaskItem>(
-        environment.apiUrl + `/${action.payload.id}`,
-        action.payload
-      ).pipe(
-        map(() => action.payload)
-      );
-
+      return this.taskItemsService.updateTaskItem(action);
     }),
     map(taskItem => {
       if (taskItem.subtaskItems.every(t => t.completed))
@@ -68,31 +46,18 @@ export class TaskEffects {
   );
 
   @Effect({ dispatch: false })
-  updateTaskItemsRemotely = this.actions$.pipe(
+  updateTaskItemsRemotely$ = this.actions$.pipe(
     ofType(TasksActions.UPDATE_TASK_ITEMS_REMOTELY),
     switchMap((action: TasksActions.UpdateTaskItemsRemotely) => {
-
-      return this.http.put<TaskItem>(
-        environment.apiUrl,
-        action.payload
-      ).pipe(
-        map(() => action.payload)
-      );
-
+      return this.taskItemsService.updateTaskItems(action);
     })
   );
 
   @Effect()
-  deleteTaskItemRemotely = this.actions$.pipe(
+  deleteTaskItemRemotely$ = this.actions$.pipe(
     ofType(TasksActions.DELETE_REMOTELY),
     switchMap((action: TasksActions.DeleteTaskItemRemotely) => {
-
-      return this.http.delete<string>(
-        environment.apiUrl + `/${action.payload}`
-      ).pipe(
-        map(() => action.payload)
-      );
-
+      return this.taskItemsService.deleteTaskItem(action);
     }),
     map(id => {
       return new TasksActions.DeleteTaskItemLocally(id);
@@ -100,14 +65,10 @@ export class TaskEffects {
   );
 
   @Effect()
-  deleteAllRemotely = this.actions$.pipe(
+  deleteAllRemotely$ = this.actions$.pipe(
     ofType(TasksActions.ClEAR_ALL_REMOTELY),
     switchMap(() => {
-
-      return this.http.delete(
-        environment.apiUrl
-      );
-
+      return this.taskItemsService.deleteAllTaskItems();
     }),
     map(() => {
       return new TasksActions.ClearAllTasksItemsLocally();
@@ -116,7 +77,7 @@ export class TaskEffects {
 
   constructor(
     private actions$: Actions,
-    private http: HttpClient,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
+    private taskItemsService: TaskItemsService
   ) { }
 }
