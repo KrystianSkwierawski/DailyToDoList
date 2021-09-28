@@ -106,9 +106,7 @@ export class TaskEffects {
 
       return this.http.delete(
         environment.apiUrl
-      ).pipe(catchError(error => {
-        return throwError(error);
-      }));
+      );
 
     }),
     map(() => {

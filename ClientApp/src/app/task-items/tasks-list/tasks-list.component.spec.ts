@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Store, StoreModule } from '@ngrx/store';
+import { ShortenPipe } from '../../shared/pipes/shorten/shorten.pipe';
 import { appReducer, AppState } from '../../store/app.reducer';
-import { ShortenPipe } from '../../utilities/pipes/shorten/shorten.pipe';
 import { AddTaskItemLocally, DeleteTaskItemLocally, UpdateTaskItemsLocally } from '../store/task.actions';
 import { TaskItem } from '../task-item.model';
 import { TasksListComponent } from './tasks-list.component';
