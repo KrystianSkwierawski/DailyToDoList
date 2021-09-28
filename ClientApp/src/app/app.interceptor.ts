@@ -3,9 +3,11 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs';
 
 
 @Injectable({
@@ -22,6 +24,12 @@ export class AppInterceptor implements HttpInterceptor {
     //  }
     //});
 
-    return next.handle(request);
+    return next.handle(request).pipe(catchError((errorResponse: HttpErrorResponse) => {
+      const error = errorResponse.statusText ?? 'An unknown error occurred!';
+
+      alert(error);
+
+      return throwError(error);
+    }));
   }
 }
