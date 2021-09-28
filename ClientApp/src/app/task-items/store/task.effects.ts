@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Store } from "@ngrx/store";
 import { map, switchMap } from 'rxjs/operators';
-import * as fromApp from '../../store/app.reducer';
 import { TaskItemsService } from "../task-items.service";
 import * as TasksActions from './task.actions';
 
@@ -77,7 +75,6 @@ export class TaskEffects {
 
   constructor(
     private actions$: Actions,
-    private store: Store<fromApp.AppState>,
     private taskItemsService: TaskItemsService
   ) { }
 }
