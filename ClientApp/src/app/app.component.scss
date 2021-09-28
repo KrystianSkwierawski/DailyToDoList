@@ -5,15 +5,15 @@
   width: 95%;
   padding-left: 1rem;
   padding-right: 1rem;
-  background-color: #1F1F1F;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-content: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1F1F1F;
 
   @include respond-to(small) {
     height: 80%;
@@ -29,10 +29,10 @@
   }
 
   & h1 {
-    color: #E8E8E8;
-    text-align: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    text-align: center;
+    color: #E8E8E8;
   }
 }
 
@@ -47,15 +47,15 @@ app-tasks-list {
 }
 
 .tasks-list__bottom {
-  display: flex;
-  justify-content: space-between;
   height: auto;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
 
   & p {
-    color: #E8E8E8;
-    align-self: center;
     margin-bottom: 0;
+    align-self: center;
+    color: #E8E8E8;
   }
 
   & button {

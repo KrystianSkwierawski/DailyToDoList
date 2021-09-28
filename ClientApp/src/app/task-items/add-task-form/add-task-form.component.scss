@@ -1,9 +1,8 @@
 form {
   width: 100%;
-  display: flex;
-  height: auto;
-  margin-bottom: 2rem;
   height: 50px;
+  display: flex;
+  margin-bottom: 2rem;
 
   & mat-form-field {
     flex-grow: 1;
@@ -17,11 +16,11 @@ form {
 }
 
 .add-task-button {
+  min-width: 10px;
   margin-left: 0.5rem;
+  padding: .4rem;
   background-color: #00C896;
   color: #1F1F1F;
-  padding: .4rem;
-  min-width: 10px;
 }
 
 app-color-picker {

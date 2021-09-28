@@ -5,13 +5,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './generic-list.component.html',
   styleUrls: ['./generic-list.component.scss']
 })
-export class GenericListComponent implements OnInit {
+export class GenericListComponent {
 
   @Input() list: Array<unknown>;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

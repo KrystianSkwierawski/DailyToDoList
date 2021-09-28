@@ -75,7 +75,6 @@ export class DeleteTaskItemRemotely implements Action {
   constructor(public payload: string) { }
 }
 
-
 export type TaskItemsActions =
   AddTaskItemLocally |
   ClearAllTasksItemsLocally |
