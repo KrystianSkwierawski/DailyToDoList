@@ -9,8 +9,7 @@
 
       <ng-container matColumnDef="tasks">
 
-        <td mat-cell *matCellDef="let task; let index= index">
-
+        <td mat-cell *matCellDef="let task; let index = index">
 
           <div class="task" (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()">
             <app-edit-task-form [task]="task" *ngIf="task.editing"></app-edit-task-form>
