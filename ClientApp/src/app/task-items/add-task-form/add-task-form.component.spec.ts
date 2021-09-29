@@ -43,7 +43,7 @@ describe('TasksListComponent', () => {
     // Arrange
     let taskItems: TaskItem[] = [];
 
-    const task: TaskItem = {
+    const expectedTask: TaskItem = {
       id: "1",
       title: "test",
       color: "#ffff"
@@ -52,17 +52,17 @@ describe('TasksListComponent', () => {
     const fixture = TestBed.createComponent(AddTaskFormComponent);
     fixture.detectChanges();
     const app: AddTaskFormComponent = fixture.componentInstance;
-    app.color = task.color;
-    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(task));
+    app.color = expectedTask.color;
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(expectedTask));
 
     store.select('taskItems').subscribe(x => taskItems = x.taskItems);
 
 
     // Act
-    app.submit("test1");
+    app.submit(expectedTask.title);
 
 
     // Assert
-    expect(taskItems[0]).toBe(task);
+    expect(taskItems[0]).toBe(expectedTask);
   });
 });
