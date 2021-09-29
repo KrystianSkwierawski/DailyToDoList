@@ -52,7 +52,7 @@ describe('TasksListComponent', () => {
     const fixture = TestBed.createComponent(AddTaskFormComponent);
     fixture.detectChanges();
     const app: AddTaskFormComponent = fixture.componentInstance;
-    app.color = expectedTask.color;
+
     spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(expectedTask));
 
     store.select('taskItems').subscribe(x => taskItems = x.taskItems);
