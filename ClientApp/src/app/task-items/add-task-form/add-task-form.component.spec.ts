@@ -1,13 +1,18 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
+import { of } from 'rxjs';
 import * as fromApp from '../../store/app.reducer';
-import { AddTaskItemLocally } from '../store/task.actions';
+import { TaskEffects } from '../store/task.effects';
 import { TaskItem } from '../task-item.model';
+import { TaskItemsService } from '../task-items.service';
 import { AddTaskFormComponent } from './add-task-form.component';
 
 
 describe('TasksListComponent', () => {
   let store: Store<fromApp.AppState>;
+  let taskItemsService: TaskItemsService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,9 +20,13 @@ describe('TasksListComponent', () => {
         AddTaskFormComponent,
       ],
       imports: [
+        HttpClientModule,
         StoreModule.forRoot(fromApp.appReducer),
+        EffectsModule.forRoot([TaskEffects])
       ]
     });
+
+    taskItemsService = TestBed.get(TaskItemsService);
 
     store = TestBed.get(Store);
     spyOn(store, 'dispatch').and.callThrough();
@@ -30,18 +39,30 @@ describe('TasksListComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('[submit] should add task item locally', () => {
-    let numberOfTaskItems: number = 0;
+  it('[submit] should add task item', () => {
+    // Arrange
+    let taskItems: TaskItem[] = [];
+
+    const task: TaskItem = {
+      id: "1",
+      title: "test",
+      color: "#ffff"
+    } as TaskItem;
 
     const fixture = TestBed.createComponent(AddTaskFormComponent);
     fixture.detectChanges();
     const app: AddTaskFormComponent = fixture.componentInstance;
+    app.color = task.color;
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(task));
 
-    store.select('taskItems').subscribe(x => numberOfTaskItems = x.taskItems.length);
+    store.select('taskItems').subscribe(x => taskItems = x.taskItems);
 
-    store.dispatch(new AddTaskItemLocally({} as TaskItem));
 
-    expect(numberOfTaskItems).toBe(1);
+    // Act
+    app.submit("test1");
+
+
+    // Assert
+    expect(taskItems[0]).toBe(task);
   });
-
 });
