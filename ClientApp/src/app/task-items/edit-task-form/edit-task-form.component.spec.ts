@@ -1,13 +1,21 @@
+import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
+import { of } from 'rxjs';
 import * as fromApp from '../../store/app.reducer';
-import { AddTaskItemLocally, UpdateTaskItemLocally } from '../store/task.actions';
+import { AddTaskItemLocally, AddTaskItemRemotely } from '../store/task.actions';
+import { TaskEffects } from '../store/task.effects';
 import { TaskItem } from '../task-item.model';
+import { TaskItemsService } from '../task-items.service';
 import { EditTaskFormComponent } from './edit-task-form.component';
 
 
 describe('TasksListComponent', () => {
   let store: Store<fromApp.AppState>;
+  let taskItemsService: TaskItemsService;
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,9 +23,13 @@ describe('TasksListComponent', () => {
         EditTaskFormComponent,
       ],
       imports: [
+        HttpClientModule,
         StoreModule.forRoot(fromApp.appReducer),
+        EffectsModule.forRoot([TaskEffects]),
       ]
     });
+
+    taskItemsService = TestBed.get(TaskItemsService);
 
     store = TestBed.get(Store);
     spyOn(store, 'dispatch').and.callThrough();
@@ -31,42 +43,42 @@ describe('TasksListComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('[submit] should edit task item locally', () => {
+  it('[submit] should edit task item', () => {
     // Arrange
+
+    let taskItems: TaskItem[] = [];
 
     let taskItem: TaskItem = {
       id: "1",
       title: "test1",
       color: "#ffff",
       completed: false,
-      editing: false,
-      expanded: false,
-      subtaskItems: []
+    } as TaskItem;
+
+    const expectedTaskItem: TaskItem = {
+      ...taskItem,
+      title: "test2",
+      color: "#0000"
     };
 
     const fixture = TestBed.createComponent(EditTaskFormComponent);
     const app: EditTaskFormComponent = fixture.componentInstance;
     app.task = taskItem;
-    app.color = "#ffff";
     fixture.detectChanges();
 
-    store.dispatch(new AddTaskItemLocally(app.task));
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
 
-    store.select('taskItems').subscribe(state => taskItem = state.taskItems[0]);
+    spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(expectedTaskItem));
 
-    const updatedTaskItem: TaskItem = {
-      ...taskItem,
-      title: "test2",
-      color: app.color
-    };
-
+    store.dispatch(new AddTaskItemRemotely(taskItem));
 
     // Act
-    store.dispatch(new UpdateTaskItemLocally(updatedTaskItem));
-
+    app.submit(expectedTaskItem.title);
 
     // Assert
-    expect(taskItem).toBe(updatedTaskItem);
+
+    expect(taskItems[0]).toBe(expectedTaskItem);
   });
 
 });

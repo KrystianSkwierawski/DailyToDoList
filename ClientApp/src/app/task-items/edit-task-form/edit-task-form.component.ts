@@ -14,7 +14,7 @@ import { TaskItem } from '../task-item.model';
 export class EditTaskFormComponent implements OnInit {
 
   @Input() task: TaskItem;
-  @Input() subtaskEditingData: { subtask: SubtaskItem, index: number };
+  @Input() subtaskEditingData: { subtask: SubtaskItem, index: number } | undefined;
 
   form: FormGroup
   color: string;
