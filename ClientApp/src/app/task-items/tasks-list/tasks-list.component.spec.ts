@@ -8,6 +8,7 @@ import * as fromApp from '../../store/app.reducer';
 import { AppState } from '../../store/app.reducer';
 import { AddTaskItemRemotely } from '../store/task.actions';
 import { TaskEffects } from '../store/task.effects';
+import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
 import { TaskItemsService } from '../task-items.service';
 import { TasksListComponent } from './tasks-list.component';
@@ -117,4 +118,48 @@ describe('TasksListComponent', () => {
     expect(app.tasks).toEqual(expectedResult);
   });
 
+
+  it('[addSubtask] should add subtask item', () => {
+    // Arrange
+    let taskItems: TaskItem[] = [];
+
+    const fixture = TestBed.createComponent(TasksListComponent);
+    const app: TasksListComponent = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const taskItem: TaskItem = {
+      id: "1",
+      title: "test1",
+      color: "#ffff",
+      subtaskItems: [] as SubtaskItem[]
+    } as TaskItem;
+
+    const expectedSubtaskItem: SubtaskItem = {
+      title: `Task ${taskItem.subtaskItems.length + 1}`,
+      color: taskItem.color,
+      completed: false,
+      editing: false
+    };
+
+    const expectedTaskItem: TaskItem = {
+      ...taskItem,
+      subtaskItems: [expectedSubtaskItem]
+    }
+
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
+    spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
+
+    store.dispatch(new AddTaskItemRemotely(taskItem));
+
+
+    // Act
+    app.addSubtask(taskItem);
+
+
+    // Assert
+    expect(taskItems[0].subtaskItems.length).toBe(1);
+    expect(taskItems[0].subtaskItems[0]).toBe(expectedSubtaskItem);
+  });
 });
