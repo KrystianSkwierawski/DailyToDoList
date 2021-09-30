@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import * as fromApp from '../../store/app.reducer';
 import { AddTaskItemLocally, AddTaskItemRemotely } from '../store/task.actions';
 import { TaskEffects } from '../store/task.effects';
+import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
 import { TaskItemsService } from '../task-items.service';
 import { EditTaskFormComponent } from './edit-task-form.component';
@@ -43,42 +44,42 @@ describe('TasksListComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('[submit] should edit task item', () => {
+  it('[submit] should edit task item when subtaskEditingData is undefined', () => {
     // Arrange
-
     let taskItems: TaskItem[] = [];
 
-    let taskItem: TaskItem = {
+    const taskItem: TaskItem = {
       id: "1",
       title: "test1",
       color: "#ffff",
-      completed: false,
     } as TaskItem;
 
     const expectedTaskItem: TaskItem = {
       ...taskItem,
       title: "test2",
-      color: "#0000"
-    };
+      color: "#0000",
+    } as TaskItem;
 
     const fixture = TestBed.createComponent(EditTaskFormComponent);
+
     const app: EditTaskFormComponent = fixture.componentInstance;
+    app.subtaskEditingData = undefined;
     app.task = taskItem;
     fixture.detectChanges();
 
     store.select('taskItems').subscribe(state => taskItems = state.taskItems);
 
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
     spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
-    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(expectedTaskItem));
 
     store.dispatch(new AddTaskItemRemotely(taskItem));
+
 
     // Act
     app.submit(expectedTaskItem.title);
 
+
     // Assert
-
-    expect(taskItems[0]).toBe(expectedTaskItem);
+    expect(taskItems[0]).toEqual(expectedTaskItem);
   });
-
 });

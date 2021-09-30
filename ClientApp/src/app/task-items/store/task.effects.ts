@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
+import { throwError } from "rxjs";
 import { map, switchMap } from 'rxjs/operators';
 import { TaskItemsService } from "../task-items.service";
 import * as TasksActions from './task.actions';
@@ -36,10 +37,14 @@ export class TaskEffects {
       return this.taskItemsService.updateTaskItem(action);
     }),
     map(taskItem => {
-      if (taskItem.subtaskItems.every(t => t.completed))
+
+      if (!taskItem.subtaskItems?.every(t => t.completed))
+      return new TasksActions.UpdateTaskItemLocally(taskItem);
+
+      if (taskItem.subtaskItems?.every(t => t.completed))
         return new TasksActions.DeleteTaskItemRemotely(taskItem.id);
 
-        return new TasksActions.UpdateTaskItemLocally(taskItem);
+      return throwError("");
     })
   );
 
