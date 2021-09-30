@@ -37,11 +37,12 @@ export class TaskEffects {
       return this.taskItemsService.updateTaskItem(action);
     }),
     map(taskItem => {
+      const everySubtaskIsCompleted: boolean = taskItem.subtaskItems?.every(t => t.completed);
 
-      if (!taskItem.subtaskItems?.every(t => t.completed))
+      if (!everySubtaskIsCompleted)
       return new TasksActions.UpdateTaskItemLocally(taskItem);
 
-      if (taskItem.subtaskItems?.every(t => t.completed)) 
+      if (everySubtaskIsCompleted)
         return new TasksActions.DeleteTaskItemRemotely(taskItem.id);    
 
       return throwError("Internal Server Error");
