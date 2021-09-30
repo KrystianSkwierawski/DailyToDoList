@@ -132,7 +132,7 @@ describe('TasksListComponent', () => {
     expect(taskItems[0].subtaskItems[0]).toBe(updatedSubtaskItem);
   });
 
-  it('[submit] should edit subtask item when subtaskEditingData is not undefined and every subtasks is completed', () => {
+  it('[submit] should complete task item when subtaskEditingData is not undefined and every subtasks is completed', () => {
     // Arrange
 
     let taskItems: TaskItem[] = [];
