@@ -82,4 +82,103 @@ describe('TasksListComponent', () => {
     // Assert
     expect(taskItems[0]).toEqual(expectedTaskItem);
   });
+
+  it('[submit] should edit subtask item when subtaskEditingData is not undefined and not every subtasks is completed', () => {
+    // Arrange
+
+    let taskItems: TaskItem[] = [];
+
+    const taskItem: TaskItem = {
+      id: "1",
+      subtaskItems: [
+        {
+          title: "BeforeUpdate"
+        }
+      ]
+    } as TaskItem;
+
+    const updatedSubtaskItem: SubtaskItem = { title: "AfterUpdate" } as SubtaskItem;
+
+    const expectedTaskItem: TaskItem = {
+      ...taskItem,
+      subtaskItems: [
+        updatedSubtaskItem
+      ]
+    } as TaskItem;
+
+    const fixture = TestBed.createComponent(EditTaskFormComponent);
+    const app: EditTaskFormComponent = fixture.componentInstance;
+
+    app.task = taskItem;
+    app.subtaskEditingData = {
+      subtask: updatedSubtaskItem,
+      index: 0
+    };
+
+    fixture.detectChanges();
+
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
+    spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
+
+    store.dispatch(new AddTaskItemRemotely(taskItem));
+
+    // Act
+    app.submit(expectedTaskItem.title);
+
+
+    // Assert
+    expect(taskItems[0].subtaskItems[0]).toBe(updatedSubtaskItem);
+  });
+
+  it('[submit] should edit subtask item when subtaskEditingData is not undefined and every subtasks is completed', () => {
+    // Arrange
+
+    let taskItems: TaskItem[] = [];
+
+    const taskItem: TaskItem = {
+      id: "1",
+      subtaskItems: [
+        {
+          title: "BeforeUpdate"
+        }
+      ]
+    } as TaskItem;
+
+    const updatedSubtaskItem: SubtaskItem = { title: "AfterUpdate", completed: true } as SubtaskItem;
+
+    const expectedTaskItem: TaskItem = {
+      ...taskItem,
+      subtaskItems: [
+        updatedSubtaskItem
+      ]
+    } as TaskItem;
+
+    const fixture = TestBed.createComponent(EditTaskFormComponent);
+    const app: EditTaskFormComponent = fixture.componentInstance;
+
+    app.task = taskItem;
+    app.subtaskEditingData = {
+      subtask: updatedSubtaskItem,
+      index: 0
+    };
+
+    fixture.detectChanges();
+
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
+    spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
+    spyOn(taskItemsService, 'deleteTaskItem').and.returnValue(of(taskItem.id));
+
+    store.dispatch(new AddTaskItemRemotely(taskItem));
+
+    // Act
+    app.submit(expectedTaskItem.title);
+
+
+    // Assert
+    expect(taskItems.length).toBe(0);
+  });
 });

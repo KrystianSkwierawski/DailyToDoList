@@ -41,8 +41,8 @@ export class TaskEffects {
       if (!taskItem.subtaskItems?.every(t => t.completed))
       return new TasksActions.UpdateTaskItemLocally(taskItem);
 
-      if (taskItem.subtaskItems?.every(t => t.completed))
-        return new TasksActions.DeleteTaskItemRemotely(taskItem.id);
+      if (taskItem.subtaskItems?.every(t => t.completed)) 
+        return new TasksActions.DeleteTaskItemRemotely(taskItem.id);    
 
       return throwError("Internal Server Error");
     })
