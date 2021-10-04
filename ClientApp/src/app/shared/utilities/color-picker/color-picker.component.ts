@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Color, ColorPickerControl } from '@iplab/ngx-color-picker';
 
 @Component({
@@ -25,10 +25,17 @@ export class ColorPickerComponent implements OnInit {
   @Output()
   colorChange: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  constructor(private elementRef: ElementRef) { }
 
   ngOnInit(): void {
     this.color = this.initialColor;
+  }
+
+  @HostListener('document:click', ['$event'])
+  hideColorPickerIfClickOutsideCompontent(event: any) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.pickingColor = false;
+    }
   }
 
   togglePickingColor() {
