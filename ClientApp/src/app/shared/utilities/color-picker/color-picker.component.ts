@@ -31,8 +31,11 @@ export class ColorPickerComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  hideColorPickerIfClickOutsideCompontent(event: any) {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
+  hideColorPickerIfClickOutsideCompontent(event: Event) {
+
+    const clickedInsideThisCompontent: boolean = this.elementRef.nativeElement.contains(event.target);
+
+    if (!clickedInsideThisCompontent) {
       this.pickingColor = false;
     }
   }
