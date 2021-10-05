@@ -1,5 +1,4 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { Color, ColorPickerControl } from '@iplab/ngx-color-picker';
 
 @Component({
   selector: 'app-color-picker',
