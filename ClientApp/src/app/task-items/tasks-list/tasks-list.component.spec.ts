@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { ShortenPipe } from '../../shared/pipes/shorten/shorten.pipe';
 import * as fromApp from '../../store/app.reducer';
 import { AppState } from '../../store/app.reducer';
-import { AddTaskItemLocally, AddTaskItemRemotely, UpdateTaskItemRemotely } from '../store/task.actions';
+import { AddTaskItemRemotely } from '../store/task.actions';
 import { TaskEffects } from '../store/task.effects';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
@@ -122,6 +122,8 @@ describe('TasksListComponent', () => {
   it('[addSubtask] should add subtask item', () => {
     // Arrange
     let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+
 
     const fixture = TestBed.createComponent(TasksListComponent);
     const app: TasksListComponent = fixture.componentInstance;
@@ -146,7 +148,6 @@ describe('TasksListComponent', () => {
       subtaskItems: [expectedSubtaskItem]
     }
 
-    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
 
     spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
     spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));

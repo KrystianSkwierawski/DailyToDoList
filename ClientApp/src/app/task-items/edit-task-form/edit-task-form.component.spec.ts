@@ -1,11 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { of } from 'rxjs';
 import * as fromApp from '../../store/app.reducer';
-import { AddTaskItemLocally, AddTaskItemRemotely } from '../store/task.actions';
+import { AddTaskItemRemotely } from '../store/task.actions';
 import { TaskEffects } from '../store/task.effects';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
@@ -47,6 +46,7 @@ describe('TasksListComponent', () => {
   it('[submit] should edit task item when subtaskEditingData is undefined', () => {
     // Arrange
     let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
 
     const taskItem: TaskItem = {
       id: "1",
@@ -67,7 +67,6 @@ describe('TasksListComponent', () => {
     app.task = taskItem;
     fixture.detectChanges();
 
-    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
 
     spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
     spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
@@ -85,8 +84,8 @@ describe('TasksListComponent', () => {
 
   it('[submit] should edit subtask item when subtaskEditingData is not undefined and not every subtasks is completed', () => {
     // Arrange
-
     let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
 
     const taskItem: TaskItem = {
       id: "1",
@@ -117,8 +116,6 @@ describe('TasksListComponent', () => {
 
     fixture.detectChanges();
 
-    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
-
     spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
     spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
 
@@ -134,8 +131,8 @@ describe('TasksListComponent', () => {
 
   it('[submit] should complete task item when subtaskEditingData is not undefined and every subtasks is completed', () => {
     // Arrange
-
     let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
 
     const taskItem: TaskItem = {
       id: "1",
@@ -165,8 +162,6 @@ describe('TasksListComponent', () => {
     };
 
     fixture.detectChanges();
-
-    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
 
     spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
     spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));

@@ -42,6 +42,7 @@ describe('TasksListComponent', () => {
   it('[submit] should add task item', () => {
     // Arrange
     let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(x => taskItems = x.taskItems);
 
     const expectedTask: TaskItem = {
       id: "1",
@@ -54,8 +55,6 @@ describe('TasksListComponent', () => {
     const app: AddTaskFormComponent = fixture.componentInstance;
 
     spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(expectedTask));
-
-    store.select('taskItems').subscribe(x => taskItems = x.taskItems);
 
 
     // Act

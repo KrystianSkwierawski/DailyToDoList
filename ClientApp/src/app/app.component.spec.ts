@@ -58,8 +58,6 @@ describe('AppComponent', () => {
 
      store.dispatch(new AddTaskItemLocally({ title: "test1" } as TaskItem));
      store.dispatch(new AddTaskItemLocally({ title: "test2" } as TaskItem));
-     fixture.detectChanges();
-
 
      expect(app.pendingTasksNumber).toBe(2);
    });
@@ -71,6 +69,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     store.dispatch(new AddTaskItemLocally({ title: "test1" } as TaskItem));
     spyOn(taskItemsService, 'deleteAllTaskItems').and.returnValue(of(new Observable<Object>()));
+
 
     // Act
     app.clearAllTaskItems();
