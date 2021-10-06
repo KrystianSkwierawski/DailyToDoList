@@ -161,7 +161,7 @@ describe('TasksListComponent', () => {
 
     // Assert
     expect(taskItems[0].subtaskItems.length).toBe(1);
-    expect(taskItems[0].subtaskItems[0]).toBe(expectedSubtaskItem);
+    expect(taskItems[0].subtaskItems[0]).toEqual(expectedSubtaskItem);
   });
 
   it('[someCompleted] should return true if some subtasks is completed', () => {
@@ -262,7 +262,7 @@ describe('TasksListComponent', () => {
     app.toggleCompleteSubtask(taskItem, subtaskItem, subtaskItemIdex);
 
     // Assert
-    expect(taskItems[0].subtaskItems[subtaskItemIdex].completed).toBe(!subtaskItem.completed);
+    expect(taskItems[0].subtaskItems[subtaskItemIdex].completed).toEqual(!subtaskItem.completed);
   });
 
   it('[toggleCompleteSubtask] should toggle subtaskItem.complete and delete task if all subtasks is completed', () => {
@@ -311,5 +311,36 @@ describe('TasksListComponent', () => {
 
     // Assert
     expect(taskItems.length).toBe(0);
+  });
+
+  it('[toggleEditingTask] should toggle task.editing', () => {
+    // Arrange
+    let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+
+    const fixture = TestBed.createComponent(TasksListComponent);
+    fixture.detectChanges();
+    const app: TasksListComponent = fixture.componentInstance;
+
+    const taskItem: TaskItem = {
+      editing: false
+    } as TaskItem;
+
+    const expectedTaskItem = {
+      ...taskItem,
+      editing: !taskItem.editing
+    };
+
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
+    spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
+    store.dispatch(new AddTaskItemRemotely(taskItem));
+
+
+    // Act
+    app.toggleEditingTask(taskItem);
+
+
+    // Assert
+    expect(taskItems[0]).toEqual(expectedTaskItem);
   });
 });
