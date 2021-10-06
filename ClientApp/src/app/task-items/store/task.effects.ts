@@ -37,7 +37,7 @@ export class TaskEffects {
       return this.taskItemsService.updateTaskItem(action);
     }),
     map(taskItem => {
-      const everySubtaskIsCompleted: boolean = taskItem.subtaskItems?.every(t => t.completed);
+      const everySubtaskIsCompleted: boolean = (taskItem.subtaskItems?.length > 0 && taskItem.subtaskItems?.every(t => t.completed));
 
       if (!everySubtaskIsCompleted)
       return new TasksActions.UpdateTaskItemLocally(taskItem);
