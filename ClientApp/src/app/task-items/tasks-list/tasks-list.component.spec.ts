@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { ShortenPipe } from '../../shared/pipes/shorten/shorten.pipe';
 import * as fromApp from '../../store/app.reducer';
 import { AppState } from '../../store/app.reducer';
-import { AddTaskItemRemotely } from '../store/task.actions';
+import { AddTaskItemLocally, AddTaskItemRemotely, UpdateTaskItemRemotely } from '../store/task.actions';
 import { TaskEffects } from '../store/task.effects';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
@@ -164,6 +164,7 @@ describe('TasksListComponent', () => {
   });
 
   it('[someCompleted] should return true if some subtasks is completed', () => {
+    // Arrange
     const fixture = TestBed.createComponent(TasksListComponent);
     fixture.detectChanges();
     const app: TasksListComponent = fixture.componentInstance;
@@ -180,12 +181,16 @@ describe('TasksListComponent', () => {
     } as TaskItem;
 
 
+    // Act
     const someCompletedResult: boolean = app.someComplete(taskItem);
 
+
+    // Assert
     expect(someCompletedResult).toBeTrue();
   });
 
   it('[someCompleted] should return false if all subtasks is not completed', () => {
+    // Arrange
     const fixture = TestBed.createComponent(TasksListComponent);
     fixture.detectChanges();
     const app: TasksListComponent = fixture.componentInstance;
@@ -202,8 +207,108 @@ describe('TasksListComponent', () => {
     } as TaskItem;
 
 
+    // Act
     const someCompletedResult: boolean = app.someComplete(taskItem);
 
+    // Assert
     expect(someCompletedResult).toBeFalse();
+  });
+
+  it('[toggleCompleteSubtask] should toggle subtaskItem.complete', () => {
+    // Arrange
+    let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+
+    const fixture = TestBed.createComponent(TasksListComponent);
+    const app: TasksListComponent = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const subtaskItem: SubtaskItem = {
+      completed: false
+    } as SubtaskItem;
+
+    const taskItem: TaskItem = {
+      id: "1",
+      subtaskItems: [
+        subtaskItem,
+        {
+          completed: false
+        }
+      ]
+    } as TaskItem;
+
+    const updatedSubtaskItem: SubtaskItem = {
+      ...subtaskItem,
+      completed: !subtaskItem.completed
+    };
+
+    const updatedSubtaskItems: SubtaskItem[] = [...taskItem.subtaskItems];
+
+    const subtaskItemIdex = 0;
+    updatedSubtaskItems[subtaskItemIdex] = updatedSubtaskItem;
+
+    const expectedTaskItem: TaskItem = {
+      ...taskItem,
+      subtaskItems: updatedSubtaskItems
+    }
+
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
+    spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
+    store.dispatch(new AddTaskItemRemotely(taskItem));
+
+
+    // Act
+    app.toggleCompleteSubtask(taskItem, subtaskItem, subtaskItemIdex);
+
+    // Assert
+    expect(taskItems[0].subtaskItems[subtaskItemIdex].completed).toBe(!subtaskItem.completed);
+  });
+
+  it('[toggleCompleteSubtask] should toggle subtaskItem.complete and delete task if all subtasks is completed', () => {
+    // Arrange
+    let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+
+    const fixture = TestBed.createComponent(TasksListComponent);
+    const app: TasksListComponent = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const subtaskItem: SubtaskItem = {
+      completed: false
+    } as SubtaskItem;
+
+    const taskItem: TaskItem = {
+      id: "1",
+      subtaskItems: [
+        subtaskItem
+      ]
+    } as TaskItem;
+
+    const updatedSubtaskItem: SubtaskItem = {
+      ...subtaskItem,
+      completed: !subtaskItem.completed
+    };
+
+    const updatedSubtaskItems: SubtaskItem[] = [...taskItem.subtaskItems];
+
+    const subtaskItemIdex = 0;
+    updatedSubtaskItems[subtaskItemIdex] = updatedSubtaskItem;
+
+    const expectedTaskItem: TaskItem = {
+      ...taskItem,
+      subtaskItems: updatedSubtaskItems
+    }
+
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
+    spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
+    spyOn(taskItemsService, 'deleteTaskItem').and.returnValue(of(taskItem.id));
+    store.dispatch(new AddTaskItemRemotely(taskItem));
+
+
+    // Act
+    app.toggleCompleteSubtask(taskItem, subtaskItem, subtaskItemIdex);
+
+    // Assert
+    expect(taskItems.length).toBe(0);
   });
 });
