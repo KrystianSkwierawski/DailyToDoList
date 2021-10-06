@@ -57,7 +57,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   toggleEditingTask(task: TaskItem) {
     const updatedTaskItem = {
       ...task,
-      editing: true
+      editing: !task.editing
     };
 
     this.store.dispatch(new UpdateTaskItemLocally(updatedTaskItem));
@@ -66,7 +66,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   toggleEditingSubtask(task: TaskItem, subtask: SubtaskItem, index: number) {
     const updatedSubtask: SubtaskItem = {
       ...subtask,
-      editing: true
+      editing: !subtask.editing
     };
 
     const updatedSubtaskItems: SubtaskItem[] = [...task.subtaskItems];
