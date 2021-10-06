@@ -5,12 +5,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { AppComponent } from './app.component';
+import { TaskItemsService } from './shared/services/task-items.service';
 import * as fromApp from './store/app.reducer';
 import { AppState } from './store/app.reducer';
 import { AddTaskItemLocally } from './task-items/store/task.actions';
 import { TaskEffects } from './task-items/store/task.effects';
 import { TaskItem } from './task-items/task-item.model';
-import { TaskItemsService } from './task-items/task-items.service';
 
 
 describe('AppComponent', () => {

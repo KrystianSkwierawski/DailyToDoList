@@ -3,10 +3,10 @@ import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { of } from 'rxjs';
+import { TaskItemsService } from '../../shared/services/task-items.service';
 import * as fromApp from '../../store/app.reducer';
 import { TaskEffects } from '../store/task.effects';
 import { TaskItem } from '../task-item.model';
-import { TaskItemsService } from '../task-items.service';
 import { AddTaskFormComponent } from './add-task-form.component';
 
 

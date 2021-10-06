@@ -3,12 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { of } from 'rxjs';
+import { TaskItemsService } from '../../shared/services/task-items.service';
 import * as fromApp from '../../store/app.reducer';
 import { AddTaskItemRemotely } from '../store/task.actions';
 import { TaskEffects } from '../store/task.effects';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
-import { TaskItemsService } from '../task-items.service';
 import { EditTaskFormComponent } from './edit-task-form.component';
 
 

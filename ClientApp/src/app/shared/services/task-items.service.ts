@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { TaskItem } from './task-item.model';
-import * as TasksActions from './store/task.actions';
+import { environment } from '../../../environments/environment';
+import * as TasksActions from '../../task-items/store/task.actions';
+import { TaskItem } from '../../task-items/task-item.model';
 
 
 @Injectable({

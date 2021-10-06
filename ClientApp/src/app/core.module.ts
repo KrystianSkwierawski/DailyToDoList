@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { AppInterceptor } from './app.interceptor';
-import { ErrorHandlerService } from './error-handler.service';
+import { ErrorHandlerService } from './shared/services/error-handler.service';
 
 
 @NgModule({

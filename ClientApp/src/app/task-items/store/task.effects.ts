@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { throwError } from "rxjs";
 import { map, switchMap } from 'rxjs/operators';
-import { TaskItemsService } from "../task-items.service";
+import { TaskItemsService } from "../../shared/services/task-items.service";
 import * as TasksActions from './task.actions';
 
 @Injectable()
