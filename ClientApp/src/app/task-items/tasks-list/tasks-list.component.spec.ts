@@ -162,4 +162,48 @@ describe('TasksListComponent', () => {
     expect(taskItems[0].subtaskItems.length).toBe(1);
     expect(taskItems[0].subtaskItems[0]).toBe(expectedSubtaskItem);
   });
+
+  it('[someCompleted] should return true if some subtasks is completed', () => {
+    const fixture = TestBed.createComponent(TasksListComponent);
+    fixture.detectChanges();
+    const app: TasksListComponent = fixture.componentInstance;
+
+    const taskItem: TaskItem = {
+      subtaskItems: [
+        {
+          completed: true
+        },
+        {
+          completed: false
+        }
+      ]
+    } as TaskItem;
+
+
+    const someCompletedResult: boolean = app.someComplete(taskItem);
+
+    expect(someCompletedResult).toBeTrue();
+  });
+
+  it('[someCompleted] should return false if all subtasks is not completed', () => {
+    const fixture = TestBed.createComponent(TasksListComponent);
+    fixture.detectChanges();
+    const app: TasksListComponent = fixture.componentInstance;
+
+    const taskItem: TaskItem = {
+      subtaskItems: [
+        {
+          completed: false
+        },
+        {
+          completed: false
+        }
+      ]
+    } as TaskItem;
+
+
+    const someCompletedResult: boolean = app.someComplete(taskItem);
+
+    expect(someCompletedResult).toBeFalse();
+  });
 });
