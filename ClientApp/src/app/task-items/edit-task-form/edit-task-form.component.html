@@ -1,4 +1,4 @@
-<form (ngSubmit)="submit(form.value.title)" [formGroup]="form">
+<form class="edit-task-form" (ngSubmit)="submit(form.value.title)" [formGroup]="form">
 
   <app-color-picker [initialColor]="task.color" (colorChange)="onColorChange($event)"></app-color-picker>
 

@@ -28,26 +28,26 @@ app-color-picker {
 }
 
 /* Change label color on focused */
-::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+::ng-deep .add-task-form .mat-form-field.mat-focused .mat-form-field-label {
   color: #E8E8E8;
 }
 
 /* underline border color on focused */
-::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+::ng-deep .add-task-form .mat-focused .mat-form-field-underline .mat-form-field-ripple {
   background-color: #00C896;
 }
 
 
-::ng-deep .mat-form-field-label {
+::ng-deep .add-task-form .mat-form-field-label {
   color: #E8E8E8;
 }
 
 /* underline border color on focused */
-::ng-deep .mat-form-field-underline {
+::ng-deep .add-task-form .mat-form-field-underline {
   background-color: #E8E8E8 !important;
 }
 
-::ng-deep .mat-focused .placeholder {
+::ng-deep .add-task-form .mat-focused .placeholder {
   color: #E8E8E8 !important;
 }
 
