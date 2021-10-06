@@ -62,6 +62,6 @@ describe('TasksListComponent', () => {
 
 
     // Assert
-    expect(taskItems[0]).toBe(expectedTask);
+    expect(taskItems[0]).toEqual(expectedTask);
   });
 });

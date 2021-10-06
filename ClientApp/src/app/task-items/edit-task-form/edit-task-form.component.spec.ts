@@ -126,7 +126,7 @@ describe('TasksListComponent', () => {
 
 
     // Assert
-    expect(taskItems[0].subtaskItems[0]).toBe(updatedSubtaskItem);
+    expect(taskItems[0].subtaskItems[0]).toEqual(updatedSubtaskItem);
   });
 
   it('[submit] should complete task item when subtaskEditingData is not undefined and every subtasks is completed', () => {
