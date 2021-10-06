@@ -341,7 +341,7 @@ describe('TasksListComponent', () => {
 
 
     // Assert
-    expect(taskItems[0]).toEqual(expectedTaskItem);
+    expect(taskItems[0].editing).toEqual(!taskItem.editing);
   });
 
   it('[toggleEditingSubtask] should toggle subtask.editing', () => {
@@ -386,5 +386,36 @@ describe('TasksListComponent', () => {
 
     // Assert
     expect(taskItems[0].subtaskItems[subtaskItemIdex].editing).toBe(!subtaskItem.editing);
+  });
+
+  it('[onToggleExpandTask] should toggle task.expanded', () => {
+    // Arrange
+    let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+
+    const fixture = TestBed.createComponent(TasksListComponent);
+    fixture.detectChanges();
+    const app: TasksListComponent = fixture.componentInstance;
+
+    const taskItem: TaskItem = {
+      expanded: false,
+    } as TaskItem;
+
+    const expectedTaskItem = {
+      ...taskItem,
+      expanded: !taskItem.expanded
+    };
+
+    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
+    spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
+    store.dispatch(new AddTaskItemRemotely(taskItem));
+
+
+    // Act
+    app.onToggleExpandTask(taskItem);
+
+
+    // Assert
+    expect(taskItems[0].expanded).toEqual(!taskItem.expanded);
   });
 });
