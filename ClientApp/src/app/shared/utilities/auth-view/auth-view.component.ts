@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/app.reducer';
 
 @Component({
   selector: 'app-auth-view',
@@ -9,9 +11,11 @@ export class AuthViewComponent implements OnInit {
 
   authenticated: boolean = false;
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.store.select('authentication').subscribe(authenticationState => {
+      this.authenticated = !!authenticationState.token;
+    });
   }
-
 }
