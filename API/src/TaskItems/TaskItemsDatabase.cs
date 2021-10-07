@@ -7,9 +7,15 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     private readonly IMongoDatabase _db;
     private readonly IMongoClient _client;
     private readonly IMongoCollection<TaskItem> _taskItems;
+    private readonly ICurrentUserService? _currentTokenService;
 
-    public TaskItemsDatabase(string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListDB?retryWrites=true&w=majority")
+    public TaskItemsDatabase(
+        string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListDB?retryWrites=true&w=majority",
+        ICurrentUserService? currentTokenService = null
+    )
     {
+        _currentTokenService = currentTokenService;
+
         _client = new MongoClient(connectionString);
 
         _db = _client.GetDatabase("TasksItemsDB");
@@ -21,7 +27,9 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     {
         List<TaskItemDTO> o_toDoItemDTOs = new();
 
-        foreach (var entity in _taskItems.AsQueryable())
+        var token = _currentTokenService?.Token;
+
+        foreach (var entity in _taskItems.AsQueryable().Where(x => x.CreatedBy == token))
         {
             o_toDoItemDTOs.Add(entity.ToDTO());
         }
@@ -31,10 +39,13 @@ public class TaskItemsDatabase : ITaskItemsDatabase
 
     public async Task<TaskItemDTO> AddTaskItemAsync(string title, string color)
     {
+        string token = _currentTokenService?.Token;
+
         TaskItem taskItem = new()
         {
             Title = title,
-            Color = color
+            Color = color,
+            CreatedBy = token
         };
 
         await _taskItems.InsertOneAsync(taskItem);
@@ -46,11 +57,13 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     {
         var filter = Builders<TaskItem>.Filter.Eq(s => s.Id, taskItemDTO.Id);
 
+        string token = _currentTokenService?.Token;
+
         TaskItem taskItem = new()
         {
             Id = taskItemDTO.Id,
             Title = taskItemDTO.Title,
-            // CreatedBy = token
+            CreatedBy = token,
             Color = taskItemDTO.Color,
             Completed = taskItemDTO.Completed,
             SubtaskItems = taskItemDTO.SubtaskItems
@@ -63,13 +76,15 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     {
         List<TaskItem> updatedTaskItems = new();
 
-        foreach(var taskItemDTO in taskItemDTOs)
+        string token = _currentTokenService?.Token;
+
+        foreach (var taskItemDTO in taskItemDTOs)
         {
             updatedTaskItems.Add(new TaskItem
-            {            
+            {
                 Id = taskItemDTO.Id,
                 Title = taskItemDTO.Title,
-                // CreatedBy = token
+                CreatedBy = token,
                 Color = taskItemDTO.Color,
                 Completed = taskItemDTO.Completed,
                 SubtaskItems = taskItemDTO.SubtaskItems
@@ -82,7 +97,9 @@ public class TaskItemsDatabase : ITaskItemsDatabase
 
     public async Task DeleteTaskItemAsync(string id)
     {
-        await _taskItems.DeleteOneAsync(x => x.Id == id);
+        string token = _currentTokenService?.Token;
+
+        await _taskItems.DeleteOneAsync(x => x.Id == id && x.CreatedBy == token);
     }
 
     public async Task DeleteAllTaskItemsAsync()

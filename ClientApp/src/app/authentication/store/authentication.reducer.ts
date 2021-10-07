@@ -2,11 +2,11 @@ import * as AuthenticationActions from "./authentication.actions";
 
 
 export interface State {
-  token: string;
+  token: string | undefined;
 };
 
 const initialState: State = {
-  token: ""
+  token: undefined
 }
 
 export function authenticationReducer(state: State = initialState, action: AuthenticationActions.AuthenticationActions) {

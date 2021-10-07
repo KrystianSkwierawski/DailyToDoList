@@ -1,7 +1,3 @@
-<div *ngIf="authenticated">
-  <ng-content select="[authenticated]"></ng-content>
-</div>
+<ng-content select="[authenticated]"></ng-content>
 
-<div *ngIf="!authenticated">
-  <ng-content select="[notAuthenticated]"></ng-content>
-</div>
+<ng-content select="[notAuthenticated]"></ng-content>

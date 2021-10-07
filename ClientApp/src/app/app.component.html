@@ -1,5 +1,5 @@
 <app-auth-view>
-  <ng-container authenticated>
+  <ng-container *ngIf="authenticated" authenticated>
     <div class="tasks-list">
       <h1>Daily To Do List</h1>
 
@@ -14,7 +14,7 @@
     </div>
   </ng-container>
 
-  <ng-container notAuthenticated>
+  <ng-container *ngIf="!authenticated" notAuthenticated>
     <app-authentication-form></app-authentication-form>
   </ng-container>
 </app-auth-view>

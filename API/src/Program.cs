@@ -1,6 +1,12 @@
-﻿using DailyToDoList.TaskItems;
+﻿using DailyToDoList;
+using DailyToDoList.TaskItems;
+
 
 var bulider = WebApplication.CreateBuilder();
+
+bulider.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
+bulider.Services.AddSingleton<ITaskItemsDatabase, TaskItemsDatabase>();
+bulider.Services.AddHttpContextAccessor();
 
 bulider.Services.AddCors(options =>
 {
@@ -14,6 +20,7 @@ bulider.Services.AddCors(options =>
         });
 });
 
+
 var app = bulider.Build();
 
 app.UseCors(builder => builder
@@ -22,14 +29,18 @@ app.UseCors(builder => builder
      .AllowAnyHeader()
 );
 
-ITaskItemsDatabase _db = new TaskItemsDatabase();
 
-app.MapGet("/api/tasks", async () => await _db.GetTaskItems());
-app.MapPost("/api/tasks", async (string title, string color) => await _db.AddTaskItemAsync(title, color));
-app.MapPut("/api/tasks/{id}", async (TaskItemDTO taskItemDTO) => await _db.UpdateTaskItemAsync(taskItemDTO));
-app.MapPut("/api/tasks", async (List<TaskItemDTO> taskItemDTOs) => await _db.UpdateTaskItemsAsync(taskItemDTOs));
-app.MapDelete("/api/tasks/{id}", async (string id) => await _db.DeleteTaskItemAsync(id));
-app.MapDelete("/api/tasks", async () => await _db.DeleteAllTaskItemsAsync());
+var serviceProvider = bulider.Services.BuildServiceProvider();
+
+ITaskItemsDatabase database = serviceProvider.GetService<ITaskItemsDatabase>();
+
+app.MapGet("/api/tasks", async () => await database.GetTaskItems());
+app.MapPost("/api/tasks", async (string title, string color) => await database.AddTaskItemAsync(title, color));
+app.MapPut("/api/tasks/{id}", async (TaskItemDTO taskItemDTO) => await database.UpdateTaskItemAsync(taskItemDTO));
+app.MapPut("/api/tasks", async (List<TaskItemDTO> taskItemDTOs) => await database.UpdateTaskItemsAsync(taskItemDTOs));
+app.MapDelete("/api/tasks/{id}", async (string id) => await database.DeleteTaskItemAsync(id));
+app.MapDelete("/api/tasks", async () => await database.DeleteAllTaskItemsAsync());
 
 app.Run();
+
 

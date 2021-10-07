@@ -15,12 +15,17 @@ export class AppComponent implements OnInit, OnDestroy {
   storeSub: Subscription;
   pendingTasksNumber: number;
   animationFinished: boolean;
+  authenticated: boolean;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.storeSub = this.store.select('taskItems').subscribe(taskItemsState => {
       this.pendingTasksNumber = taskItemsState.taskItems.length;
+    });
+
+    this.storeSub = this.store.select('authentication').subscribe(authenticationState => {
+      this.authenticated = !!authenticationState.token;
     });
   }
 
