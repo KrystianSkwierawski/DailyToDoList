@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.reducer';
+import { SetToken } from '../store/authentication.actions';
 
 @Component({
   selector: 'app-authentication-form',
@@ -10,7 +13,7 @@ export class AuthenticationFormComponent implements OnInit {
 
   form: FormGroup
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -18,8 +21,7 @@ export class AuthenticationFormComponent implements OnInit {
     });
   }
 
-
   submit(token: string) {
-    console.log(token);
+    this.store.dispatch(new SetToken(token));
   }
 }
