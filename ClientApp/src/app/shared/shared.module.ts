@@ -5,7 +5,6 @@ import { MaterialModule } from './material/material.module';
 import { ShortenPipe } from './pipes/shorten/shorten.pipe';
 import { ColorPickerComponent } from './utilities/color-picker/color-picker.component';
 import { GenericListComponent } from './utilities/generic-list/generic-list.component';
-import { AuthViewComponent } from './utilities/auth-view/auth-view.component';
 
 
 @NgModule({
@@ -13,7 +12,6 @@ import { AuthViewComponent } from './utilities/auth-view/auth-view.component';
     GenericListComponent,
     ColorPickerComponent,
     ShortenPipe,
-    AuthViewComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +22,6 @@ import { AuthViewComponent } from './utilities/auth-view/auth-view.component';
     MaterialModule,
     GenericListComponent,
     ColorPickerComponent,
-    AuthViewComponent,
     ShortenPipe
   ]
 })

@@ -12,7 +12,9 @@ import { ClearAllTasksItemsRemotely } from './task-items/store/task.actions';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  storeSub: Subscription;
+  taskItemsStoreSub: Subscription;
+  authenticationStoreSub: Subscription;
+
   pendingTasksNumber: number;
   animationFinished: boolean;
   authenticated: boolean;
@@ -20,11 +22,11 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.storeSub = this.store.select('taskItems').subscribe(taskItemsState => {
+    this.taskItemsStoreSub = this.store.select('taskItems').subscribe(taskItemsState => {
       this.pendingTasksNumber = taskItemsState.taskItems.length;
     });
 
-    this.storeSub = this.store.select('authentication').subscribe(authenticationState => {
+    this.authenticationStoreSub = this.store.select('authentication').subscribe(authenticationState => {
       this.authenticated = !!authenticationState.token;
     });
   }
@@ -34,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.storeSub.unsubscribe();
+    this.taskItemsStoreSub.unsubscribe();
+    this.authenticationStoreSub.unsubscribe();
   }
 }

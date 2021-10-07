@@ -1,40 +1,26 @@
-import { Injectable, OnDestroy } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 } from '@angular/common/http';
-import { Observable, Subscription, throwError } from 'rxjs';
-import { catchError } from 'rxjs';
-import { AppState } from './store/app.reducer';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { OnInit } from '@angular/core';
+import { catchError, Observable, Subscription, throwError } from 'rxjs';
+import { AppState } from './store/app.reducer';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppInterceptor implements HttpInterceptor, OnInit, OnDestroy {
+export class AppInterceptor implements HttpInterceptor, OnDestroy {
 
   token: string | undefined;
   storeSub: Subscription;
 
-
   constructor(private store: Store<AppState>) { }
 
 
-  ngOnInit(): void {
-    //this.store.select('authentication').subscribe(authenticationState => {
-    //  console.log(authenticationState);
-    //  this.token = authenticationState.token;
-    //});
-  }
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    this.store.select('authentication').subscribe(authenticationState => {
+    this.storeSub = this.store.select('authentication').subscribe(authenticationState => {
       this.token = authenticationState.token;
     });
 
