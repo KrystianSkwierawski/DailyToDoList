@@ -3,16 +3,19 @@ import * as TaskActions from './task.actions';
 
 
 export interface State {
-  taskItems: TaskItem[];
+  taskItems: TaskItem[] | undefined;
 }
 
 const initialState: State = {
-  taskItems: [],
+  taskItems: undefined,
 };
 
 export function toDoReducer(state: State = initialState, action: TaskActions.TaskItemsActions) {
   switch (action.type) {
     case TaskActions.ADD_TASK_ITEM_LOCALLY: {
+      if (!state.taskItems)
+        return;
+
       return {
         ...state,
         taskItems: [action.payload, ...state.taskItems]
@@ -22,6 +25,9 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
     }
 
     case TaskActions.UPDATE_TASK_ITEM_LOCALLY: {
+      if (!state.taskItems)
+        return;
+
       const updatedTaskItems = [...state.taskItems];
 
       const index = updatedTaskItems.findIndex((obj => obj.id === action.payload.id));
@@ -55,6 +61,9 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
     }
 
     case TaskActions.DELETE_LOCALLY: {
+      if (!state.taskItems)
+        return;
+
       const updatedTaskItems = [...state.taskItems].filter(t => t.id !== action.payload)
 
       return {

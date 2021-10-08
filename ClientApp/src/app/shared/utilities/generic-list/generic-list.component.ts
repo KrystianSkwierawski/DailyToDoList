@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GenericListComponent {
 
-  @Input() list: Array<unknown>;
+  @Input() list: Array<unknown> | undefined;
 
   constructor() { }
 }

@@ -4,7 +4,7 @@ import * as fromAuthentication from '../authentication/store/authentication.redu
 
 
 export interface AppState {
-  taskItems: fromTasks.State;
+  taskItems?: fromTasks.State;
   authentication: fromAuthentication.State;
 }
 
