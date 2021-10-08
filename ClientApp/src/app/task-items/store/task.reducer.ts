@@ -4,10 +4,12 @@ import * as TaskActions from './task.actions';
 
 export interface State {
   taskItems: TaskItem[];
+  apiReturnedInitialData: boolean;
 }
 
 const initialState: State = {
   taskItems: [],
+  apiReturnedInitialData: false
 };
 
 export function toDoReducer(state: State = initialState, action: TaskActions.TaskItemsActions) {
@@ -37,9 +39,14 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
     }
 
     case TaskActions.UPDATE_TASK_ITEMS_LOCALLY: {
+
+      // It helps to check if ought to show progress spinner.
+      const apiReturnedInitialData = !state.apiReturnedInitialData ? true : false;
+
       return {
         ...state,
-        taskItems: action.payload
+        apiReturnedInitialData,
+        taskItems: action.payload,
       };
 
       break;

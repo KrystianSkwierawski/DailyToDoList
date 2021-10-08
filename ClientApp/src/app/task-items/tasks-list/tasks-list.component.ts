@@ -19,16 +19,19 @@ export class TasksListComponent implements OnInit, OnDestroy {
   columnsToDisplay: string[] = ['tasks'];
   @ViewChild(MatTable) tasksTable: MatTable<any>;
 
+
   storeSub: Subscription;
   hoveredTaskIndex: number | null;
   hoveredSubtaskIndex: number | null;
 
   tasks: TaskItem[];
+  apiReturnedInitialData: boolean;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.storeSub = this.store.select('taskItems').subscribe(tasksState => {
+      this.apiReturnedInitialData = tasksState.apiReturnedInitialData;
       this.tasks = tasksState.taskItems;
     });
 

@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GenericListComponent {
 
   @Input() list: Array<unknown>;
+  @Input() apiReturnedInitialData: boolean;
 
   constructor() { }
 }

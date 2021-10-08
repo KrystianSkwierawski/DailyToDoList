@@ -22,18 +22,25 @@ describe('GenericListComponent', () => {
 
   it('should display empty state when list is empty', () => {
     const fixture = TestBed.createComponent(GenericListComponent);
-    fixture.detectChanges();
-    const app: GenericListComponent  = fixture.componentInstance;
-
+    const app: GenericListComponent = fixture.componentInstance;
     app.list = [];
+    app.apiReturnedInitialData = true;
+
+    fixture.detectChanges();
+
     let compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
 
     expect(compiled.querySelector('.empty-state')).toBeTruthy();
   });
 
-  it('should display loading spinner when list is null', () => {
+  it('should display loading spinner when api did not returned initial data', () => {
     const fixture = TestBed.createComponent(GenericListComponent);
+    const app: GenericListComponent = fixture.componentInstance;
+
+    app.apiReturnedInitialData = false;
+    app.list = [];
+
     fixture.detectChanges();
 
     let compiled = fixture.debugElement.nativeElement;
@@ -46,7 +53,9 @@ describe('GenericListComponent', () => {
     fixture.detectChanges();
     const app: GenericListComponent = fixture.componentInstance;
 
+    app.apiReturnedInitialData = true;
     app.list = ["Random Array"];
+
     let compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
 

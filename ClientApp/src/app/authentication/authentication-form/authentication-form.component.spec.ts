@@ -1,25 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
+import { Store, StoreModule } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
 import { AuthenticationFormComponent } from './authentication-form.component';
 
 describe('AuthenticationFormComponent', () => {
-  let component: AuthenticationFormComponent;
-  let fixture: ComponentFixture<AuthenticationFormComponent>;
+  let store: Store<fromApp.AppState>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthenticationFormComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        AuthenticationFormComponent,
+      ],
+      imports: [
+        StoreModule.forRoot(fromApp.appReducer),
+      ]
+    });
+
+
+    store = TestBed.get(Store);
+    spyOn(store, 'dispatch').and.callThrough();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AuthenticationFormComponent);
-    component = fixture.componentInstance;
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AuthenticationFormComponent);
     fixture.detectChanges();
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+})
