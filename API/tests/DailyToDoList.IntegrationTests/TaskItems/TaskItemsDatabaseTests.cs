@@ -83,7 +83,7 @@ namespace DailyToDoList.IntegrationTests.TaskItems
             await testDatabase.AddTaskItemAsync("test2", "#ffff");
 
             // Act
-            await testDatabase.DeleteAllTaskItemsAsync();
+            await testDatabase.DeleteAllUserTaskItemsAsync();
 
             // Assert
             var result = await testDatabase.GetTaskItems();

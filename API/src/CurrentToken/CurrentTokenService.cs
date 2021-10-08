@@ -1,10 +1,10 @@
-﻿namespace DailyToDoList;
+﻿namespace DailyToDoList.CurrentToken;
 
-public class CurrentUserService : ICurrentUserService
+public class CurrentTokenService : ICurrentTokenService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public CurrentUserService(IHttpContextAccessor httpContextAccessor)
+    public CurrentTokenService(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
     }

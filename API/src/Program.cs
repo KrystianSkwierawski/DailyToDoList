@@ -1,10 +1,10 @@
-﻿using DailyToDoList;
+﻿using DailyToDoList.CurrentToken;
 using DailyToDoList.TaskItems;
 
 
 var bulider = WebApplication.CreateBuilder();
 
-bulider.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
+bulider.Services.AddSingleton<ICurrentTokenService, CurrentTokenService>();
 bulider.Services.AddSingleton<ITaskItemsDatabase, TaskItemsDatabase>();
 bulider.Services.AddHttpContextAccessor();
 
@@ -39,7 +39,7 @@ app.MapPost("/api/tasks", async (string title, string color) => await database.A
 app.MapPut("/api/tasks/{id}", async (TaskItemDTO taskItemDTO) => await database.UpdateTaskItemAsync(taskItemDTO));
 app.MapPut("/api/tasks", async (List<TaskItemDTO> taskItemDTOs) => await database.UpdateTaskItemsAsync(taskItemDTOs));
 app.MapDelete("/api/tasks/{id}", async (string id) => await database.DeleteTaskItemAsync(id));
-app.MapDelete("/api/tasks", async () => await database.DeleteAllTaskItemsAsync());
+app.MapDelete("/api/tasks", async () => await database.DeleteAllUserTaskItemsAsync());
 
 app.Run();
 

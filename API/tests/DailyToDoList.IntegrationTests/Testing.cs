@@ -11,7 +11,7 @@ namespace DailyToDoList.IntegrationTests
 
         public static async Task ResetState()
         {
-            await GetTestDatabase().DeleteAllTaskItemsAsync();
+            await GetTestDatabase().DeleteAllUserTaskItemsAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using DailyToDoList.CurrentToken;
+using MongoDB.Driver;
 
 namespace DailyToDoList.TaskItems;
 
@@ -7,11 +8,11 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     private readonly IMongoDatabase _db;
     private readonly IMongoClient _client;
     private readonly IMongoCollection<TaskItem> _taskItems;
-    private readonly ICurrentUserService? _currentTokenService;
+    private readonly ICurrentTokenService? _currentTokenService;
 
     public TaskItemsDatabase(
         string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListDB?retryWrites=true&w=majority",
-        ICurrentUserService? currentTokenService = null
+        ICurrentTokenService? currentTokenService = null
     )
     {
         _currentTokenService = currentTokenService;
@@ -91,7 +92,7 @@ public class TaskItemsDatabase : ITaskItemsDatabase
             });
         }
 
-        await DeleteAllTaskItemsAsync();
+        await DeleteAllUserTaskItemsAsync();
         await _taskItems.InsertManyAsync(updatedTaskItems);
     }
 
@@ -102,8 +103,10 @@ public class TaskItemsDatabase : ITaskItemsDatabase
         await _taskItems.DeleteOneAsync(x => x.Id == id && x.CreatedBy == token);
     }
 
-    public async Task DeleteAllTaskItemsAsync()
+    public async Task DeleteAllUserTaskItemsAsync()
     {
-        await _db.DropCollectionAsync("TaskItems");
+        string token = _currentTokenService?.Token;
+
+        await _taskItems.DeleteManyAsync(x => x.CreatedBy == token);
     }
 }

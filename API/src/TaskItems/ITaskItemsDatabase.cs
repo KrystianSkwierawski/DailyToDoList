@@ -7,5 +7,5 @@ public interface ITaskItemsDatabase
     Task UpdateTaskItemAsync(TaskItemDTO taskItemDTO);
     Task UpdateTaskItemsAsync(List<TaskItemDTO> taskItemDTOs);
     Task DeleteTaskItemAsync(string id);
-    Task DeleteAllTaskItemsAsync();
+    Task DeleteAllUserTaskItemsAsync();
 }
