@@ -23,15 +23,12 @@ export class TasksListComponent implements OnInit, OnDestroy {
   hoveredTaskIndex: number | null;
   hoveredSubtaskIndex: number | null;
 
-  tasks: TaskItem[] | undefined;
+  tasks: TaskItem[];
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.storeSub = this.store.select('taskItems').subscribe(tasksState => {
-      if (!tasksState?.taskItems)
-        return;
-
       this.tasks = tasksState.taskItems;
     });
 
@@ -39,9 +36,6 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   updateOrderIndex(event: any) {
-    if (!this.tasks)
-      return;
-
     const previousIndex = this.tasks.findIndex(task => task === event.item.data);
 
     const updatedTaskItems = [...this.tasks];

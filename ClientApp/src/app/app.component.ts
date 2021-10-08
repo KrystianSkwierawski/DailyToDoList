@@ -23,9 +23,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.taskItemsStoreSub = this.store.select('taskItems').subscribe(taskItemsState => {
-      if (!taskItemsState?.taskItems)
-        return;
-
       this.pendingTasksNumber = taskItemsState.taskItems.length;
     });
 

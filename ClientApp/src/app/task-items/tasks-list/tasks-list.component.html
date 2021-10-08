@@ -1,7 +1,6 @@
 <app-generic-list [list]="tasks">
   <ng-container content>
-    <table *ngIf="tasks"
-           mat-table
+    <table mat-table
            [dataSource]="tasks"
            cdkDropList
            (touchmove)="onTouchMove($event)"
