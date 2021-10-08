@@ -15,8 +15,9 @@ describe('GenericListComponent', () => {
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(GenericListComponent);
-    fixture.detectChanges();
     const app = fixture.componentInstance;
+    app.list = [];
+    fixture.detectChanges();
     expect(app).toBeTruthy();
   });
 
