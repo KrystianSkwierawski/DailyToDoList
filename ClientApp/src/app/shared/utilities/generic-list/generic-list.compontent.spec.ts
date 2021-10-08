@@ -51,11 +51,13 @@ describe('GenericListComponent', () => {
 
   it('should display content when list has items', () => {
     const fixture = TestBed.createComponent(GenericListComponent);
-    fixture.detectChanges();
     const app: GenericListComponent = fixture.componentInstance;
 
     app.apiReturnedInitialData = true;
-    app.list = ["Random Array"];
+    app.list = [{}];
+
+    fixture.detectChanges();
+
 
     let compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
