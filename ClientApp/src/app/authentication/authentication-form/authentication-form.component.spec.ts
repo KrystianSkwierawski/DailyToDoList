@@ -27,4 +27,21 @@ describe('AuthenticationFormComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
+
+  it('[submit] should set token', () => {
+    let resultToken: string | undefined;
+
+    store.select('authentication').subscribe(authenticationState => {
+      resultToken = authenticationState.token;
+    });
+
+    const fixture = TestBed.createComponent(AuthenticationFormComponent);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+
+    const expectedToken = "123";
+    app.submit(expectedToken);
+
+    expect(resultToken).toBe(expectedToken);
+  });
 })
