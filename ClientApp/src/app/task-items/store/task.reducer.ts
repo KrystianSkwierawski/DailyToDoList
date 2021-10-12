@@ -39,13 +39,9 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
     }
 
     case TaskActions.UPDATE_TASK_ITEMS_LOCALLY: {
-
-      // It helps to check if ought to show progress spinner.
-      const apiReturnedInitialData = !state.apiReturnedInitialData ? true : false;
-
       return {
         ...state,
-        apiReturnedInitialData,
+        apiReturnedInitialData: true,   // It helps to check if ought to show progress spinner.
         taskItems: action.payload,
       };
 
