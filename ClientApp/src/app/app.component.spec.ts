@@ -5,6 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { AppComponent } from './app.component';
+import { SetToken } from './authentication/store/authentication.actions';
 import { TaskItemsService } from './shared/services/task-items.service';
 import * as fromApp from './store/app.reducer';
 import { AppState } from './store/app.reducer';
@@ -36,31 +37,31 @@ describe('AppComponent', () => {
     spyOn(store, 'dispatch').and.callThrough();
   });
 
-   it('should create the app', () => {
-     const fixture = TestBed.createComponent(AppComponent);
-     fixture.detectChanges()
-     const app: AppComponent = fixture.componentInstance;
-     expect(app).toBeTruthy();
-   });
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges()
+    const app: AppComponent = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
 
 
-   it('should has 0 of pending tasks by default', () => {
-     const fixture = TestBed.createComponent(AppComponent);
-     const app = fixture.debugElement.componentInstance;
-     fixture.detectChanges();
-     expect(app.pendingTasksNumber).toBe(0);
-   });
+  it('should has 0 of pending tasks by default', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    expect(app.pendingTasksNumber).toBe(0);
+  });
 
-   it('should has 2 of pending tasks', () => {
-     const fixture = TestBed.createComponent(AppComponent);
-     const app: AppComponent = fixture.debugElement.componentInstance;
-     fixture.detectChanges();
+  it('should has 2 of pending tasks', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app: AppComponent = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
 
-     store.dispatch(new AddTaskItemLocally({ title: "test1" } as TaskItem));
-     store.dispatch(new AddTaskItemLocally({ title: "test2" } as TaskItem));
+    store.dispatch(new AddTaskItemLocally({ title: "test1" } as TaskItem));
+    store.dispatch(new AddTaskItemLocally({ title: "test2" } as TaskItem));
 
-     expect(app.pendingTasksNumber).toBe(2);
-   });
+    expect(app.pendingTasksNumber).toBe(2);
+  });
 
   it('[clearAllTaskItems] should clear all task items', () => {
     // Arrange
@@ -78,4 +79,27 @@ describe('AppComponent', () => {
     // Assert
     expect(app.pendingTasksNumber).toBe(0);
   });
-});
+
+  it('should app.authenticated equal true if token exists', () => {
+    // Arrange
+    const fixture = TestBed.createComponent(AppComponent);
+    const app: AppComponent = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+
+
+    // Act
+    store.dispatch(new SetToken("token"));
+
+
+    // Assert
+    expect(app.authenticated).toBeTrue();
+  });
+
+  it('should app.authenticated equal false if token does not exists', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app: AppComponent = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+
+    expect(app.authenticated).toBeFalse();
+  });
+})
