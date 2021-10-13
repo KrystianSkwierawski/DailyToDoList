@@ -25,6 +25,7 @@ export class AppInterceptor implements HttpInterceptor, OnDestroy {
       this.token = authenticationState.token;
     });
 
+    // Add token header. With its help, the user can get task items created by him.
     if (this.token) {
       request = request.clone({
         setHeaders: {
@@ -40,14 +41,18 @@ export class AppInterceptor implements HttpInterceptor, OnDestroy {
         this.logger.info(response);
       }),
       catchError((errorResponse: HttpErrorResponse) => {
-        const error = errorResponse.statusText ?? 'An unknown error occurred!';
-
-        alert(error);
-
-        this.logger.error(error);
-
-        return throwError(error);
+        return this.handleError(errorResponse);
     }));
+  }
+
+  handleError(errorResponse: HttpErrorResponse) {
+    const error = errorResponse.statusText ?? 'An unknown error occurred!';
+
+    alert(error);
+
+    this.logger.error(error);
+
+    return throwError(error);
   }
 
   ngOnDestroy(): void {
