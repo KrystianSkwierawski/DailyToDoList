@@ -41,10 +41,9 @@ describe('GenericListComponent', () => {
 
     app.apiReturnedInitialData = false;
     app.list = [];
-
     fixture.detectChanges();
 
-    let compiled = fixture.debugElement.nativeElement;
+    const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelector('.loading-content-container')).toBeTruthy();
   });
@@ -55,12 +54,9 @@ describe('GenericListComponent', () => {
 
     app.apiReturnedInitialData = true;
     app.list = [{}];
-
     fixture.detectChanges();
 
-
-    let compiled = fixture.debugElement.nativeElement;
-    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelector('.content')).toBeTruthy();
   });

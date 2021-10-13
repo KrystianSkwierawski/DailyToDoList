@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
@@ -100,5 +101,27 @@ describe('AppComponent', () => {
     fixture.detectChanges();
 
     expect(app.authenticated).toBeFalse();
+  });
+
+  it('should display tasks list if authenticated', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app: AppComponent = fixture.debugElement.componentInstance;
+    store.dispatch(new SetToken("123"));
+    fixture.detectChanges();
+
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('.tasks-list')).toBeTruthy();
+  });
+
+  it('should display authentication form if not authenticated', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app: AppComponent = fixture.debugElement.componentInstance;
+    app.authenticated = false;
+    fixture.detectChanges();
+
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('.authentication')).toBeTruthy();
   });
 })
