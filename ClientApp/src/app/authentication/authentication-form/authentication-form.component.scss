@@ -7,9 +7,9 @@
 }
 
 .container {
-  position: absolute;
   width: 100%;
   height: 100%;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,11 +17,11 @@
   padding: 1rem;
 
   @include respond-to(medium) {
+    width: 45%;
+    height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 45%;
-    height: auto;
   }
 }
 
@@ -30,18 +30,18 @@ form {
 }
 
 mat-form-field {
-  display: block;
   width: 100%;
+  display: block;
   color: white;
 }
 
 .submit-button {
-  background-color: #00C896;
-  color: #1F1F1F;
   padding: .3rem 1.5rem;
   margin-left: auto;
   margin-right: auto;
   display: block;
+  background-color: #00C896;
+  color: #1F1F1F;
 
 
   & mat-icon {
