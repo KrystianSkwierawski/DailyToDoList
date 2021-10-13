@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { CoreModule } from './core.module';
@@ -26,6 +28,12 @@ import { TaskItemsModule } from './task-items/task-items.module';
     TaskItemsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    LoggerModule.forRoot(
+      {
+        level: !environment.production ? NgxLoggerLevel.DEBUG : NgxLoggerLevel.OFF,
+        serverLogLevel: NgxLoggerLevel.OFF
+      }
+    ),
     StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([TaskEffects])
   ],

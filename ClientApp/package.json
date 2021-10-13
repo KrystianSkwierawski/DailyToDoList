@@ -24,6 +24,7 @@
     "@iplab/ngx-color-picker": "^2.1.1",
     "@ngrx/effects": "^12.4.0",
     "@ngrx/store": "^12.4.0",
+    "ngx-logger": "^4.3.3",
     "rxjs": "~7.3.0",
     "tslib": "^2.3.1",
     "zone.js": "~0.11.4"
