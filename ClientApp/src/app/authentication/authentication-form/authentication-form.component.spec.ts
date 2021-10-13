@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
-import * as fromApp from '../../store/app.reducer';
+import { appReducer, AppState } from '../../store/app.reducer';
 import { AuthenticationFormComponent } from './authentication-form.component';
 
 describe('AuthenticationFormComponent', () => {
-  let store: Store<fromApp.AppState>;
+  let store: Store<AppState>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -12,7 +12,7 @@ describe('AuthenticationFormComponent', () => {
         AuthenticationFormComponent,
       ],
       imports: [
-        StoreModule.forRoot(fromApp.appReducer),
+        StoreModule.forRoot(appReducer),
       ]
     });
 

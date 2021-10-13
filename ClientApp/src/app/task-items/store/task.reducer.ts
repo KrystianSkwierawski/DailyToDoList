@@ -1,5 +1,5 @@
 import { TaskItem } from "../task-item.model";
-import * as TaskActions from './task.actions';
+import { ADD_TASK_ITEM_LOCALLY, ClEAR_ALL_TASK_ITEMS_LOCALLY, DELETE_TASK_ITEM_LOCALLY, TaskItemsActions, UPDATE_TASK_ITEMS_LOCALLY, UPDATE_TASK_ITEM_LOCALLY } from "./task.actions";
 
 
 export interface State {
@@ -12,9 +12,9 @@ const initialState: State = {
   apiReturnedInitialData: false
 };
 
-export function toDoReducer(state: State = initialState, action: TaskActions.TaskItemsActions) {
+export function toDoReducer(state: State = initialState, action: TaskItemsActions) {
   switch (action.type) {
-    case TaskActions.ADD_TASK_ITEM_LOCALLY: {
+    case ADD_TASK_ITEM_LOCALLY: {
       return {
         ...state,
         taskItems: [action.payload, ...state.taskItems]
@@ -23,7 +23,7 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
       break;
     }
 
-    case TaskActions.UPDATE_TASK_ITEM_LOCALLY: {
+    case UPDATE_TASK_ITEM_LOCALLY: {
       const updatedTaskItems = [...state.taskItems];
 
       const index = updatedTaskItems.findIndex((obj => obj.id === action.payload.id));
@@ -38,7 +38,7 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
       break;
     }
 
-    case TaskActions.UPDATE_TASK_ITEMS_LOCALLY: {
+    case UPDATE_TASK_ITEMS_LOCALLY: {
       return {
         ...state,
         apiReturnedInitialData: true,   // It helps to check if ought to show progress spinner.
@@ -48,7 +48,7 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
       break;
     }
 
-    case TaskActions.ClEAR_ALL_LOCALLY: {
+    case ClEAR_ALL_TASK_ITEMS_LOCALLY: {
       return {
         ...state,
         taskItems: []
@@ -57,7 +57,7 @@ export function toDoReducer(state: State = initialState, action: TaskActions.Tas
       break;
     }
 
-    case TaskActions.DELETE_LOCALLY: {
+    case DELETE_TASK_ITEM_LOCALLY: {
       const updatedTaskItems = [...state.taskItems].filter(t => t.id !== action.payload)
 
       return {

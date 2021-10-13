@@ -7,8 +7,7 @@ import { Observable, of } from 'rxjs';
 import { AppComponent } from './app.component';
 import { SetToken } from './authentication/store/authentication.actions';
 import { TaskItemsService } from './shared/services/task-items.service';
-import * as fromApp from './store/app.reducer';
-import { AppState } from './store/app.reducer';
+import { appReducer, AppState } from './store/app.reducer';
 import { AddTaskItemLocally } from './task-items/store/task.actions';
 import { TaskEffects } from './task-items/store/task.effects';
 import { TaskItem } from './task-items/task-item.model';
@@ -25,7 +24,7 @@ describe('AppComponent', () => {
       ],
       imports: [
         HttpClientModule,
-        StoreModule.forRoot(fromApp.appReducer),
+        StoreModule.forRoot(appReducer),
         EffectsModule.forRoot([TaskEffects])
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]

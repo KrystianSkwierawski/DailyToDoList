@@ -5,8 +5,7 @@ import { Store, StoreModule } from '@ngrx/store';
 import { of } from 'rxjs';
 import { ShortenPipe } from '../../shared/pipes/shorten/shorten.pipe';
 import { TaskItemsService } from '../../shared/services/task-items.service';
-import * as fromApp from '../../store/app.reducer';
-import { AppState } from '../../store/app.reducer';
+import { appReducer, AppState } from '../../store/app.reducer';
 import { AddTaskItemRemotely } from '../store/task.actions';
 import { TaskEffects } from '../store/task.effects';
 import { SubtaskItem } from '../subtask-item.model';
@@ -28,7 +27,7 @@ describe('TasksListComponent', () => {
       ],
       imports: [
         HttpClientModule,
-        StoreModule.forRoot(fromApp.appReducer),
+        StoreModule.forRoot(appReducer),
         EffectsModule.forRoot([TaskEffects]),
       ]
     });

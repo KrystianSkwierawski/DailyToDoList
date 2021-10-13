@@ -8,10 +8,10 @@ export const UPDATE_TASK_ITEM_LOCALLY = '[Task Items] Update Task Item Locally';
 export const UPDATE_TASK_ITEM_REMOTELY = '[Task Items] Update Task Item REMOTELY';
 export const UPDATE_TASK_ITEMS_LOCALLY = '[Task Items] Update Task Items Locally';
 export const UPDATE_TASK_ITEMS_REMOTELY = '[Task Items] Update Task Items REMOTELY';
-export const ClEAR_ALL_LOCALLY = '[Task Items] Clear All Task Items Locally';
-export const ClEAR_ALL_REMOTELY = '[Task Items] Clear All Task Items Remotely';
-export const DELETE_LOCALLY = '[Task Items] Delete Task Item Locally';
-export const DELETE_REMOTELY = '[Task Items] Delete Task Item Remotely';
+export const ClEAR_ALL_TASK_ITEMS_LOCALLY = '[Task Items] Clear All Task Items Locally';
+export const ClEAR_ALL_TASK_ITEMS_REMOTELY = '[Task Items] Clear All Task Items Remotely';
+export const DELETE_TASK_ITEM_LOCALLY = '[Task Items] Delete Task Item Locally';
+export const DELETE_TASK_ITEM_REMOTELY = '[Task Items] Delete Task Item Remotely';
 
 
 export class GetTaskItems implements Action {
@@ -56,21 +56,21 @@ export class UpdateTaskItemsRemotely implements Action {
 }
 
 export class ClearAllTasksItemsLocally implements Action {
-  readonly type = ClEAR_ALL_LOCALLY;
+  readonly type = ClEAR_ALL_TASK_ITEMS_LOCALLY;
 }
 
 export class ClearAllTasksItemsRemotely implements Action {
-  readonly type = ClEAR_ALL_REMOTELY;
+  readonly type = ClEAR_ALL_TASK_ITEMS_REMOTELY;
 }
 
 export class DeleteTaskItemLocally implements Action {
-  readonly type = DELETE_LOCALLY;
+  readonly type = DELETE_TASK_ITEM_LOCALLY;
 
   constructor(public payload: string) { }
 }
 
 export class DeleteTaskItemRemotely implements Action {
-  readonly type = DELETE_REMOTELY;
+  readonly type = DELETE_TASK_ITEM_REMOTELY;
 
   constructor(public payload: string) { }
 }

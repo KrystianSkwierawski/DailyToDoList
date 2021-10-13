@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import * as TasksActions from '../../task-items/store/task.actions';
+import { AddTaskItemRemotely, DeleteTaskItemRemotely, UpdateTaskItemRemotely, UpdateTaskItemsRemotely } from '../../task-items/store/task.actions';
 import { TaskItem } from '../../task-items/task-item.model';
 
 
@@ -19,7 +19,7 @@ export class TaskItemsService {
     );
   }
 
-  addTaskItem(action: TasksActions.AddTaskItemRemotely) {
+  addTaskItem(action: AddTaskItemRemotely) {
     const params = new HttpParams()
       .set('title', action.payload.title)
       .set('color', action.payload.color)
@@ -33,7 +33,7 @@ export class TaskItemsService {
     );
   }
 
-  updateTaskItem(action: TasksActions.UpdateTaskItemRemotely): Observable<TaskItem> {
+  updateTaskItem(action: UpdateTaskItemRemotely): Observable<TaskItem> {
     return this.http.put<TaskItem>(
       environment.apiUrl + `/${action.payload.id}`,
       action.payload
@@ -42,7 +42,7 @@ export class TaskItemsService {
     );
   }
 
-  updateTaskItems(action: TasksActions.UpdateTaskItemsRemotely) {
+  updateTaskItems(action: UpdateTaskItemsRemotely) {
     return this.http.put<TaskItem>(
       environment.apiUrl,
       action.payload
@@ -51,7 +51,7 @@ export class TaskItemsService {
     );
   }
 
-  deleteTaskItem(action: TasksActions.DeleteTaskItemRemotely) {
+  deleteTaskItem(action: DeleteTaskItemRemotely) {
     return this.http.delete<string>(
       environment.apiUrl + `/${action.payload}`
     ).pipe(

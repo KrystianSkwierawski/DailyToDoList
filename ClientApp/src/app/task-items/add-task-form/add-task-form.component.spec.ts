@@ -4,14 +4,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { of } from 'rxjs';
 import { TaskItemsService } from '../../shared/services/task-items.service';
-import * as fromApp from '../../store/app.reducer';
+import { appReducer, AppState } from '../../store/app.reducer';
 import { TaskEffects } from '../store/task.effects';
 import { TaskItem } from '../task-item.model';
 import { AddTaskFormComponent } from './add-task-form.component';
 
 
 describe('TasksListComponent', () => {
-  let store: Store<fromApp.AppState>;
+  let store: Store<AppState>;
   let taskItemsService: TaskItemsService;
 
   beforeEach(async () => {
@@ -21,7 +21,7 @@ describe('TasksListComponent', () => {
       ],
       imports: [
         HttpClientModule,
-        StoreModule.forRoot(fromApp.appReducer),
+        StoreModule.forRoot(appReducer),
         EffectsModule.forRoot([TaskEffects])
       ]
     });

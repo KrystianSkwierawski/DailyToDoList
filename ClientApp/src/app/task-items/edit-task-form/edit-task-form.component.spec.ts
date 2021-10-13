@@ -4,7 +4,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { of } from 'rxjs';
 import { TaskItemsService } from '../../shared/services/task-items.service';
-import * as fromApp from '../../store/app.reducer';
+import { appReducer, AppState } from '../../store/app.reducer';
 import { AddTaskItemRemotely } from '../store/task.actions';
 import { TaskEffects } from '../store/task.effects';
 import { SubtaskItem } from '../subtask-item.model';
@@ -13,7 +13,7 @@ import { EditTaskFormComponent } from './edit-task-form.component';
 
 
 describe('TasksListComponent', () => {
-  let store: Store<fromApp.AppState>;
+  let store: Store<AppState>;
   let taskItemsService: TaskItemsService;
 
 
@@ -24,7 +24,7 @@ describe('TasksListComponent', () => {
       ],
       imports: [
         HttpClientModule,
-        StoreModule.forRoot(fromApp.appReducer),
+        StoreModule.forRoot(appReducer),
         EffectsModule.forRoot([TaskEffects]),
       ]
     });

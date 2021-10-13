@@ -1,4 +1,4 @@
-import * as AuthenticationActions from "./authentication.actions";
+import { AuthenticationActions, SET_TOKEN } from "./authentication.actions";
 
 
 export interface State {
@@ -9,9 +9,9 @@ const initialState: State = {
   token: undefined
 }
 
-export function authenticationReducer(state: State = initialState, action: AuthenticationActions.AuthenticationActions) {
+export function authenticationReducer(state: State = initialState, action: AuthenticationActions) {
   switch (action.type) {
-    case AuthenticationActions.SET_TOKEN: {
+    case SET_TOKEN: {
       return {
         ...state,
         token: action.payload

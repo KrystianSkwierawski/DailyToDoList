@@ -3,47 +3,47 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { throwError } from "rxjs";
 import { map, switchMap } from 'rxjs/operators';
 import { TaskItemsService } from "../../shared/services/task-items.service";
-import * as TasksActions from './task.actions';
+import { AddTaskItemLocally, AddTaskItemRemotely, ADD_TASK_ITEM_REMOTELY, ClearAllTasksItemsLocally, ClEAR_ALL_TASK_ITEMS_REMOTELY, DeleteTaskItemLocally, DeleteTaskItemRemotely, DELETE_TASK_ITEM_REMOTELY, GET_TASK_ITEMS, UpdateTaskItemLocally, UpdateTaskItemRemotely, UpdateTaskItemsLocally, UpdateTaskItemsRemotely, UPDATE_TASK_ITEMS_REMOTELY, UPDATE_TASK_ITEM_REMOTELY } from "./task.actions";
 
 @Injectable()
 export class TaskEffects {
 
   @Effect()
   getTaskItems$ = this.actions$.pipe(
-    ofType(TasksActions.GET_TASK_ITEMS),
+    ofType(GET_TASK_ITEMS),
     switchMap(() => {
       return this.taskItemsService.getTaskItems();
     }),
     map(taskItems => {
-      return new TasksActions.UpdateTaskItemsLocally(taskItems);
+      return new UpdateTaskItemsLocally(taskItems);
     })
   );
 
   @Effect()
   addTaskItemsRemotely$ = this.actions$.pipe(
-    ofType(TasksActions.ADD_TASK_ITEM_REMOTELY),
-    switchMap((action: TasksActions.AddTaskItemRemotely) => {
+    ofType(ADD_TASK_ITEM_REMOTELY),
+    switchMap((action: AddTaskItemRemotely) => {
       return this.taskItemsService.addTaskItem(action);
     }),
     map(taskItem => {
-      return new TasksActions.AddTaskItemLocally(taskItem);
+      return new AddTaskItemLocally(taskItem);
     })
   );
 
   @Effect()
   updateTaskItemRemotely$ = this.actions$.pipe(
-    ofType(TasksActions.UPDATE_TASK_ITEM_REMOTELY),
-    switchMap((action: TasksActions.UpdateTaskItemRemotely) => {
+    ofType(UPDATE_TASK_ITEM_REMOTELY),
+    switchMap((action: UpdateTaskItemRemotely) => {
       return this.taskItemsService.updateTaskItem(action);
     }),
     map(taskItem => {
       const everySubtaskIsCompleted: boolean = (taskItem.subtaskItems?.length > 0 && taskItem.subtaskItems?.every(t => t.completed));
 
       if (!everySubtaskIsCompleted)
-      return new TasksActions.UpdateTaskItemLocally(taskItem);
+      return new UpdateTaskItemLocally(taskItem);
 
       if (everySubtaskIsCompleted)
-        return new TasksActions.DeleteTaskItemRemotely(taskItem.id);    
+        return new DeleteTaskItemRemotely(taskItem.id);    
 
       return throwError("Internal Server Error");
     })
@@ -51,31 +51,31 @@ export class TaskEffects {
 
   @Effect({ dispatch: false })
   updateTaskItemsRemotely$ = this.actions$.pipe(
-    ofType(TasksActions.UPDATE_TASK_ITEMS_REMOTELY),
-    switchMap((action: TasksActions.UpdateTaskItemsRemotely) => {
+    ofType(UPDATE_TASK_ITEMS_REMOTELY),
+    switchMap((action: UpdateTaskItemsRemotely) => {
       return this.taskItemsService.updateTaskItems(action);
     })
   );
 
   @Effect()
   deleteTaskItemRemotely$ = this.actions$.pipe(
-    ofType(TasksActions.DELETE_REMOTELY),
-    switchMap((action: TasksActions.DeleteTaskItemRemotely) => {
+    ofType(DELETE_TASK_ITEM_REMOTELY),
+    switchMap((action: DeleteTaskItemRemotely) => {
       return this.taskItemsService.deleteTaskItem(action);
     }),
     map(id => {
-      return new TasksActions.DeleteTaskItemLocally(id);
+      return new DeleteTaskItemLocally(id);
     })
   );
 
   @Effect()
   deleteAllRemotely$ = this.actions$.pipe(
-    ofType(TasksActions.ClEAR_ALL_REMOTELY),
+    ofType(ClEAR_ALL_TASK_ITEMS_REMOTELY),
     switchMap(() => {
       return this.taskItemsService.deleteAllTaskItems();
     }),
     map(() => {
-      return new TasksActions.ClearAllTasksItemsLocally();
+      return new ClearAllTasksItemsLocally();
     })
   );
 
