@@ -1,7 +1,10 @@
-﻿using DailyToDoList.CurrentToken;
+﻿using DailyToDoListAPI.CurrentToken;
 using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DailyToDoList.TaskItems;
+namespace DailyToDoListAPI.TaskItems;
 
 public class TaskItemsDatabase : ITaskItemsDatabase
 {
@@ -11,7 +14,7 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     private readonly ICurrentTokenService? _currentTokenService;
 
     public TaskItemsDatabase(
-        string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListDB?retryWrites=true&w=majority",
+        string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListAPIDB?retryWrites=true&w=majority",
         ICurrentTokenService? currentTokenService = null
     )
     {

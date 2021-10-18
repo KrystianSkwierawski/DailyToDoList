@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using System.Threading.Tasks;
 
-namespace DailyToDoList.IntegrationTests
+namespace DailyToDoListAPI.IntegrationTests
 {
     using static Testing;
 

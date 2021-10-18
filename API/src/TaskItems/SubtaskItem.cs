@@ -1,4 +1,4 @@
-﻿namespace DailyToDoList.TaskItems;
+﻿namespace DailyToDoListAPI.TaskItems;
 
 public class SubtaskItem
 {

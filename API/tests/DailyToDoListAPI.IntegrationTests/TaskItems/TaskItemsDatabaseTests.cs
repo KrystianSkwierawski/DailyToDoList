@@ -1,8 +1,10 @@
-using DailyToDoList.TaskItems;
+using DailyToDoListAPI.TaskItems;
 using FluentAssertions;
 using NUnit.Framework;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DailyToDoList.IntegrationTests.TaskItems
+namespace DailyToDoListAPI.IntegrationTests.TaskItems
 {
     using static Testing;
     public class TaskItemsDatabaseTests : TestBase

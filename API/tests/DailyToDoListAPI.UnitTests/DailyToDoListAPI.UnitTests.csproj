@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DailyToDoList.csproj" />
+    <ProjectReference Include="..\..\src\DailyToDoListAPI.csproj" />
   </ItemGroup>
 
 </Project>

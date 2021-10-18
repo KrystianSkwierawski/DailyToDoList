@@ -1,4 +1,6 @@
-﻿namespace DailyToDoList.TaskItems;
+﻿using System.Collections.Generic;
+
+namespace DailyToDoListAPI.TaskItems;
 
 public class TaskItemDTO
 {

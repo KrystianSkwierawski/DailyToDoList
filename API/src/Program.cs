@@ -1,5 +1,8 @@
-﻿using DailyToDoList.CurrentToken;
-using DailyToDoList.TaskItems;
+﻿using DailyToDoListAPI.CurrentToken;
+using DailyToDoListAPI.TaskItems;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 
 var bulider = WebApplication.CreateBuilder();
@@ -19,7 +22,6 @@ bulider.Services.AddCors(options =>
             .AllowAnyHeader();
         });
 });
-
 
 var app = bulider.Build();
 

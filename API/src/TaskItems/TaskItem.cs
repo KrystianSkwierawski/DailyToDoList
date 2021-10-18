@@ -1,7 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
-namespace DailyToDoList.TaskItems;
+namespace DailyToDoListAPI.TaskItems;
 
 public class TaskItem
 {

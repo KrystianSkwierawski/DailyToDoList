@@ -1,4 +1,7 @@
-﻿namespace DailyToDoList.TaskItems;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace DailyToDoListAPI.TaskItems;
 
 public interface ITaskItemsDatabase
 {

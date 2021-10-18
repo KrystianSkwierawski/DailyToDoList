@@ -1,4 +1,4 @@
-﻿namespace DailyToDoList.CurrentToken;
+﻿namespace DailyToDoListAPI.CurrentToken;
 
 public interface ICurrentTokenService
 {

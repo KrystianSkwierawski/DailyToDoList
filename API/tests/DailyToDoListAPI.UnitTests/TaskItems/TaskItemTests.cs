@@ -1,8 +1,9 @@
-﻿using DailyToDoList.TaskItems;
+﻿using DailyToDoListAPI.TaskItems;
 using FluentAssertions;
 using NUnit.Framework;
+using System;
 
-namespace DailyToDoList.UnitTests.TaskItems
+namespace DailyToDoListAPI.UnitTests.TaskItems
 {
     public class TaskItemTests
     {
