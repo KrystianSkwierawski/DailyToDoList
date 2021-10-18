@@ -12,8 +12,8 @@ services:
     volumes:
       - ~/.aspnet/https:/https:ro
     ports:
-      - "5000:5000"
-      - "5001:5001"
+      - "44380:44380"
+      - "44381:44381"
 
   clientapp:
     image: ${DOCKER_REGISTRY-}clientapp
