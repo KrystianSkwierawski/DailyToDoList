@@ -1,10 +1,32 @@
 # DailyToDoList
 
 ## Why this project was created?
-lorem
+The premise was that I needed a simple app where I could focus on learning new technologies and having fun with them.
 
 ## What did I learn?
-lorem
+- I created a <a href="https://youtu.be/9OPyORGBB6Q">Minimal API with .NET 6</a>, at the beginning it contained only a few lines of code and it looked like this.
+```c#
+var bulider = WebApplication.CreateBuilder();
+var app = bulider.Build();
+
+app.MapGet("/api/tasks", async () => await database.GetTaskItems());
+app.MapPost("/api/tasks", async (string title, string color) => await database.AddTaskItemAsync(title, color));
+app.MapPut("/api/tasks/{id}", async (TaskItemDTO taskItemDTO) => await database.UpdateTaskItemAsync(taskItemDTO));
+app.MapPut("/api/tasks", async (List<TaskItemDTO> taskItemDTOs) => await database.UpdateTaskItemsAsync(taskItemDTOs));
+app.MapDelete("/api/tasks/{id}", async (string id) => await database.DeleteTaskItemAsync(id));
+app.MapDelete("/api/tasks", async () => await database.DeleteAllUserTaskItemsAsync());
+
+app.Run();
+```
+During the project API, it has expanded a little, but it is still quite small.
+
+- I used the non-relational cloud version of the MongoDB database. 
+
+- I tested all the components etc on Angular using karma. 
+
+- I used NgRx to manage the application state. 
+
+- I used Docker Desktop Linux machine for application containerization, I connected API and client application via docker-compose.
 
 ## Tools:
  * C#
