@@ -3,7 +3,7 @@
 ## Why this project was created?
 The premise was that I needed a simple app where I could focus on learning new technologies and having fun with them.
 
-## What did I learn?
+## What did I learn and what interesting did I do?
 - I created a <a href="https://youtu.be/9OPyORGBB6Q">Minimal API with .NET 6</a>, at the beginning it contained only a few lines of code and it looked like this.
 ```c#
 var bulider = WebApplication.CreateBuilder();
@@ -20,6 +20,8 @@ app.Run();
 ```
 During the project API, it has expanded a little, but it is still quite small.
 
+- This time API and clientapp are separate applications.
+
 - I used the non-relational cloud version of the MongoDB database. 
 
 - I tested all the components etc on Angular using karma. 
@@ -27,6 +29,17 @@ During the project API, it has expanded a little, but it is still quite small.
 - I used NgRx to manage the application state. 
 
 - I used Docker Desktop Linux machine for application containerization, I connected API and client application via docker-compose.
+
+- The API architecture is broken down into functionalities, not types, this time.
+
+    - architecture divided into types.
+
+      ![image](https://user-images.githubusercontent.com/52860350/138107966-dfda2578-a4ac-461c-8ea3-d2e89140dfbc.png)
+     
+    - architecture divided into functionalities, everything that is, for example, related to the TaskItems is in one place close to each other.
+
+      ![image](https://user-images.githubusercontent.com/52860350/138107797-e5ab8ca8-3ad2-4c99-9f81-e9aba6b6a3df.png)
+
 
 ## Tools:
  * C#
