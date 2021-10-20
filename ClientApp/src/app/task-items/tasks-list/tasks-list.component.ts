@@ -25,13 +25,13 @@ export class TasksListComponent implements OnInit, OnDestroy {
   hoveredSubtaskIndex: number | null;
 
   tasks: TaskItem[];
-  apiReturnedInitialData: boolean;
+  initializedData: boolean;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.storeSub = this.store.select('taskItems').subscribe(tasksState => {
-      this.apiReturnedInitialData = tasksState.apiReturnedInitialData;
+      this.initializedData = tasksState.initializedData;
       this.tasks = tasksState.taskItems;
     });
 

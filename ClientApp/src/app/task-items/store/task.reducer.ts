@@ -4,12 +4,12 @@ import { ADD_TASK_ITEM_LOCALLY, ClEAR_ALL_TASK_ITEMS_LOCALLY, DELETE_TASK_ITEM_L
 
 export interface State {
   taskItems: TaskItem[];
-  apiReturnedInitialData: boolean;
+  initializedData: boolean;
 }
 
 const initialState: State = {
   taskItems: [],
-  apiReturnedInitialData: false
+  initializedData: false
 };
 
 export function toDoReducer(state: State = initialState, action: TaskItemsActions) {
@@ -41,7 +41,7 @@ export function toDoReducer(state: State = initialState, action: TaskItemsAction
     case UPDATE_TASK_ITEMS_LOCALLY: {
       return {
         ...state,
-        apiReturnedInitialData: true,   // It helps to check if ought to show progress spinner.
+        initializedData: true,   // It helps to check if ought to show progress spinner.
         taskItems: action.payload,
       };
 

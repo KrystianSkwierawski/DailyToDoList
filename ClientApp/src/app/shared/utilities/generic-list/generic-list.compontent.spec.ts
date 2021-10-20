@@ -25,7 +25,7 @@ describe('GenericListComponent', () => {
     const fixture = TestBed.createComponent(GenericListComponent);
     const app: GenericListComponent = fixture.componentInstance;
     app.list = [];
-    app.apiReturnedInitialData = true;
+    app.initializedData = true;
 
     fixture.detectChanges();
 
@@ -39,7 +39,7 @@ describe('GenericListComponent', () => {
     const fixture = TestBed.createComponent(GenericListComponent);
     const app: GenericListComponent = fixture.componentInstance;
 
-    app.apiReturnedInitialData = false;
+    app.initializedData = false;
     app.list = [];
     fixture.detectChanges();
 
@@ -52,7 +52,7 @@ describe('GenericListComponent', () => {
     const fixture = TestBed.createComponent(GenericListComponent);
     const app: GenericListComponent = fixture.componentInstance;
 
-    app.apiReturnedInitialData = true;
+    app.initializedData = true;
     app.list = [{}];
     fixture.detectChanges();
 
