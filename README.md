@@ -49,6 +49,7 @@ In order to build and run the docker containers, execute `docker-compose -f dock
 Then open on your browser.
 
 API: https://localhost:44381/ /  http://localhost:44380/
+
 ClientApp: http://localhost:4200/
 
 To disable Docker in Visual Studio, right-click on the **docker-compose** file in the **Solution Explorer** and select **Unload Project**.
