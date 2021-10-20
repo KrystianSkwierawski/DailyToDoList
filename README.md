@@ -52,6 +52,7 @@ During the project API, it has expanded a little, but it is still quite small.
  * TypeScript
  * Sass
  * HTML5 
+ * Angular Material
  
  ### Other
  * Docker
