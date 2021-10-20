@@ -22,7 +22,7 @@ lorem
  * Docker
  * Trello
  * JustColorPicker
- * VisualStudio
+ * Visual Studio
  * Git
  * Postman
  
