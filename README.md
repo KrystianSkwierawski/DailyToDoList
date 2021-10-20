@@ -6,7 +6,7 @@ lorem
 ## What did I learn?
 lorem
 
-### Tools
+### Tools:
  * C#
  * .NET 6.0
  * MongoDB
