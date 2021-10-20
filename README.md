@@ -26,7 +26,7 @@ lorem
  * Git
  * Postman
 
-### Docker Configuration
+## Docker Configuration
 
 In order to get Docker working, you will need to add a temporary SSL cert and mount a volume to hold that cert.
 You can find [Microsoft Docs](https://docs.microsoft.com/en-us/aspnet/core/security/docker-https?view=aspnetcore-3.1) that describe the steps required for Windows, macOS, and Linux.
