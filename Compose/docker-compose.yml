@@ -1,10 +1,10 @@
-version: '3.4'
+version: '3.8'
 
 services:
-  dailytodolistapi:
+  api:
     image: ${DOCKER_REGISTRY-}dailytodolistapi
     build:
-      context: API/src
+      context: ../API/src
       dockerfile: Dockerfile 
     environment:
       - "ASPNETCORE_Kestrel__Certificates__Default__Password=Your_password123"
@@ -18,9 +18,10 @@ services:
   clientapp:
     image: ${DOCKER_REGISTRY-}clientapp
     build:
-      context: ClientApp
+      context: ../ClientApp
       dockerfile: Dockerfile
     ports:
-      - "4200:4200"
+        - '4200:4200'
+        - '49153:49153'
 
 
