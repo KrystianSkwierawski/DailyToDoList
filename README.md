@@ -20,7 +20,7 @@ app.Run();
 ```
 During the project API, it has expanded a little, but it is still quite small.
 
-- This time API and clientapp are separate applications, thanks to this, the API can be universal and payable e.g. to a mobile or desktop application.
+- This time API and clientapp are separate applications, thanks to this, the API is universal and can be used, for example, for mobile or desktop applications.
 
 - I used the non-relational cloud version of the MongoDB database. 
 
