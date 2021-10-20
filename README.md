@@ -48,9 +48,9 @@ FOR Linux:
 In order to build and run the docker containers, execute `docker-compose -f docker-compose.yml up --build` from the DailyToDoList/Compose where you find the docker-compose.yml file. You can also use "Docker Compose" from Visual Studio for Debugging purposes.
 Then open on your browser.
 
-API: https://localhost:44381/ /  http://localhost:44380/
+API: https://localhost:44381/  /  http://localhost:44380/
 
-ClientApp: http://localhost:4200/
+ClientApp: http://localhost:4200/ working with API https://localhost:44381/
 
 To disable Docker in Visual Studio, right-click on the **docker-compose** file in the **Solution Explorer** and select **Unload Project**.
  
