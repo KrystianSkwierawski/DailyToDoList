@@ -1,6 +1,7 @@
 ﻿using DailyToDoListAPI.CurrentToken;
 using DailyToDoListAPI.TaskItems;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 
@@ -12,12 +13,41 @@ namespace DailyToDoListAPI.Configuration
         {
             ITaskItemsDatabase database = app.Services.GetService<ITaskItemsDatabase>();
 
-            app.MapGet("/api/tasks", async () => await database.GetTaskItems());
-            app.MapPost("/api/tasks", async (string title, string color) => await database.AddTaskItemAsync(title, color));
-            app.MapPut("/api/tasks/{id}", async (TaskItemDTO taskItemDTO) => await database.UpdateTaskItemAsync(taskItemDTO));
-            app.MapPut("/api/tasks", async (List<TaskItemDTO> taskItemDTOs) => await database.UpdateTaskItemsAsync(taskItemDTOs));
-            app.MapDelete("/api/tasks/{id}", async (string id) => await database.DeleteTaskItemAsync(id));
-            app.MapDelete("/api/tasks", async () => await database.DeleteAllUserTaskItemsAsync());
+            app.MapGet("/api/tasks", async () =>
+            {
+                var taskItemsDTOs = await database.GetTaskItems();
+                return taskItemsDTOs is not null ? Results.Ok(taskItemsDTOs) : Results.NotFound();
+            });
+
+            app.MapPost("/api/tasks", async (string title, string color) =>
+            {
+                var taskItemDTO = await database.AddTaskItemAsync(title, color);
+                return Results.Created($"/tasks{taskItemDTO.Id}", taskItemDTO);
+            });
+
+            app.MapPut("/api/tasks/{id}", async (TaskItemDTO taskItemDTO) =>
+            {
+                await database.UpdateTaskItemAsync(taskItemDTO);
+                return Results.Ok();
+            });
+
+            app.MapPut("/api/tasks", async (List<TaskItemDTO> taskItemDTOs) =>
+            {
+                await database.UpdateTaskItemsAsync(taskItemDTOs);
+                return Results.Ok();
+            });
+
+            app.MapDelete("/api/tasks/{id}", async (string id) =>
+            {
+                await database.DeleteTaskItemAsync(id);
+                return Results.Ok();
+            });
+
+            app.MapDelete("/api/tasks", async () =>
+            {
+                await database.DeleteAllUserTaskItemsAsync();
+                return Results.Ok();
+            });
         }
 
         public void ConfigureServices(IServiceCollection services)
