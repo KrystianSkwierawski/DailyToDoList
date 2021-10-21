@@ -15,30 +15,42 @@ namespace DailyToDoListAPI.Configuration
 
             app.MapGet("/api/tasks", async () =>
             {
-                var taskItemsDTOs = await database.GetTaskItems();
-                return taskItemsDTOs is not null ? Results.Ok(taskItemsDTOs) : Results.NotFound();
+                var taskItems = await database.GetTaskItems();
+                return taskItems is not null ? Results.Ok(taskItems) : Results.NotFound();
             });
 
             app.MapPost("/api/tasks", async (string title, string color) =>
             {
+                if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(color))
+                    return Results.BadRequest();
+
                 var taskItemDTO = await database.AddTaskItemAsync(title, color);
                 return Results.Created($"/tasks{taskItemDTO.Id}", taskItemDTO);
             });
 
             app.MapPut("/api/tasks/{id}", async (TaskItemDTO taskItemDTO) =>
             {
+                if (taskItemDTO is null)
+                    return Results.BadRequest();
+
                 await database.UpdateTaskItemAsync(taskItemDTO);
                 return Results.Ok();
             });
 
             app.MapPut("/api/tasks", async (List<TaskItemDTO> taskItemDTOs) =>
             {
+                if (taskItemDTOs is null)
+                    return Results.BadRequest();
+
                 await database.UpdateTaskItemsAsync(taskItemDTOs);
                 return Results.Ok();
             });
 
             app.MapDelete("/api/tasks/{id}", async (string id) =>
             {
+                if (string.IsNullOrEmpty(id))
+                    return Results.BadRequest();
+
                 await database.DeleteTaskItemAsync(id);
                 return Results.Ok();
             });
