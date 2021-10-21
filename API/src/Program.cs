@@ -1,47 +1,15 @@
-﻿using DailyToDoListAPI.CurrentToken;
-using DailyToDoListAPI.TaskItems;
+﻿using DailyToDoListAPI.Configuration;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 
+IConfiguration configuration = new Configuration();
 
-var bulider = WebApplication.CreateBuilder();
-
-bulider.Services.AddSingleton<ICurrentTokenService, CurrentTokenService>();
-bulider.Services.AddSingleton<ITaskItemsDatabase, TaskItemsDatabase>();
-bulider.Services.AddHttpContextAccessor();
-
-bulider.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll",
-        builder =>
-        {
-            builder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-        });
-});
+var bulider = WebApplication.CreateBuilder(args);
+configuration.ConfigureServices(bulider.Services);
 
 var app = bulider.Build();
+configuration.Configure(app);
 
-app.UseCors(builder => builder
-     .AllowAnyOrigin()
-     .AllowAnyMethod()
-     .AllowAnyHeader()
-);
-
-
-var serviceProvider = bulider.Services.BuildServiceProvider();
-
-ITaskItemsDatabase database = serviceProvider.GetService<ITaskItemsDatabase>();
-
-app.MapGet("/api/tasks", async () => await database.GetTaskItems());
-app.MapPost("/api/tasks", async (string title, string color) => await database.AddTaskItemAsync(title, color));
-app.MapPut("/api/tasks/{id}", async (TaskItemDTO taskItemDTO) => await database.UpdateTaskItemAsync(taskItemDTO));
-app.MapPut("/api/tasks", async (List<TaskItemDTO> taskItemDTOs) => await database.UpdateTaskItemsAsync(taskItemDTOs));
-app.MapDelete("/api/tasks/{id}", async (string id) => await database.DeleteTaskItemAsync(id));
-app.MapDelete("/api/tasks", async () => await database.DeleteAllUserTaskItemsAsync());
+configuration.DefineEndpoints(app);
 
 app.Run();
 
