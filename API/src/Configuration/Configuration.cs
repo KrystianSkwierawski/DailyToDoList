@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace DailyToDoListAPI.Configuration
 {
-    public class Configuration : IConfiguration
+    public static class Configuration
     {
-        public void DefineEndpoints(WebApplication app)
+        public static void DefineEndpoints(this WebApplication app)
         {
             ITaskItemsDatabase database = app.Services.GetService<ITaskItemsDatabase>();
 
@@ -62,7 +62,7 @@ namespace DailyToDoListAPI.Configuration
             });
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
             services.AddSingleton<ICurrentTokenService, CurrentTokenService>();
             services.AddSingleton<ITaskItemsDatabase, TaskItemsDatabase>();
@@ -79,9 +79,11 @@ namespace DailyToDoListAPI.Configuration
                         .AllowAnyHeader();
                     });
             });
+
+            return services;
         }
 
-        public void Configure(WebApplication app)
+        public static void Configure(this WebApplication app)
         {
             app.UseCors(builder => builder
                  .AllowAnyOrigin()
