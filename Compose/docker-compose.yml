@@ -18,7 +18,7 @@ services:
   clientapp:
     image: ${DOCKER_REGISTRY-}clientapp
     build:
-      context: ../ClientApp
+      context: ../ClientWebApp
       dockerfile: Dockerfile
     ports:
         - '4200:4200'
