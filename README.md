@@ -61,6 +61,7 @@ During the project API, it has expanded a little, but it is still quite small.
  * Visual Studio
  * Git
  * Postman
+ * Android Studio
 
 ## Docker Configuration
 
