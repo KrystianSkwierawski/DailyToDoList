@@ -3,7 +3,8 @@
     <table mat-table
            [dataSource]="tasks"
            cdkDropList
-           (touchmove)="onTouchMove($event)"
+           (touchmove)="onTableTouchMove($event)"
+         
            [cdkDropListData]="tasks"
            (cdkDropListDropped)="updateOrderIndex($event)" class="example-list"> 
 
@@ -78,7 +79,7 @@
       </ng-container>
 
       <tr class="example-box" mat-row *matRowDef="let row; columns: columnsToDisplay"
-          cdkDrag [cdkDragData]="row">
+          cdkDrag [cdkDragStartDelay]="500" [cdkDragData]="row">
       </tr>
 
     </table>
