@@ -13,7 +13,7 @@ import { AppState } from './store/app.reducer';
 })
 export class AppInterceptor implements HttpInterceptor, OnDestroy {
 
-  token: string | undefined;
+  token: string | undefined | null;
   storeSub: Subscription;
 
   constructor(private store: Store<AppState>, private logger: NGXLogger) { }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.reducer';
-import { SetToken } from '../store/authentication.actions';
+import { SetToken, SetTokenInLocalStorage } from '../store/authentication.actions';
 
 @Component({
   selector: 'app-authentication-form',
@@ -22,6 +22,9 @@ export class AuthenticationFormComponent implements OnInit {
   }
 
   submit(token: string, rememberMe: boolean) {
+    if (rememberMe)
+      this.store.dispatch(new SetTokenInLocalStorage(token));
+
     this.store.dispatch(new SetToken(token));
   }
 }

@@ -8,6 +8,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { AuthenticationEffects } from './authentication/store/authentication.effects';
 import { CoreModule } from './core.module';
 import { SharedModule } from './shared/shared.module';
 import { appReducer } from './store/app.reducer';
@@ -35,7 +36,7 @@ import { TaskItemsModule } from './task-items/task-items.module';
       }
     ),
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([TaskEffects])
+    EffectsModule.forRoot([TaskEffects, AuthenticationEffects])
   ],
   bootstrap: [AppComponent]
 })

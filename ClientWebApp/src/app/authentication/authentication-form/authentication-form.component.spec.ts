@@ -29,7 +29,7 @@ describe('AuthenticationFormComponent', () => {
   });
 
   it('[submit] should set token', () => {
-    let resultToken: string | undefined;
+    let resultToken: string | null | undefined;
 
     store.select('authentication').subscribe(authenticationState => {
       resultToken = authenticationState.token;
@@ -40,7 +40,7 @@ describe('AuthenticationFormComponent', () => {
     const app = fixture.componentInstance;
 
     const expectedToken = "123";
-    app.submit(expectedToken);
+    app.submit(expectedToken, false);
 
     expect(resultToken).toBe(expectedToken);
   });

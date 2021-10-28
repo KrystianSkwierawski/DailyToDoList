@@ -2,12 +2,12 @@ import { AuthenticationActions, SET_TOKEN } from "./authentication.actions";
 
 
 export interface State {
-  token: string | undefined;
+  token: string | null;
 };
 
 const initialState: State = {
-  token: undefined
-}
+  token: localStorage.getItem('token')
+};
 
 export function authenticationReducer(state: State = initialState, action: AuthenticationActions) {
   switch (action.type) {
