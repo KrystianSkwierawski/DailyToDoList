@@ -3,8 +3,7 @@
     <table mat-table
            [dataSource]="tasks"
            cdkDropList
-           (touchmove)="onTableTouchMove($event)"
-         
+           (touchmove)="onTableTouchMove($event)"         
            [cdkDropListData]="tasks"
            (cdkDropListDropped)="updateOrderIndex($event)" class="example-list"> 
 

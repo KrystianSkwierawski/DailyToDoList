@@ -51,7 +51,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.tasksTable?.renderRows();
   }
 
-  onTouchMove(e: Event) {
+  onTableTouchMove(e: Event) {
     if (e.cancelable) {
       e.preventDefault();
     }
