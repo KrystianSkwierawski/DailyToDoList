@@ -21,7 +21,7 @@ export class AuthenticationFormComponent implements OnInit {
     });
   }
 
-  submit(token: string) {
+  submit(token: string, rememberMe: boolean) {
     this.store.dispatch(new SetToken(token));
   }
 }
