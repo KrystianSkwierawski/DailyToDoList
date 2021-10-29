@@ -1,0 +1,87 @@
+<app-generic-list [list]="tasks" [initializedData]="initializedData">
+  <ng-container content>
+    <table mat-table
+           [dataSource]="tasks"
+           cdkDropList
+           (touchmove)="onTableTouchMove($event)"         
+           [cdkDropListData]="tasks"
+           (cdkDropListDropped)="updateOrderIndex($event)" class="example-list"> 
+
+      <ng-container matColumnDef="tasks">
+
+        <td mat-cell *matCellDef="let task; let index = index">
+
+          <div class="task" (mouseenter)="setHoveredTaskIndex(index)" (mouseleave)="setHoveredTaskIndex()">
+            <app-edit-task-form [task]="task" *ngIf="task.editing"></app-edit-task-form>
+
+            <div class="task-checkbox" *ngIf="!task.editing">
+              <button [ngStyle]="{'opacity': (task.subtaskItems.length > 0) ? '1' : '0'}"
+                      (click)="onToggleExpandTask(task)" mat-icon-button arial-label="toggle expand task" class="toggle-expand-task-button">
+                <mat-icon [class.arrow-up]="task.expanded" aria-label="toggle expand icon">
+                  arrow_drop_down
+                </mat-icon>
+              </button>
+
+              <span class="mat-checkbox-span">
+                <mat-checkbox style="--checkbox-bc: {{task.color}}"
+                              [indeterminate]="someComplete(task)" (change)="completeTask(task)">
+                  {{task.title | shorten}}
+                </mat-checkbox>
+              </span>
+            </div>
+
+
+            <div *ngIf="!task.editing" class="action-buttons" [class.active]="hoveredTaskIndex === index">
+              <button (click)="addSubtask(task)" mat-icon-button arial-label="Add subtask" class="add-subtask-button">
+                <mat-icon aria-label="Plus icon">
+                  add
+                </mat-icon>
+              </button>
+
+
+              <button (click)="toggleEditingTask(task)" mat-icon-button arial-label="Toggle editing task" class="toggle-editing-task-button">
+                <mat-icon aria-label="Edit icon">
+                  edit
+                </mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="subtaskItems" [class.subtaskItems_expanded]="task.expanded">
+            <ul>
+              <li *ngFor="let subtask of task.subtaskItems; let index = index">
+
+                <app-edit-task-form [task]="task" [subtaskEditingData]="{subtask, index}" *ngIf="subtask.editing"></app-edit-task-form>
+
+                <div *ngIf="!subtask.editing" class="subtask" (mouseenter)="setHoveredSubtaskIndex(index)" (mouseleave)="setHoveredSubtaskIndex()">
+                  <span class="mat-checkbox-span">
+                    <mat-checkbox [class.strikethrough]="subtask.completed" style="--checkbox-bc: {{subtask.color}}" class="sub-task-checkbox" [checked]="subtask.completed"
+                                  (change)="toggleCompleteSubtask(task, subtask, index)">
+                      {{subtask.title | shorten}}
+                    </mat-checkbox>
+                  </span>
+
+                  <div *ngIf="!subtask.completed && !subtask.editing" class="action-buttons" [class.active]="hoveredSubtaskIndex === index">
+                    <button (click)="toggleEditingSubtask(task, subtask, index)" mat-icon-button arial-label="Toggle editing subtask" class="toggle-editing-task-button">
+                      <mat-icon aria-label="Edit icon">
+                        edit
+                      </mat-icon>
+                    </button>
+                  </div>
+                </div>
+
+              </li>
+            </ul>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr class="example-box" mat-row *matRowDef="let row; columns: columnsToDisplay"
+          cdkDrag [cdkDragStartDelay]="500" [cdkDragData]="row">
+      </tr>
+
+    </table>
+
+  </ng-container>
+</app-generic-list>

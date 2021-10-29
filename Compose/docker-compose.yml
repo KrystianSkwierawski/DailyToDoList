@@ -4,7 +4,7 @@ services:
   api:
     image: ${DOCKER_REGISTRY-}dailytodolistapi
     build:
-      context: ../API/src
+      context: ../API/.NET 6.0/src
       dockerfile: Dockerfile 
     environment:
       - "ASPNETCORE_Kestrel__Certificates__Default__Password=Your_password123"
@@ -18,7 +18,7 @@ services:
   clientapp:
     image: ${DOCKER_REGISTRY-}clientapp
     build:
-      context: ../ClientWebApp
+      context: ../ClientApp
       dockerfile: Dockerfile
     ports:
         - '4200:4200'
