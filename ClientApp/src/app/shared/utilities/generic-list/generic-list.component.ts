@@ -13,8 +13,7 @@ export class GenericListComponent {
 
   constructor() { }
 
-
-  onPanUp(event: any) {
+  onPan(event: any) {
     if (this.isDraging)
       return;
 
@@ -22,17 +21,13 @@ export class GenericListComponent {
     if (!tasksListEl)
       return;
 
-    tasksListEl.scrollTop += event.distance;
-  }
 
-  onPanDown(event: any) {
-    if (this.isDraging)
-      return;
+    const decreasedSwipeDistance: number = (event.distance * 0.065);
 
-    const tasksListEl: HTMLElement | null = document.querySelector('.app-tasks-list');
-    if (!tasksListEl)
-      return;
+    if (event.direction === Hammer.DIRECTION_UP)
+      tasksListEl.scrollTop += decreasedSwipeDistance;
 
-    tasksListEl.scrollTop -= event.distance;
+    if (event.direction === Hammer.DIRECTION_DOWN)
+      tasksListEl.scrollTop -= decreasedSwipeDistance;
   }
 }
