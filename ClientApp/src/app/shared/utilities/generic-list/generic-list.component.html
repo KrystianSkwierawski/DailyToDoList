@@ -12,7 +12,9 @@
 </div>
 
 <ng-container *ngIf="(list && list.length > 0) && initializedData">
-  <div class="content">
+  <div (panup)="onPanUp($event)"
+       (pandown)="onPanDown($event)"
+    class="content">
     <ng-content select="[content]"></ng-content>
   </div>
 </ng-container>

@@ -1,5 +1,5 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -19,6 +19,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   columnsToDisplay: string[] = ['tasks'];
   @ViewChild(MatTable) tasksTable: MatTable<any>;
 
+  isDraging: boolean = false;
 
   storeSub: Subscription;
   hoveredTaskIndex: number | null;
@@ -49,6 +50,8 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UpdateTaskItemsRemotely(updatedTaskItems));
 
     this.tasksTable?.renderRows();
+
+    this.isDraging = false;
   }
 
   onTableTouchMove(e: Event) {
@@ -152,6 +155,12 @@ export class TasksListComponent implements OnInit, OnDestroy {
     }
 
     this.store.dispatch(new UpdateTaskItemLocally(updatedTask));
+  }
+
+  onDragStarted() {
+    this.isDraging = true;
+
+    //2. vibrate phone
   }
 
   ngOnDestroy(): void {
