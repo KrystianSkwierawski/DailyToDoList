@@ -25,6 +25,7 @@
     "@capacitor/android": "^3.2.5",
     "@capacitor/cli": "^3.2.5",
     "@capacitor/core": "^3.2.5",
+    "@capacitor/haptics": "^1.1.2",
     "@iplab/ngx-color-picker": "^2.1.1",
     "@ngrx/effects": "^12.4.0",
     "@ngrx/store": "^12.4.0",

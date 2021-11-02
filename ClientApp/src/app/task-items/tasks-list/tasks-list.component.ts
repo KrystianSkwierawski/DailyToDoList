@@ -1,6 +1,7 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
+import { Haptics } from '@capacitor/haptics';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from '../../store/app.reducer';
@@ -160,7 +161,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   onDragStarted() {
     this.isDraging = true;
 
-    //2. vibrate phone
+    Haptics.vibrate();
   }
 
   ngOnDestroy(): void {
