@@ -6,9 +6,13 @@
 
     <app-tasks-list class="app-tasks-list"></app-tasks-list>
 
-    <div class="tasks-list__bottom">
+    <div class="tasks-list__middle">
       <p>You have {{ pendingTasksNumber }} pendinng tasks</p>
       <button (click)="clearAllTaskItems()" mat-raised-button>Clear All</button>
+    </div>
+
+    <div class="tasks-list__bottom">
+      <button (click)="logout()" class="logout-button" mat-button><mat-icon>logout</mat-icon></button>
     </div>
   </div>
 </ng-container>

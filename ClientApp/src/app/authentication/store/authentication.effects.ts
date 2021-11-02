@@ -10,7 +10,18 @@ export class AuthenticationEffects {
   setTokenInLocalStorage$ = this.actions$.pipe(
     ofType(SET_TOKEN_IN_LOCAL_STORAGE),
     tap((action: SetTokenInLocalStorage) => {
-      localStorage.setItem('token', action.payload);
+      if (action.payload) {
+        localStorage.setItem('token', action.payload);
+
+        return;
+      }
+
+      if (!action.payload) {
+        localStorage.removeItem('token');
+        window.location.reload();
+
+        return;
+      }
     })
   );
 

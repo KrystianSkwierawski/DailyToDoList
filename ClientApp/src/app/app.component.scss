@@ -47,10 +47,10 @@ app-tasks-list {
   }
 }
 
-.tasks-list__bottom {
+.tasks-list__middle {
   height: auto;
-  margin-bottom: 1rem;
   display: flex;
+  margin-bottom: .2rem;
   justify-content: space-between;
 
   & p {
@@ -63,4 +63,17 @@ app-tasks-list {
     color: #1F1F1F;
     background-color: #00C090;
   }
+}
+
+.tasks-list__bottom {
+  display: flex;
+}
+
+.logout-button {
+  margin-bottom: 1rem;
+  padding: 0;
+  transform: rotate(180deg) scale(1.5);
+  min-height: auto;
+  min-width: auto;
+  color: #4B4B4B;
 }
