@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { SetToken, SetTokenInLocalStorage } from './authentication/store/authentication.actions';
 import { AppState } from './store/app.reducer';
 import { ClearAllTasksItemsRemotely } from './task-items/store/task.actions';
 
@@ -33,6 +34,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   clearAllTaskItems() {
     this.store.dispatch(new ClearAllTasksItemsRemotely());
+  }
+
+  logout() {
+    this.store.dispatch(new SetTokenInLocalStorage(null));
+    this.store.dispatch(new SetToken(null));
   }
 
   ngOnDestroy(): void {

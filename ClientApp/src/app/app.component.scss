@@ -22,6 +22,7 @@
 
   @include respond-to(medium) {
     width: 40%;
+    @include tucked-corners;
   }
 
   @include respond-to(large) {
@@ -46,10 +47,10 @@ app-tasks-list {
   }
 }
 
-.tasks-list__bottom {
+.tasks-list__middle {
   height: auto;
-  margin-bottom: 1rem;
   display: flex;
+  margin-bottom: .2rem;
   justify-content: space-between;
 
   & p {
@@ -62,4 +63,20 @@ app-tasks-list {
     color: #1F1F1F;
     background-color: #00C090;
   }
+}
+
+.tasks-list__bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.logout-button {
+  transform: rotate(180deg);
+  color: #4B4B4B;
+  margin-bottom: 1rem;
+}
+
+.linkedin-link, .github-link {
+  fill: #4B4B4B;
+  margin-bottom: 1rem;
 }

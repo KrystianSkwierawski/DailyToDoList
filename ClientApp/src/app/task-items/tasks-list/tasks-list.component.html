@@ -1,4 +1,4 @@
-<app-generic-list [list]="tasks" [initializedData]="initializedData">
+<app-generic-list [isDraging]="isDraging" [list]="tasks" [initializedData]="initializedData">
   <ng-container content>
     <table mat-table
            [dataSource]="tasks"
@@ -78,7 +78,7 @@
       </ng-container>
 
       <tr class="example-box" mat-row *matRowDef="let row; columns: columnsToDisplay"
-          cdkDrag [cdkDragStartDelay]="500" [cdkDragData]="row">
+          cdkDrag [cdkDragStartDelay]="500" [cdkDragData]="row" (cdkDragStarted)="onDragStarted()">
       </tr>
 
     </table>
