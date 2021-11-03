@@ -26,7 +26,7 @@ During the project API, it has expanded a little, but it is still quite small.
 
 - I tested all the components etc on Angular using karma. 
 
-- I used NgRx to manage the application state. 
+- I used <a href="https://ngrx.io/">NgRx</a> to manage the application state. 
 
 - I used Docker Desktop Linux machine for application containerization, I connected API and client web application via docker-compose.
 
@@ -82,7 +82,7 @@ During the project API, it has expanded a little, but it is still quite small.
 3. The ‘locate’ button should open File Explorer with the debug folder open that contains a file called “app-debug.apk”.
 
 
-## Desktop Application
+## Windows Desktop Application
 1. Navigate to ```ClientApp```
 2. ```npm install```
 
