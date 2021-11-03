@@ -66,14 +66,22 @@ app-tasks-list {
 }
 
 .tasks-list__bottom {
+  width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .logout-button {
-  transform: rotate(180deg);
-  color: #4B4B4B;
+  min-height: auto;
+  min-width: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
   margin-bottom: 1rem;
+  transform: rotate(180deg);
+  color: #E8E8E8;
 }
 
 .linkedin-link, .github-link {
