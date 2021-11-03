@@ -10,6 +10,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 1. Setup <a href="https://developer.android.com/studio/install">Android Studio SDK.</a>
 2. After the run ```npx cap open android```, Android Studio will open automatically.
 3. Run the app using your phone with <a href="https://www.maztars.com/usb-debugging-is-it-safe/">USB debugging</a> or open the Android Virtual Device Manager. Create a new virtual device (hardware and Android version as you like). Start the device. Once the virtual device has booted, you can start the debug APK on your virtual device.
+<!--- dodaj tutaj przykładowe zdjęcie --->
 
 ## Code scaffolding
 
