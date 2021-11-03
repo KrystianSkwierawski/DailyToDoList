@@ -62,6 +62,12 @@ During the project API, it has expanded a little, but it is still quite small.
  * Git
  * Postman
 
+## Debuging on android devices
+1. Setup <a href="https://developer.android.com/studio/install">Android Studio SDK.</a>
+2. After the run ```npx cap open android```, Android Studio will open automatically.
+3. Run the app using your phone with <a href="https://www.maztars.com/usb-debugging-is-it-safe/">USB debugging</a> or open the Android Virtual Device Manager. Create a new virtual device (hardware and Android version as you like). Start the device. Once the virtual device has booted, you can start the debug APK on your virtual device.
+<!--- dodaj tutaj przykładowe zdjęcie --->
+
 ## Docker Configuration
 
 In order to get Docker working, you will need to add a temporary SSL cert and mount a volume to hold that cert.
