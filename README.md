@@ -88,11 +88,11 @@ During the project API, it has expanded a little, but it is still quite small.
 2. ```npm install```
 
 ### Debug 
-1. ```npm run:electron```
+1. ```npm run start:electron```
 
 ### Build
 1. ```npm install electron-packager -g```
-2. After the run ```npm electron-package```, will create a ```ClientApp/client-app-win32-x64``` folder.
+2. After the run ```npm run electron-package```, will create a ```ClientApp/client-app-win32-x64``` folder.
 
 
 ## Docker Configuration
