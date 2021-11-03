@@ -8,6 +8,7 @@
     "start:dev": "echo 'Starting (Dev)...' && ng serve --host 0.0.0.0 --disable-host-check",
     "start:electron": "ng build --prod --base-href ./ && electron .",
     "electron-package": "ng build --prod --base-href ./ && electron-packager . --no-prune --ignore=/node_modules --ignore=/e2e --ignore=/src --overwrite",
+    "deploy": "ng build --prod --base-href /DailyToDoList/ && npx angular-cli-ghpages — dir=dist/ClientApp",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
