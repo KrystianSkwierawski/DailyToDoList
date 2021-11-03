@@ -20,7 +20,7 @@ app.Run();
 ```
 During the project API, it has expanded a little, but it is still quite small.
 
-- This time API and clientapp are separate applications, thanks to this, the API is universal and can be used, for example, for mobile or desktop applications.
+- This time API and ClientApp are separate applications. The API is working with web, android and desktop applications.
 
 - I used the non-relational cloud version of the MongoDB database. 
 
@@ -28,7 +28,7 @@ During the project API, it has expanded a little, but it is still quite small.
 
 - I used NgRx to manage the application state. 
 
-- I used Docker Desktop Linux machine for application containerization, I connected API and client application via docker-compose.
+- I used Docker Desktop Linux machine for application containerization, I connected API and client web application via docker-compose.
 
 - The API architecture is broken down into functionalities, not types, this time.
 
