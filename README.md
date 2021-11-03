@@ -62,11 +62,37 @@ During the project API, it has expanded a little, but it is still quite small.
  * Git
  * Postman
 
-## Debuging on android devices
+
+## Android Application
 1. Setup <a href="https://developer.android.com/studio/install">Android Studio SDK.</a>
-2. After the run ```npx cap open android```, Android Studio will open automatically.
-3. Run the app using your phone with <a href="https://www.maztars.com/usb-debugging-is-it-safe/">USB debugging</a> or open the Android Virtual Device Manager. Create a new virtual device (hardware and Android version as you like). Start the device. Once the virtual device has booted, you can start the debug APK on your virtual device.
+2. Navigate to ```ClientApp```
+3. ```npm install```
+4. ```ng build --prod```
+5. ```npx cap add android```
+6. ```npx cap copy android```
+7. After the run ```npx cap open android```, Android Studio will open automatically.
+
+### Debug
+1. Run the app using your phone with <a href="https://www.maztars.com/usb-debugging-is-it-safe/">USB debugging</a> or open the Android Virtual Device Manager. Create a new virtual device (hardware and Android version as you like). Start the device. Once the virtual device has booted, you can start the debug APK on your virtual device.
 <!--- dodaj tutaj przykładowe zdjęcie --->
+
+### Build
+1. Go to ```Build``` > ```Build Bundle(s) / APK (s)``` > ```Build APK(s)```.
+2. Android Studio will start building the APK for you. Once done, a pop-up on the bottom right will notify you of its completion. Click the ‘locate’ button in this dialog.
+3. The ‘locate’ button should open File Explorer with the debug folder open that contains a file called “app-debug.apk”.
+
+
+## Desktop Application
+1. Navigate to ```ClientApp```
+2. ```npm install```
+
+### Debug 
+1. ```npm run:electron```
+
+### Build
+1. ```npm install electron-packager -g```
+2. After the run ```npm electron-package```, will create a ```ClientApp/client-app-win32-x64``` folder.
+
 
 ## Docker Configuration
 
@@ -96,6 +122,7 @@ ClientApp: http://localhost:4200/ is working with API https://localhost:44381/
 
 To disable Docker in Visual Studio, right-click on the **docker-compose** file in the **Solution Explorer** and select **Unload Project**.
  
+
 ## Status
 Project is in progress.
 
