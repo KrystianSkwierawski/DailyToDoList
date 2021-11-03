@@ -18,22 +18,16 @@
   @include respond-to(small) {
     height: 80%;
     width: 60%;
+
+    @include tucked-corners;
   }
 
   @include respond-to(medium) {
     width: 40%;
-    @include tucked-corners;
   }
 
   @include respond-to(large) {
     width: 30%;
-  }
-
-  & h1 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: #E8E8E8;
   }
 }
 
