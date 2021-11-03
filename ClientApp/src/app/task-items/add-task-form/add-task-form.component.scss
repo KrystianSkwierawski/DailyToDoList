@@ -1,8 +1,15 @@
+@import "../../../scss/shared.scss";
+
 form {
   width: 100%;
   height: 50px;
   display: flex;
+  margin-top: 1rem;
   margin-bottom: 2rem;
+
+  @include respond-to(small) {
+    margin-top: 3rem;
+  }
 
   & mat-form-field {
     flex-grow: 1;
