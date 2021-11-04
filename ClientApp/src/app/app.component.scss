@@ -17,16 +17,20 @@
 
   @include respond-to(small) {
     height: 80%;
-    width: 60%;
+    width: 75%;
 
     @include tucked-corners;
   }
 
   @include respond-to(medium) {
-    width: 40%;
+    width: 60%;
   }
 
   @include respond-to(large) {
+    width: 40%;
+  }
+
+  @include respond-to(extra-large) {
     width: 30%;
   }
 }
