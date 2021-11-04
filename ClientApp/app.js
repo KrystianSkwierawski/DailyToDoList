@@ -6,6 +6,8 @@ function createWindow() {
   win = new BrowserWindow({
     width: 575,
     height: 800,
+    minWidth: 330,
+    minHeight: 460
     autoHideMenuBar: true,
     //icon: `file://${__dirname}/dist/assets/logo.png`
   })
