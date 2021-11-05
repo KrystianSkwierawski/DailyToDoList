@@ -102,6 +102,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
     const updatedTask: TaskItem = {
       ...task,
+      expanded: true,
       subtaskItems: updatedSubtaskItems
     }
 
