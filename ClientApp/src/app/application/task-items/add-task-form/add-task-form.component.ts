@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app.reducer';
 import { AddTaskItemRemotely } from '../store/task.actions';
@@ -14,6 +14,7 @@ import { AddTaskItemRemotely } from '../store/task.actions';
 export class AddTaskFormComponent implements OnInit {
 
   form: FormGroup
+  @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
   color: string;
 
   constructor(private store: Store<AppState>) { }
@@ -26,6 +27,8 @@ export class AddTaskFormComponent implements OnInit {
 
   submit(title: string) {
     this.store.dispatch(new AddTaskItemRemotely({ title, color: this.color }));
+    this.formDirective.resetForm();
+
   }
 
   onColorChange(color: string) {
