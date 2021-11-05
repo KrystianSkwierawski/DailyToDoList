@@ -94,7 +94,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
       title: `Task ${task.subtaskItems.length + 1}`,
       color: task.color,
       completed: false,
-      editing: false
+      editing: true
     };
 
     const updatedSubtaskItems: SubtaskItem[] = [...task.subtaskItems];

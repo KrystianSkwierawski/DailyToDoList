@@ -28,7 +28,6 @@ export class AddTaskFormComponent implements OnInit {
   submit(title: string) {
     this.store.dispatch(new AddTaskItemRemotely({ title, color: this.color }));
     this.formDirective.resetForm();
-
   }
 
   onColorChange(color: string) {
