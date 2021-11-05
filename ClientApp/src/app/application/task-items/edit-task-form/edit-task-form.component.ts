@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app.reducer';
@@ -20,7 +20,7 @@ export class EditTaskFormComponent implements OnInit {
   color: string;
 
   constructor(private store: Store<AppState>) { }
-
+   
   ngOnInit(): void {
     if (this.subtaskEditingData) {
       this.form = new FormGroup({

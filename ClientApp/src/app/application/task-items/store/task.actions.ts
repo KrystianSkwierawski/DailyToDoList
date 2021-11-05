@@ -12,6 +12,8 @@ export const ClEAR_ALL_TASK_ITEMS_LOCALLY = '[Task Items] Clear All Task Items L
 export const ClEAR_ALL_TASK_ITEMS_REMOTELY = '[Task Items] Clear All Task Items Remotely';
 export const DELETE_TASK_ITEM_LOCALLY = '[Task Items] Delete Task Item Locally';
 export const DELETE_TASK_ITEM_REMOTELY = '[Task Items] Delete Task Item Remotely';
+export const STOP_EDITING_ALL_ITEMS = '[Task Items] Stop Editing All Items';
+
 
 
 export class GetTaskItems implements Action {
@@ -75,10 +77,17 @@ export class DeleteTaskItemRemotely implements Action {
   constructor(public payload: string) { }
 }
 
+export class StopEditingAllItems implements Action {
+  readonly type = STOP_EDITING_ALL_ITEMS;
+
+  constructor() { }
+}
+
 export type TaskItemsActions =
   AddTaskItemLocally |
   ClearAllTasksItemsLocally |
   DeleteTaskItemLocally |
   UpdateTaskItemLocally |
   UpdateTaskItemsLocally |
-  DeleteTaskItemRemotely;
+  DeleteTaskItemRemotely |
+  StopEditingAllItems;
