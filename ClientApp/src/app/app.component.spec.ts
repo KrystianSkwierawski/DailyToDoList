@@ -1,13 +1,9 @@
-import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { SetToken } from './authentication/store/authentication.actions';
-import { TaskItemsService } from './shared/services/task-items.service';
 import { appReducer, AppState } from './store/app.reducer';
-import { TaskEffects } from './application/task-items/store/task.effects';
 
 
 describe('AppComponent', () => {
@@ -58,15 +54,14 @@ describe('AppComponent', () => {
     expect(app.authenticated).toBeFalse();
   });
 
-  it('should display tasks list if authenticated', () => {
+  it('should application if authenticated', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app: AppComponent = fixture.debugElement.componentInstance;
     store.dispatch(new SetToken("123"));
     fixture.detectChanges();
 
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.querySelector('.tasks-list')).toBeTruthy();
+    expect(compiled.querySelector('app-application')).toBeTruthy();
   });
 
   it('should display authentication form if not authenticated', () => {
@@ -77,6 +72,6 @@ describe('AppComponent', () => {
 
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.querySelector('.authentication')).toBeTruthy();
+    expect(compiled.querySelector('app-authentication-form')).toBeTruthy();
   });
 })

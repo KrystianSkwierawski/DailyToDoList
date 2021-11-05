@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import 'hammerjs';
+
 
 @Component({
   selector: 'app-generic-list',
