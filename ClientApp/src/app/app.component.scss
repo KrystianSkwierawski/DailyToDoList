@@ -45,7 +45,7 @@ header {
     width: 80%;
   }
 
-  @include respond-to(small) {
+  @include respond-to(large) {
     width: 60%;
   }
 
