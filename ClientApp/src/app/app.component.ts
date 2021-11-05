@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { SetToken, SetTokenInLocalStorage } from './authentication/store/authentication.actions';
 import { AppState } from './store/app.reducer';
 import { ClearAllTasksItemsRemotely } from './task-items/store/task.actions';
-
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   taskItemsStoreSub: Subscription;
   authenticationStoreSub: Subscription;
+  webApp: boolean = environment.webApp;
 
   pendingTasksNumber: number;
   animationFinished: boolean;

@@ -19,7 +19,7 @@ import { TaskItemsModule } from './task-items/task-items.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     CoreModule,
