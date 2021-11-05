@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../store/app.reducer';
+import { AppState } from '../../../store/app.reducer';
 import { UpdateTaskItemRemotely } from '../store/task.actions';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';

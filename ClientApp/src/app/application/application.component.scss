@@ -1,0 +1,89 @@
+@import "../../scss/shared.scss";
+
+
+.tasks-list {
+  height: 100%;
+  width: 95%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-content: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1F1F1F;
+
+  @include respond-to(small) {
+    height: 80%;
+    width: 75%;
+
+    @include tucked-corners;
+  }
+
+  @include respond-to(medium) {
+    width: 60%;
+  }
+
+  @include respond-to(large) {
+    width: 40%;
+  }
+
+  @include respond-to(extra-large) {
+    width: 30%;
+  }
+}
+
+app-tasks-list {
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.tasks-list__middle {
+  height: auto;
+  display: flex;
+  margin-bottom: .2rem;
+  justify-content: space-between;
+
+  & p {
+    margin-bottom: 0;
+    align-self: center;
+    color: #E8E8E8;
+  }
+
+  & button {
+    color: #1F1F1F;
+    background-color: #00C090;
+  }
+}
+
+.tasks-list__bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.logout-button {
+  min-height: auto;
+  min-width: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
+  margin-bottom: 1rem;
+  transform: rotate(180deg);
+  color: #E8E8E8;
+}
+
+.linkedin-link, .github-link {
+  fill: #4B4B4B;
+  margin-bottom: 1rem;
+}

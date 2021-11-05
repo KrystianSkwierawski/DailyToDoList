@@ -1,9 +1,9 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { AppState } from '../../store/app.reducer';
+import { AppState } from '../../../store/app.reducer';
 import { DeleteTaskItemRemotely, GetTaskItems, UpdateTaskItemLocally, UpdateTaskItemRemotely, UpdateTaskItemsLocally, UpdateTaskItemsRemotely } from '../store/task.actions';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';

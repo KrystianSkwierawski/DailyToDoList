@@ -2,8 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { AddTaskItemRemotely, DeleteTaskItemRemotely, UpdateTaskItemRemotely, UpdateTaskItemsRemotely } from '../../task-items/store/task.actions';
-import { TaskItem } from '../../task-items/task-item.model';
+import { AddTaskItemRemotely, DeleteTaskItemRemotely, UpdateTaskItemRemotely, UpdateTaskItemsRemotely } from '../../application/task-items/store/task.actions';
+import { TaskItem } from '../../application/task-items/task-item.model';
 
 
 @Injectable({

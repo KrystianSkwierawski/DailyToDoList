@@ -1,5 +1,5 @@
 import { ActionReducerMap } from "@ngrx/store";
-import * as fromTasks from '../task-items/store/task.reducer';
+import * as fromTasks from '../application/task-items/store/task.reducer';
 import * as fromAuthentication from '../authentication/store/authentication.reducer';
 
 
