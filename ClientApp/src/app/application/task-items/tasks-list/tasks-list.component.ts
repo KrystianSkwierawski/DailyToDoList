@@ -60,8 +60,13 @@ export class TasksListComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleEditingTask(task: TaskItem) {
+  toggleEditingTask(taskId: string) {
     this.store.dispatch(new StopEditingAllItems());
+
+    const task = this.tasks.filter(x => x.id === taskId)[0];
+
+    if (!task)
+      return;
 
     const updatedTaskItem = {
       ...task,
