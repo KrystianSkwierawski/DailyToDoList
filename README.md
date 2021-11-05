@@ -82,7 +82,7 @@ During the project API, it has expanded a little, but it is still quite small.
 3. The ‘locate’ button should open File Explorer with the debug folder open that contains a file called “app-debug.apk”.
 
 
-## Windows Desktop Application
+## Desktop Applications
 1. Navigate to ```ClientApp```
 2. ```npm install```
 
@@ -91,7 +91,7 @@ During the project API, it has expanded a little, but it is still quite small.
 
 ### Build
 1. ```npm install electron-packager -g```
-2. After the run ```npm run electron-package```, will create a ```ClientApp/client-app-win32-x64``` folder.
+2. After the run ```npm run electron-package```, will build your application and create an app consumable based on your operating system.
 
 
 ## Docker Configuration
