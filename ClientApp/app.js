@@ -1,6 +1,12 @@
 const { app, BrowserWindow } = require('electron')
 let win;
 
+const setupEvents = require('./installers/setupEvents')
+if (setupEvents.handleSquirrelEvent()) {
+  // squirrel event handled and app will exit in 1000ms, so don't do anything else
+  return;
+}
+
 function createWindow() {
   win = new BrowserWindow({
     width: 575,
