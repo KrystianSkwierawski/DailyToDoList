@@ -81,6 +81,7 @@ During the project API, it has expanded a little, but it is still quite small.
 2. Android Studio will start building the APK for you. Once done, a pop-up on the bottom right will notify you of its completion. Click the ‘locate’ button in this dialog.
 3. The ‘locate’ button should open File Explorer with the debug folder open that contains a file called “app-debug.apk”.
 
+https://capacitorjs.com/solution/angular
 
 ## Desktop Applications
 1. Navigate to ```ClientApp```
@@ -93,6 +94,8 @@ During the project API, it has expanded a little, but it is still quite small.
 1. ```npm install electron-packager -g```
 2. After the run ```npm run electron-package```, will build your application and create an app consumable based on your operating system.
 
+https://github.com/electron/electron-packager <br>
+https://www.npmjs.com/package/ngx-electron
 
 ## Docker Configuration
 
