@@ -6,6 +6,5 @@
   ],
   "lintianOverrides": [
     "changelog-file-missing-in-native-package"
-  ],
-  "description": "DailyToDoList"
+  ]
 }
