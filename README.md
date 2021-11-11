@@ -103,6 +103,7 @@ During the project API, it has expanded a little, but it is still quite small.
 - https://www.npmjs.com/package/ngx-electron
 - https://www.christianengvall.se/electron-windows-installer/
 - https://www.christianengvall.se/electron-installer-debian-package/
+- https://www.christianengvall.se/dmg-installer-electron-app/
 
 ## Docker Configuration
 
