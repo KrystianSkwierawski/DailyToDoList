@@ -60,6 +60,7 @@ header {
   & div {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   & a {
@@ -68,6 +69,7 @@ header {
     width: 5rem;
     margin-left: 1rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
     padding: 1rem;
   }
 }
