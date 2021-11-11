@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { throwError } from "rxjs";
 import { map, switchMap } from 'rxjs/operators';
-import { TaskItemsService } from "../../shared/services/task-items.service";
+import { TaskItemsService } from "../../../shared/services/task-items.service";
 import { AddTaskItemLocally, AddTaskItemRemotely, ADD_TASK_ITEM_REMOTELY, ClearAllTasksItemsLocally, ClEAR_ALL_TASK_ITEMS_REMOTELY, DeleteTaskItemLocally, DeleteTaskItemRemotely, DELETE_TASK_ITEM_REMOTELY, GET_TASK_ITEMS, UpdateTaskItemLocally, UpdateTaskItemRemotely, UpdateTaskItemsLocally, UpdateTaskItemsRemotely, UPDATE_TASK_ITEMS_REMOTELY, UPDATE_TASK_ITEM_REMOTELY } from "./task.actions";
 
 @Injectable()
@@ -37,7 +37,7 @@ export class TaskEffects {
       return this.taskItemsService.updateTaskItem(action);
     }),
     map(taskItem => {
-      const everySubtaskIsCompleted: boolean = (taskItem.subtaskItems?.length > 0 && taskItem.subtaskItems?.every(t => t.completed));
+      const everySubtaskIsCompleted: boolean = (taskItem.subtaskItems?.length > 0 && taskItem.subtaskItems?.every((t: any) => t.completed));
 
       if (!everySubtaskIsCompleted)
       return new UpdateTaskItemLocally(taskItem);

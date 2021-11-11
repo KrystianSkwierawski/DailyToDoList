@@ -1,5 +1,6 @@
+import { subscribeOn } from "rxjs";
 import { TaskItem } from "../task-item.model";
-import { ADD_TASK_ITEM_LOCALLY, ClEAR_ALL_TASK_ITEMS_LOCALLY, DELETE_TASK_ITEM_LOCALLY, TaskItemsActions, UPDATE_TASK_ITEMS_LOCALLY, UPDATE_TASK_ITEM_LOCALLY } from "./task.actions";
+import { ADD_TASK_ITEM_LOCALLY, ClEAR_ALL_TASK_ITEMS_LOCALLY, DELETE_TASK_ITEM_LOCALLY, STOP_EDITING_ALL_ITEMS, TaskItemsActions, UPDATE_TASK_ITEMS_LOCALLY, UPDATE_TASK_ITEM_LOCALLY } from "./task.actions";
 
 
 export interface State {
@@ -59,6 +60,24 @@ export function toDoReducer(state: State = initialState, action: TaskItemsAction
 
     case DELETE_TASK_ITEM_LOCALLY: {
       const updatedTaskItems = [...state.taskItems].filter(t => t.id !== action.payload)
+
+      return {
+        ...state,
+        taskItems: updatedTaskItems
+      }
+
+      break;
+    }
+
+    case STOP_EDITING_ALL_ITEMS: {
+      const updatedTaskItems = [...state.taskItems].map(task => task = {
+        ...task,
+        editing: false,
+        subtaskItems: [...task.subtaskItems].map(subtask => subtask = {
+          ...subtask,
+          editing: false
+        })
+      });
 
       return {
         ...state,

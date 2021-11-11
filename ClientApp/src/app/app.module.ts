@@ -7,26 +7,26 @@ import { StoreModule } from '@ngrx/store';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { ApplicationModule } from './application/application.module';
+import { TaskEffects } from './application/task-items/store/task.effects';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AuthenticationEffects } from './authentication/store/authentication.effects';
 import { CoreModule } from './core.module';
 import { SharedModule } from './shared/shared.module';
 import { appReducer } from './store/app.reducer';
-import { TaskEffects } from './task-items/store/task.effects';
-import { TaskItemsModule } from './task-items/task-items.module';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     CoreModule,
     BrowserModule,
     SharedModule,
     AuthenticationModule,
-    TaskItemsModule,
+    ApplicationModule,
     HttpClientModule,
     BrowserAnimationsModule,
     LoggerModule.forRoot(

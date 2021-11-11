@@ -1,10 +1,10 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { AppState } from '../../store/app.reducer';
-import { DeleteTaskItemRemotely, GetTaskItems, UpdateTaskItemLocally, UpdateTaskItemRemotely, UpdateTaskItemsLocally, UpdateTaskItemsRemotely } from '../store/task.actions';
+import { AppState } from '../../../store/app.reducer';
+import { DeleteTaskItemRemotely, GetTaskItems, StopEditingAllItems, UpdateTaskItemLocally, UpdateTaskItemRemotely, UpdateTaskItemsLocally, UpdateTaskItemsRemotely } from '../store/task.actions';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
 
@@ -60,7 +60,14 @@ export class TasksListComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleEditingTask(task: TaskItem) {
+  toggleEditingTask(taskId: string) {
+    this.store.dispatch(new StopEditingAllItems());
+
+    const task = this.tasks.filter(x => x.id === taskId)[0];
+
+    if (!task)
+      return;
+
     const updatedTaskItem = {
       ...task,
       editing: !task.editing
@@ -69,13 +76,21 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UpdateTaskItemLocally(updatedTaskItem));
   }
 
-  toggleEditingSubtask(task: TaskItem, subtask: SubtaskItem, index: number) {
+  toggleEditingSubtask(taskId: string, subtask: SubtaskItem, index: number) {
+    this.store.dispatch(new StopEditingAllItems());
+
+    const task = this.tasks.filter(x => x.id === taskId)[0];
+
+    if (!task)
+      return;
+
     const updatedSubtask: SubtaskItem = {
       ...subtask,
       editing: !subtask.editing
     };
 
     const updatedSubtaskItems: SubtaskItem[] = [...task.subtaskItems];
+
     updatedSubtaskItems[index] = updatedSubtask;
 
     const updatedTask: TaskItem = {
@@ -86,7 +101,11 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UpdateTaskItemLocally(updatedTask));
   }
 
-  addSubtask(task: TaskItem) {
+  addSubtask(taskId: string) {
+    this.store.dispatch(new StopEditingAllItems());
+
+    const task = this.tasks.filter(x => x.id === taskId)[0];
+
     if (!task)
       return;
 
@@ -94,14 +113,14 @@ export class TasksListComponent implements OnInit, OnDestroy {
       title: `Task ${task.subtaskItems.length + 1}`,
       color: task.color,
       completed: false,
-      editing: false
+      editing: true
     };
 
-    const updatedSubtaskItems: SubtaskItem[] = [...task.subtaskItems];
-    updatedSubtaskItems.push(subtask);
+    const updatedSubtaskItems: SubtaskItem[] = [...task.subtaskItems, subtask];
 
     const updatedTask: TaskItem = {
       ...task,
+      expanded: true,
       subtaskItems: updatedSubtaskItems
     }
 
@@ -148,6 +167,8 @@ export class TasksListComponent implements OnInit, OnDestroy {
   onToggleExpandTask(task: TaskItem) {
     if (!task)
       return;
+
+    this.store.dispatch(new StopEditingAllItems());
 
     const updatedTask: TaskItem = {
       ...task,

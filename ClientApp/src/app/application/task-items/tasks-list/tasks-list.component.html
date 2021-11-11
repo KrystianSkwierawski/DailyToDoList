@@ -32,14 +32,14 @@
 
 
             <div *ngIf="!task.editing" class="action-buttons" [class.active]="hoveredTaskIndex === index">
-              <button (click)="addSubtask(task)" mat-icon-button arial-label="Add subtask" class="add-subtask-button">
+              <button (click)="addSubtask(task.id)" mat-icon-button arial-label="Add subtask" class="add-subtask-button">
                 <mat-icon aria-label="Plus icon">
                   add
                 </mat-icon>
               </button>
 
 
-              <button (click)="toggleEditingTask(task)" mat-icon-button arial-label="Toggle editing task" class="toggle-editing-task-button">
+              <button (click)="toggleEditingTask(task.id)" mat-icon-button arial-label="Toggle editing task" class="toggle-editing-task-button">
                 <mat-icon aria-label="Edit icon">
                   edit
                 </mat-icon>
@@ -63,7 +63,7 @@
                   </span>
 
                   <div *ngIf="!subtask.completed && !subtask.editing" class="action-buttons" [class.active]="hoveredSubtaskIndex === index">
-                    <button (click)="toggleEditingSubtask(task, subtask, index)" mat-icon-button arial-label="Toggle editing subtask" class="toggle-editing-task-button">
+                    <button (click)="toggleEditingSubtask(task.id, subtask, index)" mat-icon-button arial-label="Toggle editing subtask" class="toggle-editing-task-button">
                       <mat-icon aria-label="Edit icon">
                         edit
                       </mat-icon>

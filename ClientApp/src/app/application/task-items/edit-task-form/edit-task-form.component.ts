@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../store/app.reducer';
+import { AppState } from '../../../store/app.reducer';
 import { UpdateTaskItemRemotely } from '../store/task.actions';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
@@ -11,16 +12,17 @@ import { TaskItem } from '../task-item.model';
   templateUrl: './edit-task-form.component.html',
   styleUrls: ['./edit-task-form.component.scss']
 })
-export class EditTaskFormComponent implements OnInit {
+export class EditTaskFormComponent implements OnInit, AfterViewInit {
 
   @Input() task: TaskItem;
   @Input() subtaskEditingData: { subtask: SubtaskItem, index: number } | undefined;
+  @ViewChild('titleInput') titleInput: ElementRef;
 
   form: FormGroup
   color: string;
 
-  constructor(private store: Store<AppState>) { }
-
+  constructor(private store: Store<AppState>, private cdr: ChangeDetectorRef) { }
+  
   ngOnInit(): void {
     if (this.subtaskEditingData) {
       this.form = new FormGroup({
@@ -36,6 +38,13 @@ export class EditTaskFormComponent implements OnInit {
       });
 
       return;
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (this.subtaskEditingData) {
+      this.titleInput?.nativeElement.focus();
+      this.cdr.detectChanges();
     }
   }
 

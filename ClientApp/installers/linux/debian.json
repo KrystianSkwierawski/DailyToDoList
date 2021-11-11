@@ -1,0 +1,10 @@
+{
+  "dest": "release-builds/linux-installer",
+  "icon": "dist/assets/icon-128x128.png",
+  "categories": [
+    "Utility"
+  ],
+  "lintianOverrides": [
+    "changelog-file-missing-in-native-package"
+  ]
+}
