@@ -20,15 +20,15 @@ app.Run();
 ```
 During the project API, it has expanded a little, but it is still quite small.
 
-- This time API and clientapp are separate applications, thanks to this, the API is universal and can be used, for example, for mobile or desktop applications.
+- This time API and ClientApp are separate applications. The API is working with web, android and desktop applications.
 
 - I used the non-relational cloud version of the MongoDB database. 
 
 - I tested all the components etc on Angular using karma. 
 
-- I used NgRx to manage the application state. 
+- I used <a href="https://ngrx.io/">NgRx</a> to manage the application state. 
 
-- I used Docker Desktop Linux machine for application containerization, I connected API and client application via docker-compose.
+- I used Docker Desktop Linux machine for application containerization, I connected API and client web application via docker-compose.
 
 - The API architecture is broken down into functionalities, not types, this time.
 
@@ -75,25 +75,35 @@ During the project API, it has expanded a little, but it is still quite small.
 
 ### Debug
 1. Run the app using your phone with <a href="https://www.maztars.com/usb-debugging-is-it-safe/">USB debugging</a> or open the Android Virtual Device Manager. Create a new virtual device (hardware and Android version as you like). Start the device. Once the virtual device has booted, you can start the debug APK on your virtual device.
-<!--- dodaj tutaj przykładowe zdjęcie --->
 
 ### Build
 1. Go to ```Build``` > ```Build Bundle(s) / APK (s)``` > ```Build APK(s)```.
 2. Android Studio will start building the APK for you. Once done, a pop-up on the bottom right will notify you of its completion. Click the ‘locate’ button in this dialog.
 3. The ‘locate’ button should open File Explorer with the debug folder open that contains a file called “app-debug.apk”.
 
+### sources
+- https://capacitorjs.com/solution/angular
+- https://developer.android.com/studio/install
+- https://www.maztars.com/usb-debugging-is-it-safe/
+- https://youtu.be/Q0exX8u27i8
 
-## Desktop Application
+## Desktop Applications
 1. Navigate to ```ClientApp```
 2. ```npm install```
 
 ### Debug 
-1. ```npm run:electron```
+1. ```npm run start:electron```
 
 ### Build
 1. ```npm install electron-packager -g```
-2. After the run ```npm electron-package```, will create a ```ClientApp/client-app-win32-x64``` folder.
+2. After the run ```npm run electron-package```, will build your application and create an app consumable based on your operating system.
 
+### sources
+- https://github.com/electron/electron-packager
+- https://www.npmjs.com/package/ngx-electron
+- https://www.christianengvall.se/electron-windows-installer/
+- https://www.christianengvall.se/electron-installer-debian-package/
+- https://www.christianengvall.se/dmg-installer-electron-app/
 
 ## Docker Configuration
 
