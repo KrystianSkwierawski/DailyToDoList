@@ -14,7 +14,7 @@ function createWindow() {
     minWidth: 330,
     minHeight: 460,
     autoHideMenuBar: true,
-    //icon: `file://${__dirname}/dist/assets/logo.png`
+    icon: `file://${__dirname}/dist/assets/icon.ico`
   })
 
   win.loadURL(`file://${__dirname}/dist/index.html`)
