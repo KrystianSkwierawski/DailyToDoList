@@ -20,7 +20,7 @@ app.Run();
 ```
 During the project API, it has expanded a little, but it is still quite small.
 
-- This time API and ClientApp are separate applications. The API is working with web, android and desktop applications.
+- This time API and ClientApp are separate applications. The API is working with Web, Windows, Linux, Mac and Android applications.
 
 - I used the non-relational cloud version of the MongoDB database. 
 
@@ -134,7 +134,15 @@ ClientApp: http://localhost:4200/ is working with API https://localhost:44381/
 
 To disable Docker in Visual Studio, right-click on the **docker-compose** file in the **Solution Explorer** and select **Unload Project**.
  
+## For demo purposes
+- API hosted on https://somee.com/ is using ASP.Net Core 3.1 due to it being the highest supported .NET version. It is not the fastest hosting but it is free and is sufficient for a demo.<br>
+Url: https://dailytodolist.somee.com/api/tasks
 
-## Status
-Project is in progress.
+- Web client application hosted on GitHub Pages.<br>
+Url: https://krystianskwierawski.github.io/DailyToDoList/
+
+- <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases">Here</a> you can download the client app for various devices. If it were not for demo purposes I would add a license to the app and host it on Google Play etc.
+
+### Status
+The project(demo) is almost finished. 
 
