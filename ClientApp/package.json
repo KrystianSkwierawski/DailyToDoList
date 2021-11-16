@@ -1,7 +1,7 @@
 {
   "name": "DailyToDoList",
   "version": "0.0.0",
-  "description": "The application allows you to manage your tasks. It is available for Web,  Android, Linux, Windows, and Mac.",
+  "description": "The application allows you to manage your tasks. It is available for Web, Android, Linux, Windows, and Mac.",
   "main": "app.js",
   "scripts": {
     "build": "ng build",
@@ -58,7 +58,6 @@
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "4.28.2",
     "electron": "^15.3.0",
-    "electron-winstaller": "^5.0.0",
     "eslint": "^7.26.0",
     "jasmine-core": "~3.9.0",
     "karma": "~6.3.4",

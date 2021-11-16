@@ -14,7 +14,7 @@ function getInstallerConfig() {
   const outPath = path.join(rootPath, 'release-builds')
 
   return Promise.resolve({
-    appDirectory: path.join(outPath, 'client-app-win32-x64/'),
+    appDirectory: path.join(outPath, 'DailyToDoList-win32-x64/'),
     authors: 'Krystian Skwierawski',
     noMsi: true,
     outputDirectory: path.join(outPath, 'windows-installer'),
