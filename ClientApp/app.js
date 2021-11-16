@@ -17,7 +17,7 @@ function createWindow() {
     icon: `${__dirname}/dist/assets/icon-128x128.png`
   })
 
-  win.loadURL(`${__dirname}/dist/index.html`)
+  win.loadURL(`file://${__dirname}/dist/index.html`)
 
   // win.webContents.openDevTools()
 
