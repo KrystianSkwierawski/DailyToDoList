@@ -1,5 +1,5 @@
 {
-  "name": "client-app",
+  "name": "DailyToDoList",
   "version": "0.0.0",
   "description": "The application allows you to manage your tasks. It is available for Web,  Android, Linux, Windows, and Mac.",
   "main": "app.js",
