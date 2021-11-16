@@ -1,7 +1,7 @@
 {
   "name": "client-app",
   "version": "0.0.0",
-  "description": "DailyToDoList",
+  "description": "The application allows you to manage your tasks. It is available for Web,  Android, Linux, Windows, and Mac.",
   "main": "app.js",
   "scripts": {
     "build": "ng build",
