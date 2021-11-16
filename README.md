@@ -137,7 +137,7 @@ To disable Docker in Visual Studio, right-click on the **docker-compose** file i
 ## For demo purposes
 - <a href="https://dailytodolist.somee.com/api/tasks">API</a> hosted on https://somee.com/ is using ASP.Net Core 3.1 due to it being the highest supported .NET version. It is not the fastest hosting but it is free and is sufficient for a demo.
 - <a href="https://krystianskwierawski.github.io/DailyToDoList/">Web client application</a> hosted on GitHub Pages.
-- <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases">Here</a> you can download the client app for various devices. If it were not for demo purposes I would add a license to the app and host it on Google Play etc.
+- <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases">Here</a> you can download a client application for various devices. If it were not a demo I would add a license to applications and host it on Google Play etc.
 
 ### Status
 The project(demo) is almost finished. 
