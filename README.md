@@ -135,12 +135,8 @@ ClientApp: http://localhost:4200/ is working with API https://localhost:44381/
 To disable Docker in Visual Studio, right-click on the **docker-compose** file in the **Solution Explorer** and select **Unload Project**.
  
 ## For demo purposes
-- API hosted on https://somee.com/ is using ASP.Net Core 3.1 due to it being the highest supported .NET version. It is not the fastest hosting but it is free and is sufficient for a demo.<br>
-Url: https://dailytodolist.somee.com/api/tasks
-
-- Web client application hosted on GitHub Pages.<br>
-Url: https://krystianskwierawski.github.io/DailyToDoList/
-
+- <a href="https://dailytodolist.somee.com/api/tasks">API</a> hosted on https://somee.com/ is using ASP.Net Core 3.1 due to it being the highest supported .NET version. It is not the fastest hosting but it is free and is sufficient for a demo.
+- <a href="https://krystianskwierawski.github.io/DailyToDoList/">Web client application</a> hosted on GitHub Pages.
 - <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases">Here</a> you can download the client app for various devices. If it were not for demo purposes I would add a license to the app and host it on Google Play etc.
 
 ### Status
