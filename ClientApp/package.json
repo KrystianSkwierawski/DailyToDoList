@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "build": "ng build",
-    "create-installer:darwin": "electron-installer-dmg ./release-builds/client-app-darwin-x64/client-app.app Install_DailyToDoList --out=release-builds/darwin-installer --overwrite --icon=dist/assets/icon.ico",
+    "create-installer:darwin": "electron-installer-dmg ./release-builds/client-app-darwin-x64/DailyToDoList.app Install_DailyToDoList --out=release-builds/darwin-installer --overwrite --icon=dist/assets/icon.icns",
     "create-installer:linux": "electron-installer-debian --src release-builds/client-app-linux-x64/ --arch amd64 --config installers/linux/debian.json",
     "create-installer:win": "node installers/windows/createinstaller.js",
     "deploy:web": "ng build --configuration=web-production --base-href /DailyToDoList/ && npx angular-cli-ghpages — dir=dist/ClientApp",

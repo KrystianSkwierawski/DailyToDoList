@@ -1,6 +1,6 @@
 {
   "dest": "release-builds/linux-installer",
-  "icon": "dist/assets/icon-128x128.png",
+  "icon": "dist/assets/icon.ico",
   "categories": [
     "Utility"
   ],

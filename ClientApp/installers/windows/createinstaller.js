@@ -18,7 +18,7 @@ function getInstallerConfig() {
     authors: 'Krystian Skwierawski',
     noMsi: true,
     outputDirectory: path.join(outPath, 'windows-installer'),
-    exe: 'client-app.exe',
+    exe: 'DailyToDoList.exe',
     setupExe: 'Install_DailyToDoList.exe',
     setupIcon: path.join(rootPath, 'dist', 'assets', 'icon.ico')
   })
