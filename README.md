@@ -1,5 +1,5 @@
 # DailyToDoList
-
+    
 ## Why this project was created?
 The premise was that I needed a simple app where I could focus on learning new technologies and having fun with them.
 
