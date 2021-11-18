@@ -3,7 +3,7 @@
 ## Why this project was created?
 The premise was that I needed a simple app where I could focus on learning new technologies and having fun with them.
 
-## What did I learn and what interesting did I do?
+## What did I learn and, what interesting did I do?
 - I created a <a href="https://youtu.be/9OPyORGBB6Q">Minimal API with .NET 6</a>, at the beginning it contained only a few lines of code and it looked like this.
 ```c#
 var bulider = WebApplication.CreateBuilder();
