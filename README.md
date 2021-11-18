@@ -20,7 +20,7 @@ app.Run();
 ```
 During the project API, it has expanded a little, but it is still quite small.
 
-- This time API and ClientApp are separate applications. The API is working with Web, Windows, Linux, Mac and Android applications.
+- This time an API and a client application are separate. The API is working with Web, Windows, Linux, Mac, and Android applications.
 
 - I used the non-relational cloud version of the MongoDB database. 
 
