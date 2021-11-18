@@ -30,6 +30,8 @@ During the project API, it has expanded a little, but it is still quite small.
 
 - I used Docker Desktop Linux machine for application containerization, I connected API and client web application via docker-compose.
 
+- I added logging for the dev environment. After each use of the API, it logs some information about a request, response, and error if any occurs.
+
 - The API architecture is broken down into functionalities, not types, this time.
 
     - architecture divided into types.
