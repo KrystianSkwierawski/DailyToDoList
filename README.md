@@ -47,6 +47,7 @@ During the project API, it has expanded a little, but it is still quite small.
 ### Back-end
  * C#
  * .NET 6.0
+ * .NET Core 3.1
  * MongoDB
  * NUnit
 
