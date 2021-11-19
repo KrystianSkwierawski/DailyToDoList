@@ -68,50 +68,15 @@ During the project API, it has expanded a little, but it is still quite small.
  * Android Studio
  * VirtualBox
 
+## Gettings Started
+1. Download the project
+2. Install the lastest <a href="https://dotnet.microsoft.com/download/dotnet/6.0">https://dotnet.microsoft.com/download/dotnet/6.0</a>
+3. Install the latest <a href="https://nodejs.org/en/">Node.js LTS</a>
+4. Navigate to ```ClientApp``` and run ```npm install```
+5. Navigate to ```ClientApp``` and run ```ng s -o``` to launch the front end (Angular)
+6. Navigate to ```API/.NET 6.0/src``` and run dotnet run to launch the back end (ASP.NET Core Web API)
 
-## Android Application
-1. Setup <a href="https://developer.android.com/studio/install">Android Studio SDK.</a>
-2. Navigate to ```ClientApp```
-3. ```npm install```
-4. ```ng build --prod```
-5. ```npx cap add android```
-6. ```npx cap copy android```
-7. After the run ```npx cap open android```, Android Studio will open automatically.
-
-### Debug
-1. Run the app using your phone with <a href="https://www.maztars.com/usb-debugging-is-it-safe/">USB debugging</a> or open the Android Virtual Device Manager. Create a new virtual device (hardware and Android version as you like). Start the device. Once the virtual device has booted, you can start the debug APK on your virtual device.
-
-### Build
-1. Go to ```Build``` > ```Build Bundle(s) / APK (s)``` > ```Build APK(s)```.
-2. Android Studio will start building the APK for you. Once done, a pop-up on the bottom right will notify you of its completion. Click the ‘locate’ button in this dialog.
-3. The ‘locate’ button should open File Explorer with the debug folder open that contains a file called “app-debug.apk”.
-
-### sources
-- https://capacitorjs.com/solution/angular
-- https://developer.android.com/studio/install
-- https://www.maztars.com/usb-debugging-is-it-safe/
-- https://youtu.be/Q0exX8u27i8
-
-## Desktop Applications
-1. Navigate to ```ClientApp```
-2. ```npm install```
-
-### Debug 
-1. ```npm run start:electron```
-
-### Build
-1. ```npm install electron-packager -g```
-2. After the run ```npm run electron-package```, will build your application and create an app consumable based on your operating system.
-
-### sources
-- https://github.com/electron/electron-packager
-- https://www.npmjs.com/package/ngx-electron
-- https://www.christianengvall.se/electron-windows-installer/
-- https://www.christianengvall.se/electron-installer-debian-package/
-- https://www.christianengvall.se/dmg-installer-electron-app/
-
-## Docker Configuration
-
+### Docker Configuration
 In order to get Docker working, you will need to add a temporary SSL cert and mount a volume to hold that cert.
 You can find [Microsoft Docs](https://docs.microsoft.com/en-us/aspnet/core/security/docker-https?view=aspnetcore-3.1) that describe the steps required for Windows, macOS, and Linux.
 
@@ -137,6 +102,47 @@ API: https://localhost:44381/  /  http://localhost:44380/
 ClientApp: http://localhost:4200/ is working with API https://localhost:44381/
 
 To disable Docker in Visual Studio, right-click on the **docker-compose** file in the **Solution Explorer** and select **Unload Project**.
+
+## Android Application
+1. Setup <a href="https://developer.android.com/studio/install">Android Studio SDK</a>
+2. Navigate to ```ClientApp```
+3. ```npm install```
+4. ```ng build --prod```
+5. ```npx cap add android```
+6. ```npx cap copy android```
+7. After the run ```npx cap open android```, Android Studio will open automatically
+
+### Debug
+1. Run the app using your phone with <a href="https://www.maztars.com/usb-debugging-is-it-safe/">USB debugging</a> or open the Android Virtual Device Manager. Create a new virtual device (hardware and Android version as you like). Start the device. Once the virtual device has booted, you can start the debug APK on your virtual device
+
+### Build
+1. Go to ```Build``` > ```Build Bundle(s) / APK (s)``` > ```Build APK(s)```
+2. Android Studio will start building the APK for you. Once done, a pop-up on the bottom right will notify you of its completion. Click the ‘locate’ button in this dialog.
+3. The ‘locate’ button should open File Explorer with the debug folder open that contains a file called “app-debug.apk”
+
+### sources
+- https://capacitorjs.com/solution/angular
+- https://developer.android.com/studio/install
+- https://www.maztars.com/usb-debugging-is-it-safe/
+- https://youtu.be/Q0exX8u27i8
+
+## Desktop Applications
+1. Navigate to ```ClientApp```
+2. ```npm install```
+
+### Debug 
+1. ```npm run start:electron```
+
+### Build
+1. ```npm install electron-packager -g```
+2. After the run ```npm run electron-package```, will build your application and create an app consumable based on your operating system
+
+### sources
+- https://github.com/electron/electron-packager
+- https://www.npmjs.com/package/ngx-electron
+- https://www.christianengvall.se/electron-windows-installer/
+- https://www.christianengvall.se/electron-installer-debian-package/
+- https://www.christianengvall.se/dmg-installer-electron-app/
  
 ## For demo purposes
 - <a href="https://dailytodolist.somee.com/api/tasks">API</a> hosted on https://somee.com/ is using ASP.Net Core 3.1 due to it being the highest supported .NET version. It is not the fastest hosting but it is free and is sufficient for a demo.
