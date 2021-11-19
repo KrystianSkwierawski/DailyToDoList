@@ -72,8 +72,7 @@ During the project API, it has expanded a little, but it is still quite small.
 1. Install the lastest <a href="https://dotnet.microsoft.com/download/dotnet/6.0">https://dotnet.microsoft.com/download/dotnet/6.0</a>
 2. Install the latest <a href="https://nodejs.org/en/">Node.js LTS</a>
 3. Navigate to ```API/.NET 6.0/src``` and run ```dotnet run``` to launch the back end (ASP.NET Core Web API)
-4. Navigate to ```ClientApp``` and run ```npm install```
-5. Run ```ng s -o``` to launch the front end (Angular)
+4. Navigate to ```ClientApp``` and run ```npm install && ng s -o``` to launch the front end (Angular)
 
 ### Docker Configuration
 In order to get Docker working, you will need to add a temporary SSL cert and mount a volume to hold that cert.
@@ -105,10 +104,10 @@ To disable Docker in Visual Studio, right-click on the **docker-compose** file i
 ## Android Application
 1. Setup <a href="https://developer.android.com/studio/install">Android Studio SDK</a>
 2. Navigate to ```ClientApp```
-3. ```npm install```
-4. ```ng build --prod```
-5. ```npx cap add android```
-6. ```npx cap copy android```
+3. Run ```npm install```
+4. Run ```ng build --prod```
+5. Run ```npx cap add android```
+6. Run ```npx cap copy android```
 7. After the run ```npx cap open android```, Android Studio will open automatically
 
 ### Debug
@@ -127,13 +126,13 @@ To disable Docker in Visual Studio, right-click on the **docker-compose** file i
 
 ## Desktop Applications
 1. Navigate to ```ClientApp```
-2. ```npm install```
+2. Run ```npm install```
 
 ### Debug 
-1. ```npm run start:electron```
+1. Run ```npm run start:electron```
 
 ### Build
-1. ```npm install electron-packager -g```
+1. Run ```npm install electron-packager -g```
 2. After the run ```npm run electron-package```, will build your application and create an app consumable based on your operating system
 
 ### sources
