@@ -73,7 +73,7 @@ During the project API, it has expanded a little, but it is still quite small.
 2. Install the latest <a href="https://nodejs.org/en/">Node.js LTS</a>
 3. Navigate to ```API/.NET 6.0/src``` and run ```dotnet run``` to launch the back end (ASP.NET Core Web API)
 4. Navigate to ```ClientApp``` and run ```npm install```
-5. Navigate to ```ClientApp``` and run ```ng s -o``` to launch the front end (Angular)
+5. Run ```ng s -o``` to launch the front end (Angular)
 
 ### Docker Configuration
 In order to get Docker working, you will need to add a temporary SSL cert and mount a volume to hold that cert.
