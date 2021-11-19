@@ -69,12 +69,11 @@ During the project API, it has expanded a little, but it is still quite small.
  * VirtualBox
 
 ## Gettings Started
-1. Download the project
-2. Install the lastest <a href="https://dotnet.microsoft.com/download/dotnet/6.0">https://dotnet.microsoft.com/download/dotnet/6.0</a>
-3. Install the latest <a href="https://nodejs.org/en/">Node.js LTS</a>
+1. Install the lastest <a href="https://dotnet.microsoft.com/download/dotnet/6.0">https://dotnet.microsoft.com/download/dotnet/6.0</a>
+2. Install the latest <a href="https://nodejs.org/en/">Node.js LTS</a>
+3. Navigate to ```API/.NET 6.0/src``` and run ```dotnet run``` to launch the back end (ASP.NET Core Web API)
 4. Navigate to ```ClientApp``` and run ```npm install```
 5. Navigate to ```ClientApp``` and run ```ng s -o``` to launch the front end (Angular)
-6. Navigate to ```API/.NET 6.0/src``` and run dotnet run to launch the back end (ASP.NET Core Web API)
 
 ### Docker Configuration
 In order to get Docker working, you will need to add a temporary SSL cert and mount a volume to hold that cert.
