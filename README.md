@@ -97,7 +97,7 @@ Then open on your browser.
 
 API: https://localhost:44381/  /  http://localhost:44380/
 
-ClientApp: http://localhost:4200/ is working with API https://localhost:44381/
+ClientApp: http://localhost:4200/ is working with https://localhost:44381/
 
 To disable Docker in Visual Studio, right-click on the **docker-compose** file in the **Solution Explorer** and select **Unload Project**.
 
