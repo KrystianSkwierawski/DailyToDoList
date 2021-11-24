@@ -1,6 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
 @import 'scss/vendors/_normalize.scss';
-@import 'scss/abstracts/mixins.scss';
+
+// Uncomment this line if u want to create a chrome extensions
+/*@import 'scss/abstracts/mixins.scss';*/
 
 
 html, body {
@@ -11,7 +12,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #282828;
-
   // Uncomment this line if you want to create a chrome extension
   /*@include chrome-extension;*/
 }
