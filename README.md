@@ -155,8 +155,7 @@ To disable Docker in Visual Studio, right-click on the **docker-compose** file i
       "manifest.json"
    ]
 ```
-
-### Note
+#### Note
 Chrome has some problems with loading styles. This is my solution to it.
 
 1. Open ```dist/index.html``` in code editor
@@ -167,7 +166,7 @@ Chrome has some problems with loading styles. This is my solution to it.
 rel="preload" as="style" onload="this.rel='stylesheet'"``` to ```rel="stylesheet" type="text/css"```
 6. Delete or replace ```media="print" onload="this.media='all'"``` empty line 
 
-### <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases/tag/chrome-extension-v1.0.0">Run</a>
+### <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases/tag/chrome-extension-v1.0.0">How to run</a>
 
 ### Sources
 - https://medium.com/weekly-webtips/is-it-hard-to-create-a-chrome-extension-using-angular-d9fd6a5740f3
