@@ -8,7 +8,7 @@
 {
   "name": "DailyToDoList",
   "version": "1.0",
-  "description": "The application helps you to manage your tasks, writing them down gives you some space in your mind and you can focus on more important things instead of remembering and tracking your tasks in your mind. The application is available for Web, Android, Linux, Windows, Mac, and as a Chrome extension.",
+  "description": "DailyToDoList helps you to manage your tasks, writing them down gives you some space in your mind and you can focus on more important things instead of remembering and tracking your tasks in your mind. The application is available for Web, Android, Linux, Windows, Mac, and as a Chrome extension..",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
