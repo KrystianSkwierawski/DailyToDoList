@@ -149,7 +149,7 @@ To disable Docker in Visual Studio, right-click on the **docker-compose** file i
 2. Run ```npm install```
 3. Run ```ng build --prod```
 4. Uncomment ```@include chrome-extension;``` and ```@import 'scss/abstracts/mixins.scss';``` in ```src/styles.scss```
-5. Copy manifest.json to dist folder or add this lines to angular.json
+5. Copy manifest.json to a dist folder or add this lines to angular.json
 ```
 "assets": [
       "manifest.json"
