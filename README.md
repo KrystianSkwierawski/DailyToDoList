@@ -158,7 +158,7 @@ To disable Docker in Visual Studio, right-click on the **docker-compose** file i
 #### Note
 Chrome has some problems with loading styles. This is my solution to it.
 
-1. Open ```dist/index.html``` in code editor
+1. Open ```dist/index.html``` in a code editor
 2. Press ```Ctrl``` + ```f```
 3. Replace ```rel="stylesheet"``` to ```rel="stylesheet" type="text/css"```
 4. Replace ```rel="preconnect"``` to ```rel="stylesheet" type="text/css""```
