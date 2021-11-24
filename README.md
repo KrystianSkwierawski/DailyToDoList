@@ -164,7 +164,7 @@ Chrome has some problems with loading styles. This is my solution to it.
 4. Replace ```rel="preconnect"``` to ```rel="stylesheet" type="text/css""```
 5. Replace ```
 rel="preload" as="style" onload="this.rel='stylesheet'"``` to ```rel="stylesheet" type="text/css"```
-6. Delete or replace ```media="print" onload="this.media='all'"``` empty line 
+6. Delete or replace ```media="print" onload="this.media='all'"``` to empty line 
 
 ### <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases/tag/chrome-extension-v1.0.0">How to run</a>
 
