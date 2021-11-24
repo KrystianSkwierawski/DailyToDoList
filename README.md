@@ -141,6 +141,36 @@ To disable Docker in Visual Studio, right-click on the **docker-compose** file i
 - https://www.christianengvall.se/electron-windows-installer/
 - https://www.christianengvall.se/electron-installer-debian-package/
 - https://www.christianengvall.se/dmg-installer-electron-app/
+
+## Chrome Extension
+
+### Build
+1. Navigate to ```ClientApp```
+2. Run ```npm install```
+3. Run ```ng build --prod```
+4. Uncomment ```@include chrome-extension;``` and ```@import 'scss/abstracts/mixins.scss';``` in ```src/styles.scss```
+5. Copy manifest.json to dist folder or add this lines to angular.json
+```
+"assets": [
+      "manifest.json"
+   ]
+```
+
+### Note
+Chrome has some problems with loading styles. This is my solution to it.
+
+1. Open ```dist/index.html``` in code editor
+2. Press ```Ctrl``` + ```f```
+3. Replace ```rel="stylesheet"``` to ```rel="stylesheet" type="text/css"```
+4. Replace ```rel="preconnect"``` to ```rel="stylesheet" type="text/css""```
+5. Replace ```
+rel="preload" as="style" onload="this.rel='stylesheet'"``` to ```rel="stylesheet" type="text/css"```
+6. Delete or replace ```media="print" onload="this.media='all'"``` empty line 
+
+### <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases/tag/chrome-extension-v1.0.0">Run</a>
+
+### Sources
+- https://medium.com/weekly-webtips/is-it-hard-to-create-a-chrome-extension-using-angular-d9fd6a5740f3
  
 ## For demo purposes
 - <a href="https://dailytodolist.somee.com/api/tasks">API</a> hosted on https://somee.com/ is using ASP.Net Core 3.1 due to it being the highest supported .NET version. It is not the fastest hosting but it is free and is sufficient for a demo.
