@@ -187,7 +187,7 @@ rel="preload" as="style" onload="this.rel='stylesheet'"``` to ```rel="stylesheet
 ## For demo purposes
 - <a href="https://dailytodolist.somee.com/api/tasks">API</a> hosted on https://somee.com/ is using ASP.Net Core 3.1 due to it being the highest supported .NET version. It is not the fastest hosting but it is free and is sufficient for a demo.
 - <a href="https://krystianskwierawski.github.io/DailyToDoList/">Web client application</a> hosted on GitHub Pages.
-- <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases">Here</a> you can download a client application for various devices. If it were not a demo I would add a license to applications and host it on Google Play etc.
+- <a href="https://github.com/KrystianSkwierawski/DailyToDoList/releases">Here</a> you can download a client application for various devices. If it were not a demo I would add a license to applications and host it on Google Play, Chrome Web Store etc.
 
 ### Status
 The project(demo) is almost finished. 
