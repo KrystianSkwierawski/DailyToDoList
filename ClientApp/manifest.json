@@ -1,9 +1,4 @@
-/* If u want a chrome extension, move this file to the dist folder or add this lines to angular.json
-
-   "assets": [
-      "manifest.json"
-   ]
-*/
+/*If u want a chrome extension, move this file to the dist folder or uncomment "manifest.json" in angular.json*/
 
 {
   "name": "DailyToDoList",
