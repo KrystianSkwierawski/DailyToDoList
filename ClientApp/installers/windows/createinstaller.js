@@ -14,11 +14,11 @@ function getInstallerConfig() {
   const outPath = path.join(rootPath, 'release-builds')
 
   return Promise.resolve({
-    appDirectory: path.join(outPath, 'client-app-win32-x64/'),
+    appDirectory: path.join(outPath, 'DailyToDoList-win32-x64/'),
     authors: 'Krystian Skwierawski',
     noMsi: true,
     outputDirectory: path.join(outPath, 'windows-installer'),
-    exe: 'client-app.exe',
+    exe: 'DailyToDoList.exe',
     setupExe: 'Install_DailyToDoList.exe',
     setupIcon: path.join(rootPath, 'dist', 'assets', 'icon.ico')
   })

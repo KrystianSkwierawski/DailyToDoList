@@ -30,6 +30,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              // Uncomment this line if u want to create a chrome extensions
+              //"manifest.json",
               "src/favicon.ico",
               "src/assets"
             ],
