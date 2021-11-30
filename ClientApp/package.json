@@ -16,6 +16,7 @@
     "start:dev": "echo 'Starting (Dev)...' && ng serve --host 0.0.0.0 --disable-host-check",
     "start:electron": "ng build --prod --base-href ./ && electron .",
     "test": "ng test",
+    "test:ci": "ng test --sourceMap=false --browsers=ChromeHeadless --watch=false",
     "watch": "ng build --watch --configuration development"
   },
   "private": true,
