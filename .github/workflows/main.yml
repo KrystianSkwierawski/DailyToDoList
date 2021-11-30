@@ -6,13 +6,13 @@ on:
       - master
       
 jobs:
-  example_job:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npi ci
+      - run: npm ci
       - run: npm test
       - run: npm run deploy:web
