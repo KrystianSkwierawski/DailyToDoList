@@ -33,7 +33,7 @@ namespace DailyToDoListAPI.TaskItems
 
             var token = _currentTokenService?.Token;
 
-            foreach (var entity in _taskItems.AsQueryable().Where(x => x.CreatedBy == token))
+            foreach (var entity in _taskItems.AsQueryable().Where(task => task.CreatedBy == token))
             {
                 o_toDoItemDTOs.Add(entity.ToDTO());
             }
@@ -59,7 +59,7 @@ namespace DailyToDoListAPI.TaskItems
 
         public async Task UpdateTaskItemAsync(TaskItemDTO taskItemDTO)
         {
-            var filter = Builders<TaskItem>.Filter.Eq(s => s.Id, taskItemDTO.Id);
+            var filter = Builders<TaskItem>.Filter.Eq(task => task.Id, taskItemDTO.Id);
 
             string token = _currentTokenService?.Token;
 
@@ -103,14 +103,14 @@ namespace DailyToDoListAPI.TaskItems
         {
             string token = _currentTokenService?.Token;
 
-            await _taskItems.DeleteOneAsync(x => x.Id == id && x.CreatedBy == token);
+            await _taskItems.DeleteOneAsync(task => task.Id == id && task.CreatedBy == token);
         }
 
         public async Task DeleteAllUserTaskItemsAsync()
         {
             string token = _currentTokenService?.Token;
 
-            await _taskItems.DeleteManyAsync(x => x.CreatedBy == token);
+            await _taskItems.DeleteManyAsync(task => task.CreatedBy == token);
         }
     }
 }

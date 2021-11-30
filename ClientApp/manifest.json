@@ -1,14 +1,9 @@
-/* If u want a chrome extension, move this file to the dist folder or add this lines to angular.json
-
-   "assets": [
-      "manifest.json"
-   ]
-*/
+/*If u want a chrome extension, move this file to the dist folder or uncomment "manifest.json" in angular.json*/
 
 {
   "name": "DailyToDoList",
   "version": "1.0",
-  "description": "DailyToDoList helps you to manage your tasks, writing them down gives you some space in your mind and you can focus on more important things instead of remembering and tracking your tasks in your mind. The application is available for Web, Android, Linux, Windows, Mac, and as a Chrome extension..",
+  "description": "DailyToDoList helps you to manage your tasks, writing them down gives you some space in your mind and you can focus on more important things instead of remembering and tracking your tasks in your mind. The application is available for Web, Android, Linux, Windows, Mac, and as a Chrome extension.",
   "manifest_version": 2,
   "icons": {
     "16": "assets/icon-16x16.png",
