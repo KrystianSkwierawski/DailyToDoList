@@ -8,10 +8,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ClientApp
     steps:
       - uses: actions/checkout@v2
-      - name: Setup, run tests and deploy angular app to GitHub Pages
-        working-directory: ./ClientApp
       - uses: actions/setup-node@v1
         with:
           node-version: 12  
