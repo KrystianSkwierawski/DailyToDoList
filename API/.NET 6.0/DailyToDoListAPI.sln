@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyToDoListAPI.Integratio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyToDoListAPI.UnitTests", "tests\DailyToDoListAPI.UnitTests\DailyToDoListAPI.UnitTests.csproj", "{A35D6D21-F8CF-4988-8F76-350EFEFE531A}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "../Compose/docker-compose.dcproj", "{F0D5805A-6426-41B6-8931-D675EAC875CE}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "../../Compose/docker-compose.dcproj", "{F0D5805A-6426-41B6-8931-D675EAC875CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
