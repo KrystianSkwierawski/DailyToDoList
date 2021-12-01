@@ -46,5 +46,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_ACTION }}
           BRANCH: gh-pages
-          FOLDER: ClientApp/dist
        
