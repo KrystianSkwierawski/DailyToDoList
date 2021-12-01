@@ -7,7 +7,7 @@ on:
       - '**'        # matches every branch
 
 jobs:
-  ci:
+  build-and-test:
     runs-on: ubuntu-latest
     
     defaults:
@@ -15,19 +15,20 @@ jobs:
         working-directory: ./API/.Net Core 3.1
     
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout 🛎️
+      uses: actions/checkout@v2
     
-    - name: Setup .NET
+    - name: Setup .NET 🛎️
       uses: actions/setup-dotnet@v1
       with:
           dotnet-version: 6.0.x
       
-    - name: Install dotnet ef
+    - name: Install dotnet ef 🔧
       run: dotnet tool install --global dotnet-ef
       
-    - name: Build with dotnet
+    - name: Build 🧱
       run: dotnet build --configuration Release DailyToDoListAPI.sln
 
-    - name: run tests
+    - name: Test 🧪
       run: dotnet test DailyToDoListAPI.sln --configuration Release
       
