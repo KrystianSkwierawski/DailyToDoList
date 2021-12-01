@@ -20,10 +20,10 @@ jobs:
     - name: Install dotnet ef
       run: dotnet tool install --global dotnet-ef
     - name: Build with dotnet
-      run: dotnet build --configuration Release DailyToDoListAPI.sln
+      run: dotnet build DailyToDoListAPI.sln
 
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
     - name: run tests
-      run: dotnet test DailyToDoListAPI.sln --configuration Release
+      run: dotnet test DailyToDoListAPI.sln
