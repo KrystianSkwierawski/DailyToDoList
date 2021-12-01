@@ -28,6 +28,9 @@ jobs:
               
       - name: Test 🧪
         run:  npm run test:ci     
+        
+      - name: Build 🧱
+        run:  npm run build:gh-pages
                                     
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
