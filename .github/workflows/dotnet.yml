@@ -1,12 +1,13 @@
 name: .NET 6.0
+
 on:
+  pull_request: {}
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - '**'        # matches every branch
 
 jobs:
-  ci:
+  build:
     runs-on: ubuntu-latest
     
     defaults:
