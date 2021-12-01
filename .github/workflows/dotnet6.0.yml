@@ -23,7 +23,7 @@ jobs:
       with:
           dotnet-version: 6.0.x
       
-    - name: Install dotnet ef 🛎️
+    - name: Install dotnet ef 🔧
       run: dotnet tool install --global dotnet-ef
       
     - name: Build 🧱
