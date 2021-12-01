@@ -61,12 +61,12 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   toggleEditingTask(taskId: string) {
+    this.store.dispatch(new StopEditingAllItems());
+
     const task = this.tasks.filter(x => x.id === taskId)[0];
 
     if (!task)
       return;
-
-    this.store.dispatch(new StopEditingAllItems());
 
     const updatedTaskItem = {
       ...task,
@@ -77,12 +77,12 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   toggleEditingSubtask(taskId: string, subtask: SubtaskItem, index: number) {
+    this.store.dispatch(new StopEditingAllItems());
+
     const task = this.tasks.filter(x => x.id === taskId)[0];
 
     if (!task)
       return;
-
-    this.store.dispatch(new StopEditingAllItems());
 
     const updatedSubtask: SubtaskItem = {
       ...subtask,
@@ -102,12 +102,12 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   addSubtask(taskId: string) {
+    this.store.dispatch(new StopEditingAllItems());
+
     const task = this.tasks.filter(x => x.id === taskId)[0];
 
     if (!task)
       return;
-
-    this.store.dispatch(new StopEditingAllItems());
 
     const subtask: SubtaskItem = {
       title: `Task ${task.subtaskItems.length + 1}`,
@@ -165,10 +165,10 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   onToggleExpandTask(task: TaskItem) {
+    this.store.dispatch(new StopEditingAllItems());
+
     if (!task)
       return;
-
-    this.store.dispatch(new StopEditingAllItems());
 
     const updatedTask: TaskItem = {
       ...task,

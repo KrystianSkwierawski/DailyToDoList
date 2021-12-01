@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { ShortenPipe } from '../../../shared/pipes/shorten/shorten.pipe';
 import { TaskItemsService } from '../../../shared/services/task-items.service';
 import { appReducer, AppState } from '../../../store/app.reducer';
-import { AddTaskItemRemotely, UpdateTaskItemLocally, UpdateTaskItemRemotely } from '../store/task.actions';
+import { AddTaskItemLocally, AddTaskItemRemotely, UpdateTaskItemLocally, UpdateTaskItemRemotely } from '../store/task.actions';
 import { TaskEffects } from '../store/task.effects';
 import { SubtaskItem } from '../subtask-item.model';
 import { TaskItem } from '../task-item.model';
@@ -356,54 +356,95 @@ describe('TasksListComponent', () => {
     expect(taskItems[0].subtaskItems[subtaskItemIdex].editing).toBe(!subtaskItem.editing);
   });
 
-  //it('[toggleEditingTask] should toggle task.editing', () => {
-  //  // Arrange
-  //  let taskItems: TaskItem[] = [];
-  //  store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+   it('[toggleEditingTask] should toggle task.editing and stop editing all other tasks', () => {
+     // Arrange
+     let taskItems: TaskItem[] = [];
+     store.select('taskItems').subscribe(state => taskItems = state.taskItems);
 
-  //  const fixture = TestBed.createComponent(TasksListComponent);
-  //  fixture.detectChanges();
-  //  const app: TasksListComponent = fixture.componentInstance;
+     const fixture = TestBed.createComponent(TasksListComponent);
+     fixture.detectChanges();
+     const app: TasksListComponent = fixture.componentInstance;
 
-  //  const taskItem: TaskItem = {
-  //    id: "1",
-  //    editing: false
-  //  } as TaskItem;
+     const taskItem: TaskItem = {
+       id: "1",
+       expanded: false,
+       editing: true,
+       subtaskItems: [
+         {
+           editing: true
+         } as SubtaskItem
+       ]
+     } as TaskItem;
 
-  //  spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
-  //  store.dispatch(new AddTaskItemRemotely(taskItem));
-
-
-  //  // Act
-  //  app.toggleEditingTask(taskItem.id);
-
-  //  // Assert
-  //  expect(taskItems[0].editing).toEqual(!taskItem.editing);
-  //});
-
-  //it('[onToggleExpandTask] should toggle task.expanded', () => {
-  //  // Arrange
-  //  let taskItems: TaskItem[] = [];
-  //  store.select('taskItems').subscribe(state => taskItems = state.taskItems);
-
-  //  const fixture = TestBed.createComponent(TasksListComponent);
-  //  fixture.detectChanges();
-  //  const app: TasksListComponent = fixture.componentInstance;
-
-  //  const taskItem: TaskItem = {
-  //    id: "1",
-  //    expanded: false,
-  //  } as TaskItem;
-
-  //  spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
-  //  store.dispatch(new AddTaskItemRemotely(taskItem));
+     const taskItem2: TaskItem = {
+       id: "2",
+       expanded: false,
+       editing: true,
+       subtaskItems: [
+         {
+           editing: true
+         } as SubtaskItem
+       ]
+     } as TaskItem;
 
 
-  //  // Act
-  //  app.onToggleExpandTask(taskItem);
+     store.dispatch(new AddTaskItemLocally(taskItem));
+     store.dispatch(new AddTaskItemLocally(taskItem2));
 
 
-  //  // Assert
-  //  expect(taskItems[0].expanded).toEqual(!taskItem.expanded);
-  //});
+     // Act
+     app.toggleEditingTask(taskItem.id);
+
+
+     // Assert
+     expect(taskItems.filter(x => x.id === taskItem.id)[0].editing).toBeTrue();
+     expect(taskItems.filter(x => x.id === taskItem2.id)[0].editing).toBeFalse();
+     expect(taskItems.filter(x => x.id === taskItem2.id)[0].subtaskItems[0].editing).toBeFalse();
+   });
+
+  it('[onToggleExpandTask] should toggle task.expanded and stop editing all other tasks', () => {
+    // Arrange
+    let taskItems: TaskItem[] = [];
+    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
+
+    const fixture = TestBed.createComponent(TasksListComponent);
+    fixture.detectChanges();
+    const app: TasksListComponent = fixture.componentInstance;
+
+    const taskItem: TaskItem = {
+      id: "1",
+      expanded: false,
+      editing: true,
+      subtaskItems: [
+        {
+          editing: true
+        } as SubtaskItem
+      ]
+    } as TaskItem;
+
+    const taskItem2: TaskItem = {
+      id: "2",
+      expanded: false,
+      editing: true,
+      subtaskItems: [
+        {
+          editing: true
+        } as SubtaskItem
+      ]
+    } as TaskItem;
+
+
+    store.dispatch(new AddTaskItemLocally(taskItem));
+    store.dispatch(new AddTaskItemLocally(taskItem2));
+
+
+    // Act
+    app.onToggleExpandTask(taskItem);
+
+
+    // Assert
+    expect(taskItems.filter(x => x.id === taskItem.id)[0].expanded).toBeTrue();
+    expect(taskItems.filter(x => x.id === taskItem2.id)[0].editing).toBeFalse();
+    expect(taskItems.filter(x => x.id === taskItem2.id)[0].subtaskItems[0].editing).toBeFalse();
+  });
 });
