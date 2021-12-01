@@ -1,5 +1,4 @@
 name: .NET 6.0
-
 on:
   push:
     branches: [ master ]
@@ -8,22 +7,23 @@ on:
 
 jobs:
   ci:
-
     runs-on: ubuntu-latest
     
     defaults:
       run:
         working-directory: ./API/.NET 6.0
-
+    
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Install dotnet ef
+      run: dotnet tool install --global dotnet-ef
+    - name: Build with dotnet
+      run: dotnet build --configuration Release DailyToDoListAPI.sln
+
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+    - name: run tests
+      run: dotnet test DailyToDoListAPI.sln --configuration Release
