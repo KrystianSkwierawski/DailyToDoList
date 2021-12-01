@@ -36,13 +36,11 @@ jobs:
             
       - name: Install Dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: |
-          npm ci
-          
+        run: npm ci
+              
       - name: Test
-        run: |
-          npm run test:ci
-          
+        run:  npm run test:ci
+                 
       - name: Conventional Changelog Action
         id: changelog
         uses: TriPSs/conventional-changelog-action@v3
@@ -51,5 +49,5 @@ jobs:
           output-file: "false"
           
       - name: Deploy
-        run: |
-          npm run deploy:web
+        run: npm run deploy:web
+          
