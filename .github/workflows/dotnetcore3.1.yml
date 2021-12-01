@@ -1,0 +1,31 @@
+name: .NET Core 3.1
+
+on:
+  pull_request: {}
+  push:
+    branches:
+      - '**'        # matches every branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./API/.Net Core 3.1
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+          dotnet-version: 6.0.x
+      
+    - name: Install dotnet ef
+      run: dotnet tool install --global dotnet-ef
+    - name: Build with dotnet
+      run: dotnet build --configuration Release DailyToDoListAPI.sln
+
+    - name: run tests
+      run: dotnet test DailyToDoListAPI.sln --configuration Release
+      
