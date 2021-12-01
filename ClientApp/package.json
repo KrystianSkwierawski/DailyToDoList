@@ -9,6 +9,7 @@
     "create-installer:linux": "electron-installer-debian --src release-builds/DailyToDoList-linux-x64/ --arch amd64 --config installers/linux/debian.json",
     "create-installer:win": "node installers/windows/createinstaller.js",
     "deploy:web": "ng build --configuration=web-production --base-href /DailyToDoList/ && npx angular-cli-ghpages —dir=dist/ClientApp --no-silent",
+    "build:gp-pages": "ng build --configuration=web-production --base-href /DailyToDoList/",
     "electron-package": "ng build --prod --base-href ./ && electron-packager . --icon=dist/assets/icon.ico --no-prune --ignore=/node_modules --ignore=/e2e --ignore=/src --overwrite --out=release-builds",
     "lint": "ng lint",
     "ng": "ng",
