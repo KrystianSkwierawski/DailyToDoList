@@ -2,7 +2,7 @@ name: Angular
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   ci:
     runs-on: ubuntu-latest
