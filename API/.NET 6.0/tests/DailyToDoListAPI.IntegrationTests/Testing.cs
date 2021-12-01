@@ -1,18 +1,18 @@
 ﻿using DailyToDoListAPI.TaskItems;
 using System.Threading.Tasks;
 
-namespace DailyToDoListAPI.IntegrationTests
-{
-    public class Testing
-    {
-        public static ITaskItemsDatabase GetTestDatabase(string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListAPI_dotnet6.0TestDB?retryWrites=true&w=majority")
-        {
-            return new TaskItemsDatabase(connectionString);
-        }
+namespace DailyToDoListAPI.IntegrationTests;
 
-        public static async Task ResetState()
-        {
-            await GetTestDatabase().DeleteAllUserTaskItemsAsync();
-        }
+public class Testing
+{
+    public static ITaskItemsDatabase GetTestDatabase(string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListAPI_dotnet6.0TestDB?retryWrites=true&w=majority")
+    {
+        return new TaskItemsDatabase(connectionString);
+    }
+
+    public static async Task ResetState()
+    {
+        await GetTestDatabase().DeleteAllUserTaskItemsAsync();
     }
 }
+
