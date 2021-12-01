@@ -14,15 +14,16 @@ public class TaskItemsDatabase : ITaskItemsDatabase
     private readonly ICurrentTokenService? _currentTokenService;
 
     public TaskItemsDatabase(
-        string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListAPIDB?retryWrites=true&w=majority",
+        string dbName = "TasksItemsDB",
         ICurrentTokenService? currentTokenService = null
     )
     {
         _currentTokenService = currentTokenService;
 
+        string connectionString = "mongodb+srv://test:123@cluster0.nrv7f.mongodb.net/DailyToDoListAPIDB?retryWrites=true&w=majority";
         _client = new MongoClient(connectionString);
 
-        _db = _client.GetDatabase("TasksItemsDB");
+        _db = _client.GetDatabase(dbName);
 
         _taskItems = _db.GetCollection<TaskItem>("TaskItems");
     }
