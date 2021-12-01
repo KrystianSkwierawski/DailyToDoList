@@ -1,0 +1,103 @@
+@import "../scss/shared.scss";
+
+
+.home {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+header {
+  height: auto;
+  width: 95%;
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+
+  @include respond-to(small) {
+    width: 80%;
+  }
+
+  @include respond-to(large) {
+    width: 50%;
+  }
+
+  & p {
+    text-align: center;
+    color: #E8E8E8;
+    letter-spacing: 3px;
+    line-height: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 200;
+  }
+}
+
+.download-section {
+  width: 95%;
+  height: auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid #4B4B4B;
+
+  @include respond-to(small) {
+    width: 80%;
+  }
+
+  @include respond-to(large) {
+    width: 60%;
+  }
+
+
+  & p {
+    color: #E8E8E8;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 200;
+  }
+
+  & div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  & a {
+    background-color: #00C090;
+    height: 5rem;
+    width: 5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+}
+
+app-authentication-form {
+  width: 95%;
+  align-self: center;
+
+  @include respond-to(small) {
+    width: 80%;
+  }
+
+  @include respond-to(large) {
+    width: 50%;
+  }
+}

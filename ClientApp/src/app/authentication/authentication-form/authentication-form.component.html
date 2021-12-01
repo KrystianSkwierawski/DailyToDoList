@@ -1,0 +1,21 @@
+<div class="container">
+
+  <p class="authentication-description">All your tasks will be assigned to your token. you can share it with your friends.</p>
+
+  <form class="authentication-form" (ngSubmit)="submit(form.value.token, rememberMe.checked)" [formGroup]="form">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Token</mat-label>
+      <input formControlName="token" matInput type="password">
+    </mat-form-field>
+
+    <mat-checkbox class="remember-me-checkbox"
+                  #rememberMe>
+      Remember me
+    </mat-checkbox>
+
+    <button class="submit-button" mat-button [disabled]="form.invalid" type="submit" aria-label="Authenticate">
+      <mat-icon aria-label="Plus icon">vpn_key</mat-icon> Authenticate
+    </button>
+  </form>
+</div>

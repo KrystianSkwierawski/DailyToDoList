@@ -1,0 +1,50 @@
+@mixin respond-to($breakpoint) {
+  @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+@mixin reset-button {
+  border: 0;
+  background: none;
+}
+
+@mixin center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin chrome-extension($width: 400px, $height: 600px) {
+  width: $width;
+  height: $height;
+
+  &::-webkit-scrollbar {
+    @media screen and (max-width: $width) {
+      display: none;
+    }
+  }
+}
+
+@mixin tucked-corners {
+  &:after, &:before {
+    background: #282828;
+    content: '';
+    height: 50px;
+    position: absolute;
+    top: -25px;
+    width: 100px;
+    box-shadow: 0 5px 10px -7px hsla(0, 0%,0%, 0.5);
+  }
+
+  &:after {
+    left: -45px;
+    transform: rotate(-45deg);
+  }
+
+  &:before {
+    right: -45px;
+    transform: rotate(45deg);
+  }
+}

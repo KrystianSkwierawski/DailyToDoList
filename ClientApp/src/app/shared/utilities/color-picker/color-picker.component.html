@@ -1,0 +1,6 @@
+<button type="button" (click)="togglePickingColor()" mat-raised-button class="toggle-color-picker-button" [ngStyle]="{'background': color}">
+</button>
+
+<div *ngIf="pickingColor" class="color-picker">
+  <swatches-picker [(color)]="color"></swatches-picker>
+</div>
