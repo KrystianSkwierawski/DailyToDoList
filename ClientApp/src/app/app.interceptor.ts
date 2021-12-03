@@ -29,7 +29,7 @@ export class AppInterceptor implements HttpInterceptor, OnDestroy {
     if (this.token) {
       request = request.clone({
         setHeaders: {
-          Token: this.token
+          Authorization: `Bearer ${this.token}`
         }
       });
     }

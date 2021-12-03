@@ -12,5 +12,5 @@ public class CurrentTokenService : ICurrentTokenService
         _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
     }
 
-    public string? Token => _httpContextAccessor.HttpContext?.Request.Headers["Token"];
+    public string? Token => _httpContextAccessor.HttpContext?.Request.Headers["Authorization"];
 }
