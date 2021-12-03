@@ -22,6 +22,8 @@ During the project API, it has expanded a little, but it is still quite small.
 
 - This time an API and a client application are separate. The API is working with Web application, Windows application, Linux application, Mac application, Android application, and Chrome extension.
 
+- <a href="https://youtu.be/scEDHsr3APg">CI/CD</a> - thanks to this my application is tested, built, and implemented after commits. <a href="https://github.com/KrystianSkwierawski/DailyToDoList/tree/master/.github/workflows">Here</a> you can look at my workflows for the front-end and back-end.
+
 - I used the non-relational cloud version of the MongoDB database. 
 
 - I tested all the components etc on Angular using karma. 
