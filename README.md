@@ -30,6 +30,8 @@ During the project API, it has expanded a little, but it is still quite small.
 
 - I used <a href="https://ngrx.io/">NgRx</a> to manage the application state. 
 
+- I Created an <a href="https://documenter.getpostman.com/view/18585475/UVJfkwBc">API documentation</a> using Postman
+
 - I used Docker Desktop Linux machine for application containerization, I connected API and client web application via docker-compose.
 
 - I added logging for the dev environment. After each use of the API, it logs some information about a request, response, and error if any occurs.
