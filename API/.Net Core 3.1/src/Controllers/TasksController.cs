@@ -30,9 +30,6 @@ namespace DailyToDoListAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<List<TaskItemDTO>>> Post(string title, string color)
         {
-            if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(color))
-                return BadRequest();
-
             var taskItemDTO = await _database.AddTaskItemAsync(title, color);
             return Created($"/api/tasks{taskItemDTO.Id}", taskItemDTO);
         }
@@ -40,9 +37,6 @@ namespace DailyToDoListAPI.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<List<TaskItemDTO>>> Put(TaskItemDTO taskItemDTO)
         {
-            if (taskItemDTO is null)
-                return BadRequest();
-
             await _database.UpdateTaskItemAsync(taskItemDTO);
             return Ok();
         }
@@ -50,9 +44,6 @@ namespace DailyToDoListAPI.Controllers
         [HttpPut]
         public async Task<ActionResult<List<TaskItemDTO>>> Put(List<TaskItemDTO> taskItemDTOs)
         {
-            if (taskItemDTOs is null)
-                return BadRequest();
-
             await _database.UpdateTaskItemsAsync(taskItemDTOs);
             return Ok();
         }
