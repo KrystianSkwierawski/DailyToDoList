@@ -26,7 +26,10 @@ export class EditTaskFormComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (this.subtaskEditingData) {
       this.form = new FormGroup({
-        title: new FormControl(this.subtaskEditingData.subtask.title, [Validators.required])
+        title: new FormControl(this.subtaskEditingData.subtask.title, [
+          Validators.required,
+          Validators.maxLength(40)
+        ])
       });
 
       return;
@@ -83,5 +86,19 @@ export class EditTaskFormComponent implements OnInit, AfterViewInit {
 
     if (updatedTask)
       this.store.dispatch(new UpdateTaskItemRemotely(updatedTask));
+  }
+
+  getErrorMessageFieldTitle() {
+    const field = this.form.get('title');
+
+    if (field?.hasError('required')) {
+      return 'The token is required';
+    }
+
+    if (field?.hasError('maxlength')) {
+      return 'The maximum title length is 25';
+    }
+
+    return '';
   }
 }

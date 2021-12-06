@@ -23,7 +23,10 @@ export class AddTaskFormComponent implements OnInit {
  
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required])
+      title: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(40)
+      ])
     });
   }
 
@@ -35,5 +38,19 @@ export class AddTaskFormComponent implements OnInit {
 
   onColorChange(color: string) {
     this.color = color;
+  }
+
+  getErrorMessageFieldTitle() {
+    const field = this.form.get('title');
+
+    if (field?.hasError('required')) {
+      return 'The token is required';
+    }
+
+    if (field?.hasError('maxlength')) {
+      return 'The maximum title length is 25';
+    }
+
+    return '';
   }
 }

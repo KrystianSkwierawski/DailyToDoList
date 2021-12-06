@@ -5,6 +5,8 @@
   <mat-form-field appearance="standard">
     <mat-label>Title</mat-label>
     <input #titleInput formControlName="title" matInput>
+    <mat-error *ngIf="form.invalid">{{getErrorMessageFieldTitle()}}</mat-error>
+
   </mat-form-field>
 
   <button class="submit-edit-task-button" [disabled]="form.invalid" mat-icon-button type="submit" aria-label="Submit edit task">

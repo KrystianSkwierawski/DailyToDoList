@@ -51,10 +51,6 @@ mat-form-field {
   color: #E8E8E8;
 }
 
-::ng-deep .authentication-form .mat-form-field-wrapper {
-  padding-bottom: 0;
-}
-
 ::ng-deep .authentication-form .mat-form-field-label {
   color: #E8E8E8;
 }
@@ -71,6 +67,6 @@ mat-form-field {
   border-color: #555555;
 }
 
-::ng-deep .authentication-form .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+::ng-deep .authentication-form .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-backgrou {
   background-color: #00C090;
 }
