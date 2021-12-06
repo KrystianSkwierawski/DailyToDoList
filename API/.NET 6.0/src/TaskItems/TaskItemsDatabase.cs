@@ -1,4 +1,5 @@
 ﻿using DailyToDoListAPI.CurrentToken;
+using FluentValidation;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,8 @@ public class TaskItemsDatabase : ITaskItemsDatabase
             CreatedBy = token
         };
 
+        await new TaskItemValidator().ValidateAndThrowAsync(taskItem);
+
         await _taskItems.InsertOneAsync(taskItem);
 
         return taskItem.ToDTO();
@@ -74,6 +77,8 @@ public class TaskItemsDatabase : ITaskItemsDatabase
             SubtaskItems = taskItemDTO.SubtaskItems
         };
 
+        await new TaskItemValidator().ValidateAndThrowAsync(taskItem);
+
         await _taskItems.ReplaceOneAsync(filter, taskItem);
     }
 
@@ -85,7 +90,7 @@ public class TaskItemsDatabase : ITaskItemsDatabase
 
         foreach (var taskItemDTO in taskItemDTOs)
         {
-            updatedTaskItems.Add(new TaskItem
+            TaskItem taskItem = new TaskItem
             {
                 Id = taskItemDTO.Id,
                 Title = taskItemDTO.Title,
@@ -93,7 +98,11 @@ public class TaskItemsDatabase : ITaskItemsDatabase
                 Color = taskItemDTO.Color,
                 Completed = taskItemDTO.Completed,
                 SubtaskItems = taskItemDTO.SubtaskItems
-            });
+            };
+
+            await new TaskItemValidator().ValidateAndThrowAsync(taskItem);
+
+            updatedTaskItems.Add(taskItem);
         }
 
         await DeleteAllUserTaskItemsAsync();
