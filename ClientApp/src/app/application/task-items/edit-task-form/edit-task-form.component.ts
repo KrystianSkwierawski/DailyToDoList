@@ -92,11 +92,11 @@ export class EditTaskFormComponent implements OnInit, AfterViewInit {
     const field = this.form.get('title');
 
     if (field?.hasError('required')) {
-      return 'The token is required';
+      return 'The title is required';
     }
 
     if (field?.hasError('maxlength')) {
-      return 'The maximum title length is 25';
+      return 'The maximum title length is 40';
     }
 
     return '';

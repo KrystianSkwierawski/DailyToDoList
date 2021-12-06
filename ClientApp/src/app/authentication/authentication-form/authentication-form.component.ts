@@ -20,7 +20,7 @@ export class AuthenticationFormComponent implements OnInit {
       token: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(25)
+        Validators.maxLength(40)
       ])
     });
   }
@@ -40,7 +40,7 @@ export class AuthenticationFormComponent implements OnInit {
     }
 
     if (field?.hasError('maxlength')) {
-      return 'The maximum token length is 25';
+      return 'The maximum token length is 40';
     }
 
     if (field?.hasError('minlength')) {
