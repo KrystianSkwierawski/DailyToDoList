@@ -12,7 +12,7 @@ public class TaskItemValidator : AbstractValidator<TaskItem>
             .MaximumLength(40).WithMessage("The maximum title length is 40.");
 
         RuleFor(task => task.Color)
-            .MaximumLength(40).WithMessage("The maximum color length is 40.");
+            .Matches("^#(?:[0-9a-fA-F]{3}){1,2}$");
 
 
         RuleFor(task => task.CreatedBy)
