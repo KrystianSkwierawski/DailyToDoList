@@ -36,17 +36,6 @@ During the project API, it has expanded a little, but it is still quite small.
 
 - I added logging for the dev environment. After each use of the API, it logs some information about a request, response, and error if any occurs.
 
-- The API architecture is broken down into functionalities, not types, this time.
-
-    - architecture divided into types.
-
-      ![image](https://user-images.githubusercontent.com/52860350/138107966-dfda2578-a4ac-461c-8ea3-d2e89140dfbc.png)
-     
-    - architecture divided into functionalities, everything that is, for example, related to the TaskItems is in one place close to each other.
-
-      ![image](https://user-images.githubusercontent.com/52860350/138107797-e5ab8ca8-3ad2-4c99-9f81-e9aba6b6a3df.png)
-
-
 ## Tools:
 ### Back-end
  * C#
