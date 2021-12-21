@@ -12,6 +12,9 @@ import { SetToken, SetTokenInLocalStorage } from '../store/authentication.action
 export class AuthenticationFormComponent implements OnInit {
 
   form: FormGroup
+  hideToken: boolean = true;
+
+  private tokenTemplate: string = 'xxxxxxxxxx-xxxxx-4xxx-yxxx-xxxxxxxxxxxx-xxxxxxxxxx-xxxxx-4xxx-yxxx-xxxxxxxxxxxx';
 
   constructor(private store: Store<AppState>) { }
 
@@ -19,8 +22,7 @@ export class AuthenticationFormComponent implements OnInit {
     this.form = new FormGroup({
       token: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(40)
+        Validators.pattern('^[0-9,a-z]{10}-[0-9,a-z]{5}-[0-9,a-z]{4}-[0-9,a-z]{4}-[0-9,a-z]{12}-[0-9,a-z]{10}-[0-9,a-z]{5}-[0-9,a-z]{4}-[0-9,a-z]{4}-[0-9,a-z]{12}$')
       ])
     });
   }
@@ -32,6 +34,16 @@ export class AuthenticationFormComponent implements OnInit {
     this.store.dispatch(new SetToken(token));
   }
 
+  generateRandomToken() {
+    const randomToken: string = this.tokenTemplate.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+
+    this.hideToken = false;
+    this.form.get('token')?.setValue(randomToken);
+  }
+
   getErrorMessageFieldToken() {
     const field = this.form.get('token');
 
@@ -39,12 +51,8 @@ export class AuthenticationFormComponent implements OnInit {
       return 'The token is required';
     }
 
-    if (field?.hasError('maxlength')) {
-      return 'The maximum token length is 40';
-    }
-
-    if (field?.hasError('minlength')) {
-      return 'The minimum token length is 3';
+    if (field?.hasError('pattern')) {
+      return 'The token is invalid, click the Generate Random Token Button';
     }
 
     return '';
