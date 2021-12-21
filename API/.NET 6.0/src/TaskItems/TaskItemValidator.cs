@@ -13,11 +13,6 @@ public class TaskItemValidator : AbstractValidator<TaskItem>
 
         RuleFor(task => task.Color)
             .Matches("^#(?:[0-9a-fA-F]{3}){1,2}$");
-
-
-        RuleFor(task => task.CreatedBy)
-            .MinimumLength(3).WithMessage("The minimum token length is 3.")
-            .MaximumLength(40).WithMessage("The maximum token length is 40.");
     }
 }
 

@@ -1,12 +1,16 @@
 <div class="container">
 
-  <p class="authentication-description">All your tasks will be assigned to your token. you can share it with your friends.</p>
+  <p class="authentication-description">All your tasks will be assigned to your token. you can share it with your friends. <mark>Click the Generate Random Token button and note down it to later use.</mark></p>
 
   <form class="authentication-form" (ngSubmit)="submit(form.value.token, rememberMe.checked)" [formGroup]="form">
 
     <mat-form-field appearance="outline">
       <mat-label>Token</mat-label>
-      <input formControlName="token" matInput type="password">
+      <input formControlName="token" matInput [type]="hideToken ? 'password' : 'text'">
+      <button type="button" mat-icon-button matSuffix (click)="hideToken = !hideToken" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideToken">
+        <mat-icon>{{hideToken ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+
       <mat-error *ngIf="form.invalid">{{getErrorMessageFieldToken()}}</mat-error>
     </mat-form-field>
 
@@ -15,8 +19,14 @@
       Remember me
     </mat-checkbox>
 
-    <button class="submit-button" mat-button [disabled]="form.invalid" type="submit" aria-label="Authenticate">
-      <mat-icon aria-label="Plus icon">vpn_key</mat-icon> Authenticate
-    </button>
+    <div class="form-actions">
+      <button class="generate-token-button" mat-button type="button" aria-label="Generate Token" (click)="generateRandomToken()">
+        Generate Random Token
+      </button>
+
+      <button class="submit-button" mat-button [disabled]="form.invalid" type="submit" aria-label="Authenticate">
+        <mat-icon aria-label="Plus icon">vpn_key</mat-icon> Authenticate
+      </button>
+    </div>
   </form>
 </div>
