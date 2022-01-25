@@ -1,4 +1,4 @@
-<button type="button" (click)="togglePickingColor()" mat-raised-button class="toggle-color-picker-button" [ngStyle]="{'background': color}">
+<button type="button" (click)="togglePickingColor()" mat-raised-button class="toggle-color-picker-button" [ngStyle]="{'background': color}" aria-label="color picker">
 </button>
 
 <div *ngIf="pickingColor" class="color-picker">
