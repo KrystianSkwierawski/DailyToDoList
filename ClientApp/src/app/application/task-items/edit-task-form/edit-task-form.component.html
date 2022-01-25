@@ -4,7 +4,7 @@
 
   <mat-form-field appearance="standard">
     <mat-label>Title</mat-label>
-    <input #titleInput formControlName="title" matInput>
+    <input #titleInput formControlName="title" matInput aria-required="true">
     <mat-error *ngIf="form.invalid">{{getErrorMessageFieldTitle()}}</mat-error>
 
   </mat-form-field>

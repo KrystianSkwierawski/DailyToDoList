@@ -6,7 +6,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Token</mat-label>
-      <input formControlName="token" matInput [type]="hideToken ? 'password' : 'text'">
+      <input formControlName="token" matInput [type]="hideToken ? 'password' : 'text'" aria-required="true">
       <button type="button" mat-icon-button matSuffix (click)="hideToken = !hideToken" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideToken">
         <mat-icon>{{hideToken ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
