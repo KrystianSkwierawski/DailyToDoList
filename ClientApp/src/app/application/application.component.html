@@ -5,12 +5,12 @@
 
   <div class="tasks-list__middle">
     <p>You have {{ pendingTasksNumber }} pendinng tasks</p>
-    <button (click)="clearAllTaskItems()" mat-raised-button>Clear All</button>
+    <button (click)="clearAllTaskItems()" mat-raised-button aria-label="clear all">Clear All</button>
   </div>
 
   <div class="tasks-list__bottom">
     <div>
-      <button (click)="logout()" class="logout-button" mat-button><mat-icon>logout</mat-icon></button>
+      <button (click)="logout()" class="logout-button" mat-button aria-label="logout"><mat-icon>logout</mat-icon></button>
     </div>
 
     <div class="links">
