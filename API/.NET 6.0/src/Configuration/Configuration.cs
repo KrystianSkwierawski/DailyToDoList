@@ -1,9 +1,12 @@
 ﻿using DailyToDoListAPI.CurrentToken;
 using DailyToDoListAPI.TaskItems;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DailyToDoListAPI.Configuration;
 
@@ -74,13 +77,23 @@ public static class Configuration
         return services;
     }
 
-    public static void Configure(this WebApplication app)
+    public static void Configure(this WebApplication app, IWebHostEnvironment env)
     {
         app.UseCors(builder => builder
              .AllowAnyOrigin()
              .AllowAnyMethod()
              .AllowAnyHeader()
         );
+
+        app.UseStaticFiles();
+
+        app.UseFileServer(new FileServerOptions
+        {
+            FileProvider = new PhysicalFileProvider(
+                Path.Combine(env.ContentRootPath, "wwwroot")),
+            RequestPath = "/wwwroot",
+            EnableDirectoryBrowsing = true
+        });
     }
 }
 
