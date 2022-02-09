@@ -16,8 +16,4 @@
 		<PackageReference Include="MongoDB.Driver" Version="2.13.1" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="wwwroot\.well-known\acme-challange\" />
-	</ItemGroup>
-
 </Project>

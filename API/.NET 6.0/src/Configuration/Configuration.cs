@@ -84,16 +84,6 @@ public static class Configuration
              .AllowAnyMethod()
              .AllowAnyHeader()
         );
-
-        app.UseStaticFiles();
-
-        app.UseFileServer(new FileServerOptions
-        {
-            FileProvider = new PhysicalFileProvider(
-                Path.Combine(env.ContentRootPath, "wwwroot")),
-            RequestPath = "/wwwroot",
-            EnableDirectoryBrowsing = true
-        });
     }
 }
 
