@@ -28,7 +28,7 @@ During the project API, it has expanded a little, but it is still quite small.
 
 - I tested all the components etc on Angular using karma. 
 
-- I used <a href="https://ngrx.io/">NgRx</a> to manage the application state. 
+- I used <a href="https://ngrx.io/">NgRx</a> to manage the Angular application state. 
 
 - I Created an <a href="https://documenter.getpostman.com/view/18585475/UVJfkwBc">API documentation</a> using Postman
 
