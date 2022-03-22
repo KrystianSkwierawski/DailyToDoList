@@ -177,6 +177,9 @@ rel="preload" as="style" onload="this.rel='stylesheet'"``` to ```rel="stylesheet
 ### Sources
 - https://medium.com/weekly-webtips/is-it-hard-to-create-a-chrome-extension-using-angular-d9fd6a5740f3
 
+### Download
+https://github.com/KrystianSkwierawski/DailyToDoList/releases
+
 ### Status
 The project(demo) is almost finished. 
 
