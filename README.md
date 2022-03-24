@@ -36,7 +36,7 @@ During the project API, it has expanded a little, but it is still quite small.
 
 - I added logging for a dev environment. After each use of the API, it logs some information about a request, response, and error if any occurs.
 
-## Tools:
+## Tools
 ### Back-end
  * C#
  * .NET 6.0
