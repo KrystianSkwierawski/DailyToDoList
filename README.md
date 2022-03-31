@@ -1,4 +1,4 @@
-<a href="https://wiktoriaskorek.com/"><p align="center"><img src="https://user-images.githubusercontent.com/52860350/161114732-c614e866-66f8-45e2-9569-40f35615f2d5.svg" alt="DailyToDoList"/></p><a/>
+<a href="https://wiktoriaskorek.com/"><p align="center"><img src="https://user-images.githubusercontent.com/52860350/161115039-ad6fa877-99b6-438c-891b-7fdd0cf2347d.svg" alt="DailyToDoList"/></p><a/>
 
 ## Why this project was created?
 The premise was that I needed a simple app where I could focus on learning new technologies and having fun with them.
