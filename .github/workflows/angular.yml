@@ -24,7 +24,7 @@ jobs:
           node-version: 12  
         
       - name: Install Dependencies 🔧
-        run: npm ci
+        run: npm install
               
       - name: Test 🧪
         run:  npm run test:ci     
