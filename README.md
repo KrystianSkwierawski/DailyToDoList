@@ -1,5 +1,5 @@
-# DailyToDoList
-    
+<a href="https://wiktoriaskorek.com/"><p align="center"><img src="https://user-images.githubusercontent.com/52860350/161115039-ad6fa877-99b6-438c-891b-7fdd0cf2347d.svg" alt="DailyToDoList"/></p><a/>
+
 ## Why this project was created?
 The premise was that I needed a simple app where I could focus on learning new technologies and having fun with them.
 
