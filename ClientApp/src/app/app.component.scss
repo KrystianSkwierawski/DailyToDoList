@@ -38,6 +38,15 @@ header {
     width: 50%;
   }
 
+  & img {
+    margin-bottom: 2rem;
+    width: 90%;
+
+    @include respond-to(medium) {
+      width: 80%;
+    }
+  }
+
   & p {
     text-align: center;
     color: #E8E8E8;
