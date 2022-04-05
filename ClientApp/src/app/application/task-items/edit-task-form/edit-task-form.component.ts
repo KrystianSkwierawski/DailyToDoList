@@ -1,4 +1,4 @@
-import { AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, HostListener } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -21,34 +21,22 @@ export class EditTaskFormComponent implements OnInit, AfterViewInit {
   form: FormGroup
   color: string;
 
-  constructor(private store: Store<AppState>, private cdr: ChangeDetectorRef) { }
-  
+  constructor(private store: Store<AppState>, private cdr: ChangeDetectorRef, private elementRef: ElementRef) { }
+
   ngOnInit(): void {
-    if (this.subtaskEditingData) {
-      this.form = new FormGroup({
-        title: new FormControl(this.subtaskEditingData.subtask.title, [
-          Validators.required,
-          Validators.maxLength(40)
-        ])
-      });
+    const title: string = (this.subtaskEditingData) ? this.subtaskEditingData.subtask.title : this.task.title;
 
-      return;
-    }
-
-    if (!this.subtaskEditingData) {
-      this.form = new FormGroup({
-        title: new FormControl(this.task.title, [Validators.required])
-      });
-
-      return;
-    }
+    this.form = new FormGroup({
+      title: new FormControl(title, [
+        Validators.required,
+        Validators.maxLength(40)
+      ])
+    });
   }
 
   ngAfterViewInit(): void {
-    if (this.subtaskEditingData) {
-      this.titleInput?.nativeElement.focus();
-      this.cdr.detectChanges();
-    }
+    this.titleInput?.nativeElement.focus();
+    this.cdr.detectChanges();
   }
 
   onColorChange(color: string) {
@@ -100,5 +88,16 @@ export class EditTaskFormComponent implements OnInit, AfterViewInit {
     }
 
     return '';
+  }
+
+  @HostListener('document:click', ['$event'])
+  submitIfClickOutsideCompontent(event: any) {
+    const clickedInsideThisCompontent: boolean = this.elementRef.nativeElement.contains(event.target);
+    const clickedEditTaskButton: boolean = event.target.matches('.toggle-editing-task-button, .toggle-editing-task-button *')
+
+    if (!clickedInsideThisCompontent && !clickedEditTaskButton) {
+      const title: string = this.titleInput.nativeElement.value;
+      this.submit(title);
+    }
   }
 }
