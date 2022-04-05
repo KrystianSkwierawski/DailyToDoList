@@ -90,7 +90,7 @@ export class EditTaskFormComponent implements OnInit, AfterViewInit {
     return '';
   }
 
-  @HostListener('document:click', ['$event'])
+  @HostListener('document:mousedown', ['$event'])
   submitIfClickOutsideCompontent(event: any) {
     const clickedInsideThisCompontent: boolean = this.elementRef.nativeElement.contains(event.target);
     const clickedEditTaskButton: boolean = event.target.matches('.toggle-editing-task-button, .toggle-editing-task-button *')
