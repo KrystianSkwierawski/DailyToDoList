@@ -264,54 +264,6 @@ describe('TasksListComponent', () => {
     expect(taskItems[0].subtaskItems[subtaskItemIdex].completed).toBe(!subtaskItem.completed);
   });
 
-  it('[toggleCompleteSubtask] should toggle subtaskItem.complete and delete task if all subtasks is completed', () => {
-    // Arrange
-    let taskItems: TaskItem[] = [];
-    store.select('taskItems').subscribe(state => taskItems = state.taskItems);
-
-    const fixture = TestBed.createComponent(TasksListComponent);
-    const app: TasksListComponent = fixture.componentInstance;
-    fixture.detectChanges();
-
-    const subtaskItem: SubtaskItem = {
-      completed: false
-    } as SubtaskItem;
-
-    const taskItem: TaskItem = {
-      id: "1",
-      subtaskItems: [
-        subtaskItem
-      ]
-    } as TaskItem;
-
-    const updatedSubtaskItem: SubtaskItem = {
-      ...subtaskItem,
-      completed: !subtaskItem.completed
-    };
-
-    const updatedSubtaskItems: SubtaskItem[] = [...taskItem.subtaskItems];
-
-    const subtaskItemIdex = 0;
-    updatedSubtaskItems[subtaskItemIdex] = updatedSubtaskItem;
-
-    const expectedTaskItem: TaskItem = {
-      ...taskItem,
-      subtaskItems: updatedSubtaskItems
-    }
-
-    spyOn(taskItemsService, 'addTaskItem').and.returnValue(of(taskItem));
-    spyOn(taskItemsService, 'updateTaskItem').and.returnValue(of(expectedTaskItem));
-    spyOn(taskItemsService, 'deleteTaskItem').and.returnValue(of(taskItem.id));
-    store.dispatch(new AddTaskItemRemotely(taskItem));
-
-
-    // Act
-    app.toggleCompleteSubtask(taskItem, subtaskItem, subtaskItemIdex);
-
-    // Assert
-    expect(taskItems.length).toBe(0);
-  });
-
   it('[toggleEditingSubtask] should toggle subtask.editing', () => {
     // Arrange
     let taskItems: TaskItem[] = [];
