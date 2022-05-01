@@ -182,5 +182,5 @@ rel="preload" as="style" onload="this.rel='stylesheet'"``` to ```rel="stylesheet
 https://github.com/KrystianSkwierawski/DailyToDoList/releases
 
 ## Status
-The project(demo) is almost finished. 
+The project(demo) is finished. 
 
