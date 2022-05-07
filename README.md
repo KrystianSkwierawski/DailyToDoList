@@ -1,9 +1,9 @@
 <a href="https://wiktoriaskorek.com/"><p align="center"><img src="https://user-images.githubusercontent.com/52860350/161590205-358a23a4-4061-48d1-ae03-8c177dc8e71a.svg" alt="DailyToDoList"/></p><a/>
 
-## Why this project was created?
+## Why was this project created?
 The premise was that I needed a simple app where I could focus on learning new technologies and having fun with them.
 
-## What did I learn and, what interesting did I do?
+## What did I learn, and what interesting did I do?
 - I created a <a href="https://youtu.be/9OPyORGBB6Q">Minimal API with .NET 6</a>, at the beginning it contained only a few lines of code and it looked like this.
 ```c#
 var bulider = WebApplication.CreateBuilder();
@@ -20,21 +20,21 @@ app.Run();
 ```
 During the project API, it has expanded a little, but it is still quite small.
 
-- This time an API and a client application are separate. The API is working with Web application, Windows application, Linux application, Mac application, Android application, and Chrome extension.
+- This time an API and a client application are separate. The API works with the Web application, Windows application, Linux application, Mac application, Android application, and Chrome extension.
 
-- <a href="https://youtu.be/scEDHsr3APg">CI/CD</a> - thanks to this my application is tested, built, and deployed after commits. <a href="https://github.com/KrystianSkwierawski/DailyToDoList/tree/master/.github/workflows">Here</a> you can look at my workflows for the front-end and back-end.
+- <a href="https://youtu.be/scEDHsr3APg">CI/CD</a> - thanks to it , my application is tested, built, and deployed after commits. <a href="https://github.com/KrystianSkwierawski/DailyToDoList/tree/master/.github/workflows">Here</a> you can look at my workflows for the front-end and back-end.
 
 - I used the non-relational cloud version of the MongoDB database. 
 
-- I tested all the components etc on Angular using karma. 
+- I tested all the components etc., on Angular using karma.
 
 - I used <a href="https://ngrx.io/">NgRx</a> to manage the Angular application state. 
 
 - I Created an <a href="https://documenter.getpostman.com/view/18585475/UVJfkwBc">API documentation</a> using Postman
 
-- I used Docker Desktop Linux machine for application containerization, I connected API and client web application via docker-compose.
+- I used a Docker Desktop Linux machine for application containerization. I connected API and the client web application via docker-compose.
 
-- I added logging for a dev environment. After each use of the API, it logs some information about a request, response, and error if any occurs.
+- I added logging for a dev environment. After each use of the API, it logs some information about a request, response, and error, if any, occurs.
 
 ![todolist](https://user-images.githubusercontent.com/52860350/163707736-1fbcd559-eb3b-4192-810e-16a99d90c1df.jpg)
 
