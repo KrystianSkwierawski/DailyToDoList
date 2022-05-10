@@ -3,6 +3,6 @@
 ### NET 6.0 Minimal API 
 https://localhost:44381/ / http://localhost:44380/
 
-https://dailytodolist.somee.com/api/tasks / http://dailytodolist.somee.com/api/tasks
+https://dailytodolistv2.somee.com/api/tasks / http://dailytodolistv2.somee.com/api/tasks
 
 
