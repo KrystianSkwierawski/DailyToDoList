@@ -30,7 +30,7 @@ jobs:
         run:  npm run test:ci     
         
       - name: Build 🧱
-        run:  npm run build:gh-pages
+        run:  npm run build:gh-pages -- --configuration production
                                     
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
